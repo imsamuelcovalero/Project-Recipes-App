@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import saveMealsToken from '../helpers/saveMealsToken';
+import saveCocktailsToken from '../helpers/saveCocktailsToken';
 
 function Login() {
+  const history = useHistory();
   const [user, setUser] = useState({ email: '', password: '' });
 
   const isPlayButtonDisabled = () => {
@@ -12,13 +16,16 @@ function Login() {
     return true;
   };
 
-  const handleChange = (event) => {
+  const HandleChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const HandleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    saveMealsToken();
+    saveCocktailsToken();
+    localStorage.setItem('user', JSON.stringify({ email: user.email }));
+    history.push('/foods');
   };
 
   return (
@@ -30,7 +37,7 @@ function Login() {
           value={ user.email }
           type="text"
           placeholder="Email"
-          onChange={ handleChange }
+          onChange={ HandleChange }
         />
         <input
           data-testid="password-input"
@@ -38,13 +45,13 @@ function Login() {
           value={ user.password }
           type="password"
           placeholder="Password"
-          onChange={ handleChange }
+          onChange={ HandleChange }
         />
         <button
           data-testid="login-submit-btn"
-          type="button"
+          type="submit"
           disabled={ isPlayButtonDisabled() }
-          onClick={ handleSubmit }
+          onClick={ HandleSubmit }
         >
           Enter
         </button>
