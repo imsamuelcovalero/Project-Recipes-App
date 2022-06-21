@@ -31,26 +31,27 @@ function Login() {
   return (
     <div>
       <form>
-        <input
-          data-testid="email-input"
-          name="email"
-          value={ user.email }
-          type="text"
-          placeholder="Email"
-          onChange={ HandleChange }
-        />
-        <label htmlFor="passwordLabel">
-          Password:
+        <label htmlFor="email">
+          Email
           <input
-            id="passwordLabel"
-            data-testid="password-input"
-            name="password"
-            value={ user.password }
-            type="password"
-            placeholder="Password"
+            id="email"
+            data-testid="email-input"
+            name="email"
+            value={ user.email }
+            type="text"
+            placeholder="Email"
             onChange={ HandleChange }
           />
         </label>
+
+        <input
+          data-testid="password-input"
+          name="password"
+          value={ user.password }
+          type="password"
+          placeholder="Password"
+          onChange={ HandleChange }
+        />
         <button
           data-testid="login-submit-btn"
           type="submit"
