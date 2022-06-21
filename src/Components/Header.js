@@ -11,11 +11,17 @@ function Header({ title }) {
   const [searchName, setSearchName] = useState('');
   const [radioResult, setRadioResult] = useState('');
 
-  const { setSearchResult } = useContext(AppContext);
+  const { setSearchResult, setRecipeType } = useContext(AppContext);
   console.log(searchName, radioResult);
 
   const HandleClick = () => {
-    console.log('entrou');
+    const { location: { pathname } } = history;
+    if (pathname === '/foods') {
+      setRecipeType('themealdb');
+    }
+    if (pathname === '/drinks') {
+      setRecipeType('thecocktaildb');
+    }
     setSearchResult({ searchName, radioResult });
   };
 

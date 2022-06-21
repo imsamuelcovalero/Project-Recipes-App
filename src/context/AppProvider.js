@@ -2,21 +2,16 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
 
-const INGREDIENT_API = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
-const NAME_API = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-const FIRST_LETTER_API = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
-
 function AppProvider({ children }) {
   const [searchResult, setSearchResult] = useState({});
-  // const [searchName, setSearchName] = useState('');
-  // const [radioResult, setRadioResult] = useState('');
+  const [recipeType, setRecipeType] = useState('');
   const [apiResult, setApiResult] = useState('');
 
   useEffect(() => {
     const getRecipes = async () => {
       if (searchResult.radioResult === 'ingredient') {
         try {
-          const response = await fetch(`${INGREDIENT_API}${searchResult.searchName}`);
+          const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/filter.php?i=${searchResult.searchName}`);
           const results = await response.json();
           console.log(results);
           setApiResult(results);
@@ -27,7 +22,7 @@ function AppProvider({ children }) {
 
       if (searchResult.radioResult === 'name') {
         try {
-          const response = await fetch(`${NAME_API}${searchResult.searchName}`);
+          const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/search.php?s=${searchResult.searchName}`);
           const results = await response.json();
           console.log(results);
           setApiResult(results);
@@ -38,7 +33,7 @@ function AppProvider({ children }) {
 
       if (searchResult.radioResult === 'first-letter') {
         try {
-          const response = await fetch(`${FIRST_LETTER_API}${searchResult.searchName}`);
+          const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/search.php?f=${searchResult.searchName}`);
           const results = await response.json();
           console.log(results);
           setApiResult(results);
@@ -48,12 +43,13 @@ function AppProvider({ children }) {
       }
     };
     getRecipes();
-  }, [searchResult]);
+  }, [searchResult, recipeType]);
 
   console.log(apiResult);
 
   const contextValue = {
     setSearchResult,
+    setRecipeType,
   };
 
   return (
