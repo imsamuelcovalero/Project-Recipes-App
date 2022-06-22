@@ -16,8 +16,8 @@ function AppProvider({ children }) {
       return;
     }
     if (apiResult && Object.values(apiResult).length === 1) {
-      console.log(recipeType);
-      console.log(apiResult);
+      // console.log(recipeType);
+      // console.log(apiResult);
       if (recipeType === 'themealdb') {
         const currentMealId = apiResult[0].idMeal;
         history.push(`/foods/${currentMealId}`);
