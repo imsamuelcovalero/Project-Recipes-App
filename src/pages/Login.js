@@ -43,15 +43,18 @@ function Login() {
             onChange={ HandleChange }
           />
         </label>
-
-        <input
-          data-testid="password-input"
-          name="password"
-          value={ user.password }
-          type="password"
-          placeholder="Password"
-          onChange={ HandleChange }
-        />
+        <label htmlFor="passwordLabel">
+          Password
+          <input
+            id="passwordLabel"
+            data-testid="password-input"
+            name="password"
+            value={ user.password }
+            type="password"
+            placeholder="Password"
+            onChange={ HandleChange }
+          />
+        </label>
         <button
           data-testid="login-submit-btn"
           type="submit"
