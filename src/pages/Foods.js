@@ -1,4 +1,5 @@
 import React from 'react';
+// import AppContext from '../context/AppContext';
 import Header from '../Components/Header';
 import FoodAndDrinkCard from '../Components/FoodAndDrinkCard';
 import Footer from '../Components/Footer';

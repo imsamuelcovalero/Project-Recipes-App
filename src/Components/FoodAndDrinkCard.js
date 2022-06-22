@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
+import getInitialRecipes from '../helpers/initialFetch';
 // import PropTypes from 'prop-types';
 // import { useHistory } from 'react-router-dom';
 
@@ -9,7 +10,6 @@ function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   // const [arrayResultsToMap, setArrayResultsToMap] = useState([]);
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
-  console.log(apiResult);
 
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
@@ -19,14 +19,23 @@ function FoodAndDrinkCard() {
 
   useEffect(() => {
     const checkName = () => {
-      if (foodType === 'meals') {
+      if (window.location.href.includes('/foods')) {
         setNameToMap('strMeal');
-      } else if (foodType === 'drinks') {
+      } else if (window.location.href.includes('/drinks')) {
         setNameToMap('strDrink');
       }
     };
     checkName();
   }, [foodType]);
+
+  useEffect(() => {
+    const teste = async () => {
+      const initialRecipes = await getInitialRecipes();
+      setApiResult(initialRecipes);
+    };
+
+    teste();
+  }, []);
 
   return (
     <div>
