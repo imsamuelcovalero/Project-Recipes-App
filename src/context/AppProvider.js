@@ -8,25 +8,28 @@ function AppProvider({ children }) {
   const [recipeType, setRecipeType] = useState('');
   const [apiResult, setApiResult] = useState('');
   const [foodType, setFoodType] = useState('');
+
   const history = useHistory();
 
   const handleId = () => {
     if (foodType === '') {
       return;
     }
-    if (Object.values(apiResult[foodType]).length === 1) {
+    if (Object.values(apiResult).length === 1) {
       console.log(recipeType);
+      console.log(apiResult);
       if (recipeType === 'themealdb') {
-        const currentMealId = apiResult.meals[0].idMeal;
+        const currentMealId = apiResult[0].idMeal;
         history.push(`/foods/${currentMealId}`);
       }
       if (recipeType === 'thecocktaildb') {
-        const currentDrinkId = apiResult.drinks[0].idDrink;
+        const currentDrinkId = apiResult[0].idDrink;
         history.push(`/drinks/${currentDrinkId}`);
       }
-    } else if ((Object.values(apiResult[foodType]).length > 1)) {
-      console.log('xablau');
     }
+    // else if ((Object.values(apiResult[foodType]).length > 1)) {
+    //   console.log('xablau');
+    // }
   };
 
   useEffect(() => {
@@ -39,8 +42,8 @@ function AppProvider({ children }) {
         try {
           const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/filter.php?i=${searchResult.searchName}`);
           const results = await response.json();
-          console.log(results);
-          setApiResult(results);
+          // console.log(results[foodType]);
+          setApiResult(results[foodType]);
         } catch (errorRequest) {
           console.log(errorRequest);
         }
@@ -50,8 +53,8 @@ function AppProvider({ children }) {
         try {
           const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/search.php?s=${searchResult.searchName}`);
           const results = await response.json();
-          console.log(results);
-          setApiResult(results);
+          // console.log(results[foodType]);
+          setApiResult(results[foodType]);
         } catch (errorRequest) {
           console.log(errorRequest);
         }
@@ -61,8 +64,8 @@ function AppProvider({ children }) {
         try {
           const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/search.php?f=${searchResult.searchName}`);
           const results = await response.json();
-          console.log(results);
-          setApiResult(results);
+          // console.log(results[foodType]);
+          setApiResult(results[foodType]);
         } catch (errorRequest) {
           global.alert('Your search must have only 1 (one) character');
         }
@@ -77,6 +80,9 @@ function AppProvider({ children }) {
     setSearchResult,
     setRecipeType,
     setFoodType,
+    apiResult,
+    foodType,
+    setApiResult,
   };
 
   return (
