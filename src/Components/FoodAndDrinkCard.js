@@ -7,11 +7,11 @@ function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   // const [arrayResultsToMap, setArrayResultsToMap] = useState([]);
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
-  console.log(apiResult);
+  // console.log(apiResult);
 
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
-    console.log('newArrayResultsToMap', newArrayResultsToMap);
+    // console.log('newArrayResultsToMap', newArrayResultsToMap);
     setApiResult(newArrayResultsToMap);
   }
 

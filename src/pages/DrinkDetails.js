@@ -1,8 +1,12 @@
 import React from 'react';
+import FoodAndDrinkDetails from '../Components/FoodAndDrinkDetails';
 
 function DrinkDetails() {
   return (
-    <h3>Drink Details</h3>
+    <div>
+      <h3>Drink Details</h3>
+      <FoodAndDrinkDetails />
+    </div>
   );
 }
 
