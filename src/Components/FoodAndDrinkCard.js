@@ -9,10 +9,11 @@ function FoodAndDrinkCard() {
   // const [arrayResultsToMap, setArrayResultsToMap] = useState([]);
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
   console.log(oneMeal);
+  // console.log(apiResult);
 
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
-    console.log('newArrayResultsToMap', newArrayResultsToMap);
+    // console.log('newArrayResultsToMap', newArrayResultsToMap);
     setApiResult(newArrayResultsToMap);
   }
 
@@ -53,9 +54,5 @@ function FoodAndDrinkCard() {
     </div>
   );
 }
-
-// Header.propTypes = {
-//   title: PropTypes.string.isRequired,
-// };
 
 export default FoodAndDrinkCard;
