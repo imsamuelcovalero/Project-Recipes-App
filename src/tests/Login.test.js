@@ -6,7 +6,7 @@ import App from '../App';
 import { validEmail, validPassword, invalidPassword } from './mocks';
 
 describe('Testes da tela de Login:', () => {
-  it('Testa se tem os data-testid dos inputs de email, senha e botão  "Entet":', () => {
+  it('Testa se tem os data-testid dos inputs de email, senha e botão  "Enter":', () => {
     renderWithRouter(<App />);
     const dataTestId = 'data-testid';
     const emailInput = screen.getByRole('textbox');
