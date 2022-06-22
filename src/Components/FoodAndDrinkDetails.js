@@ -5,6 +5,7 @@ function FoodAndDrinkDetails() {
   const [nameToMap, setNameToMap] = useState('');
   const { apiResult, foodType } = useContext(AppContext);
   console.log(foodType);
+  // teste
 
   useEffect(() => {
     const checkName = () => {
