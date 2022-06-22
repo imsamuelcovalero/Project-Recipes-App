@@ -1,11 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [searchResult, setSearchResult] = useState({});
   const [recipeType, setRecipeType] = useState('');
   const [apiResult, setApiResult] = useState('');
+  const [foodType, setFoodType] = useState('');
+  const history = useHistory();
+
+  const handleId = () => {
+    if (foodType === '') {
+      return;
+    }
+    if (Object.values(apiResult[foodType]).length === 1) {
+      console.log(recipeType);
+      if (recipeType === 'themealdb') {
+        const currentMealId = apiResult.meals[0].idMeal;
+        history.push(`/foods/${currentMealId}`);
+      }
+      if (recipeType === 'thecocktaildb') {
+        const currentDrinkId = apiResult.drinks[0].idDrink;
+        history.push(`/drinks/${currentDrinkId}`);
+      }
+    } else if ((Object.values(apiResult[foodType]).length > 1)) {
+      console.log('xablau');
+    }
+  };
+
+  useEffect(() => {
+    handleId();
+  }, [apiResult]);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -45,11 +71,12 @@ function AppProvider({ children }) {
     getRecipes();
   }, [searchResult, recipeType]);
 
-  console.log(apiResult);
+  // console.log(apiResult);
 
   const contextValue = {
     setSearchResult,
     setRecipeType,
+    setFoodType,
   };
 
   return (
