@@ -1,9 +1,13 @@
 import React from 'react';
+import Footer from '../Components/Footer';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
 
 function Explore() {
   return (
-    <HeaderNoSearch title="Explore" shouldRenderMagnifier />
+    <div>
+      <HeaderNoSearch title="Explore" shouldRenderMagnifier />
+      <Footer />
+    </div>
   );
 }
 

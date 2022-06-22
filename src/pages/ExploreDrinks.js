@@ -1,9 +1,13 @@
 import React from 'react';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
+import Footer from '../Components/Footer';
 
 function ExploreDrinks() {
   return (
-    <HeaderNoSearch title="Explore Drinks" shouldRenderMagnifier />
+    <div>
+      <HeaderNoSearch title="Explore Drinks" shouldRenderMagnifier />
+      <Footer />
+    </div>
   );
 }
 

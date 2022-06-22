@@ -1,9 +1,13 @@
 import React from 'react';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
+import Footer from '../Components/Footer';
 
 function Profile() {
   return (
-    <HeaderNoSearch title="Profile" shouldRenderMagnifier />
+    <div>
+      <HeaderNoSearch title="Profile" shouldRenderMagnifier />
+      <Footer />
+    </div>
   );
 }
 

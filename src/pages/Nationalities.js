@@ -1,9 +1,13 @@
 import React from 'react';
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 function Nationalities() {
   return (
-    <Header title="Explore Nationalities" shouldRenderMagnifier />
+    <div>
+      <Header title="Explore Nationalities" shouldRenderMagnifier />
+      <Footer />
+    </div>
   );
 }
 
