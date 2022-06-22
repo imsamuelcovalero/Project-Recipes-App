@@ -11,7 +11,7 @@ function FoodAndDrinkCard() {
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
   console.log(apiResult);
 
-  if (apiResult !== undefined && apiResult.length > MAX_RECIPES) {
+  if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
     console.log('newArrayResultsToMap', newArrayResultsToMap);
     setApiResult(newArrayResultsToMap);

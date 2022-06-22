@@ -15,7 +15,7 @@ function AppProvider({ children }) {
     if (foodType === '') {
       return;
     }
-    if (Object.values(apiResult).length === 1) {
+    if (apiResult && Object.values(apiResult).length === 1) {
       console.log(recipeType);
       console.log(apiResult);
       if (recipeType === 'themealdb') {
@@ -27,9 +27,11 @@ function AppProvider({ children }) {
         history.push(`/drinks/${currentDrinkId}`);
       }
     }
-    // else if ((Object.values(apiResult[foodType]).length > 1)) {
-    //   console.log('xablau');
-    // }
+    if (!apiResult) {
+      // console.log(Object.values(apiResult));
+      console.log('xablau');
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
   };
 
   useEffect(() => {
