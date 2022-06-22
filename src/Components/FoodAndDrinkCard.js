@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
-// import PropTypes from 'prop-types';
-// import { useHistory } from 'react-router-dom';
 
 const MAX_RECIPES = 12;
 
@@ -54,9 +52,5 @@ function FoodAndDrinkCard() {
     </div>
   );
 }
-
-// Header.propTypes = {
-//   title: PropTypes.string.isRequired,
-// };
 
 export default FoodAndDrinkCard;
