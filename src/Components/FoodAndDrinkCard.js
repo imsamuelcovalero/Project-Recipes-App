@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
-// import PropTypes from 'prop-types';
-// import { useHistory } from 'react-router-dom';
+import oneMeal from './oneMeal';
 
 const MAX_RECIPES = 12;
 
@@ -9,7 +8,7 @@ function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   // const [arrayResultsToMap, setArrayResultsToMap] = useState([]);
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
-  console.log(apiResult);
+  console.log(oneMeal);
 
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
