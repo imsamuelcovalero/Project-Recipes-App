@@ -8,7 +8,6 @@ const getInitialRecipes = async () => {
       const results = await response.json();
       console.log(results.meals);
       return results.meals;
-      // setApiResult(results[foodType]);
     } catch (errorRequest) {
       console.log(errorRequest);
     }
@@ -20,7 +19,6 @@ const getInitialRecipes = async () => {
       const results = await response.json();
       console.log(results.drinks);
       return results.drinks;
-      // setApiResult(results[foodType]);
     } catch (errorRequest) {
       console.log(errorRequest);
     }
