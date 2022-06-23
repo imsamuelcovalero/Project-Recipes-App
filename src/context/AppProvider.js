@@ -85,6 +85,7 @@ function AppProvider({ children }) {
     apiResult,
     foodType,
     setApiResult,
+    recipeType,
   };
 
   return (
