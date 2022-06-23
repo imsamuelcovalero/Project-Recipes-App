@@ -130,6 +130,8 @@ function FoodAndDrinkDetails() {
           <iframe
             title="video"
             src={ splitLink() }
+            width="400" // largura para deletar
+            height="250" // altura para deletar
           >
             <track kind="captions" />
           </iframe>
@@ -144,6 +146,8 @@ function FoodAndDrinkDetails() {
         <img
           src={ recomendation[`${foodOrDrink}Thumb`] }
           alt="foodOrDrinkImage"
+          width="300" // largura para deletar
+          height="300" // altura para deletar
         />
         {foodOrDrink === 'strDrink'
           ? <p>{recomendation.strAlcoholic}</p>
@@ -167,6 +171,8 @@ function FoodAndDrinkDetails() {
                       data-testid="recipe-photo"
                       src={ item[`${nameToMap}Thumb`] }
                       alt="foodOrDrinkImage"
+                      width="300" // largura para deletar
+                      height="300" // altura para deletar
                     />
                     <p data-testid="recipe-title">
                       { item[nameToMap] }
