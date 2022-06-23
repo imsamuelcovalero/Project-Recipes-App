@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import AppContext from '../context/AppContext';
+import getInitialRecipes from '../helpers/initialFetch';
 
 function FilterButtons() {
   const [filterOptions, setFilterOptions] = useState([]);
+  const [lastClicked, setLastClicked] = useState('');
   const { setApiResult } = useContext(AppContext);
 
   const FOODS_CATEGORIES_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
@@ -43,6 +45,8 @@ function FilterButtons() {
   const handleClick = async (category) => {
     const finalEndpoint = category.strCategory;
 
+    setLastClicked(category.strCategory);
+
     if (window.location.href.includes('/foods')) {
       try {
         const response = await fetch(`${SEARCH_FOODS_BY_CATEGORIES}${finalEndpoint}`);
@@ -64,10 +68,28 @@ function FilterButtons() {
         console.log(errorRequest);
       }
     }
+
+    if (category.strCategory === lastClicked) {
+      const initialRecipes = await getInitialRecipes();
+      setApiResult(initialRecipes);
+    }
+  };
+
+  const handleResetFilters = async () => {
+    const initialRecipes = await getInitialRecipes();
+    setApiResult(initialRecipes);
   };
 
   return (
     <div>
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ handleResetFilters }
+      >
+        All
+      </button>
+
       {
         filterOptions && filterOptions.map((category) => (
           <button
