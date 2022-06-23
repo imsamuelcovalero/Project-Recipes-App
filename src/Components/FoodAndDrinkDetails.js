@@ -183,9 +183,9 @@ function FoodAndDrinkDetails() {
                     >
                       favoritar
                     </button>
-                    <p data-testid="recipe-category">
-                      { item.strCategory }
-                    </p>
+                    {nameToMap === 'strMeal'
+                      ? <p data-testid="recipe-category">{item.strCategory}</p>
+                      : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
                     <section>
                       <h4>Ingredients</h4>
                       {ingredientList.map((ingredientItem, index2) => (
