@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext';
 function FoodAndDrinkDetails() {
   const [nameToMap, setNameToMap] = useState('');
   const [ingredientList, setIngredientList] = useState([]);
-  // const [measuresList, setMeasuresList] = useState('');
+  const [measuresList, setMeasuresList] = useState('');
   const { apiResult, foodType } = useContext(AppContext);
   const apiResultObject = apiResult[0];
   // const oneMealObject = oneMeal.meals[0];
@@ -37,7 +37,7 @@ function FoodAndDrinkDetails() {
         }
       }
       console.log('measures', measures);
-      // setMeasuresList(measures);
+      setMeasuresList(measures);
       return measures;
     };
     getMeasures();
@@ -113,8 +113,12 @@ function FoodAndDrinkDetails() {
                       { item.strCategory }
                     </p>
                     <section>
+                      <h4>Ingredients</h4>
                       {ingredientList.map((ingredientItem, index2) => (
-                        <p key={ index2 }>{ingredientItem}</p>
+                        <p key={ index2 }>
+                          {`${ingredientItem}
+                         - ${measuresList[index2]}`}
+                        </p>
                       ))}
                     </section>
                     <section>
