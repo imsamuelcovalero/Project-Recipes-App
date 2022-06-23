@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
-import oneMeal from './oneMeal';
+// import oneMeal from './oneMeal';
 
 const MAX_RECIPES = 12;
 
@@ -8,7 +8,7 @@ function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   // const [arrayResultsToMap, setArrayResultsToMap] = useState([]);
   const { apiResult, foodType, setApiResult } = useContext(AppContext);
-  console.log(oneMeal);
+  // console.log(oneMeal);
   // console.log(apiResult);
 
   if (apiResult && apiResult.length > MAX_RECIPES) {

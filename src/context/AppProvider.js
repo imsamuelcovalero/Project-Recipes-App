@@ -16,8 +16,8 @@ function AppProvider({ children }) {
       return;
     }
     if (apiResult && Object.values(apiResult).length === 1) {
-      console.log(recipeType);
-      console.log(apiResult);
+      // console.log(recipeType);
+      // console.log(apiResult);
       if (recipeType === 'themealdb') {
         const currentMealId = apiResult[0].idMeal;
         history.push(`/foods/${currentMealId}`);
@@ -29,7 +29,7 @@ function AppProvider({ children }) {
     }
     if (!apiResult) {
       // console.log(Object.values(apiResult));
-      console.log('xablau');
+      // console.log('xablau');
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   };
