@@ -29,7 +29,7 @@ function AppProvider({ children }) {
     }
     if (!apiResult) {
       // console.log(Object.values(apiResult));
-      console.log('xablau');
+      // console.log('xablau');
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   };
@@ -85,6 +85,7 @@ function AppProvider({ children }) {
     apiResult,
     foodType,
     setApiResult,
+    recipeType,
   };
 
   return (

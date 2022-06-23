@@ -1,70 +1,61 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import oneMeal from './oneMeal';
+// import oneMeal from './oneMeal';
+import getIdDetails from '../helpers/getIdDetails';
 
 function FoodAndDrinkDetails() {
   const [nameToMap, setNameToMap] = useState('');
-  const { apiResult, foodType } = useContext(AppContext);
-  const oneMealObject = oneMeal.meals[0];
+  const [ingredientList, setIngredientList] = useState([]);
+  const [measuresList, setMeasuresList] = useState('');
+  const { apiResult, foodType, recipeType } = useContext(AppContext);
+  const apiResultObject = apiResult[0];
+  // const oneMealObject = oneMeal.meals[0];
 
-  console.log(oneMealObject);
+  const patchId = useLocation().pathname.split('/')[2];
+  console.log(patchId);
+
+  useEffect(() => {
+    const getRecipes = async () => {
+      const recipe = await getIdDetails(patchId, recipeType, foodType);
+      console.log(recipe);
+    };
+    getRecipes();
+  }, [patchId, recipeType, foodType]);
 
   useEffect(() => {
     const getIngredients = () => {
       const ingredients = [];
       const VINTE = 20;
       for (let i = 1; i <= VINTE; i += 1) {
-        if (oneMealObject[`strIngredient${i}`] !== ''
-          && oneMealObject[`strIngredient${i}`] !== null) {
-          ingredients.push(oneMealObject[`strIngredient${i}`]);
+        if (apiResultObject[`strIngredient${i}`] !== ''
+          && apiResultObject[`strIngredient${i}`] !== null) {
+          ingredients.push(apiResultObject[`strIngredient${i}`]);
         }
       }
-      console.log('ingredients', ingredients);
+      // console.log('ingredients', ingredients);
+      setIngredientList(ingredients);
       return ingredients;
     };
     getIngredients();
-  }, [oneMealObject]);
+  }, [apiResultObject]);
 
   useEffect(() => {
     const getMeasures = () => {
       const measures = [];
       const VINTE = 20;
       for (let i = 1; i <= VINTE; i += 1) {
-        if (oneMealObject[`strMeasure${i}`] !== ''
-        && oneMealObject[`strMeasure${i}`] !== null) {
-          measures.push(oneMealObject[`strMeasure${i}`]);
+        if (apiResultObject[`strMeasure${i}`] !== ''
+        && apiResultObject[`strMeasure${i}`] !== null) {
+          measures.push(apiResultObject[`strMeasure${i}`]);
         }
       }
-      console.log('measures', measures);
+      // console.log('measures', measures);
+      setMeasuresList(measures);
       return measures;
     };
     getMeasures();
-  }, [oneMealObject]);
-
-  // const xablauFunc1 = () => {
-  //   const ingredients = [];
-  //   const VINTE = 20;
-  //   for (let i = 1; i <= VINTE; i += 1) {
-  //     if (oneMealArray[`strIngredient${i}`] !== ''
-  //       && oneMealArray[`strIngredient${i}`] !== null) {
-  //       ingredients.push(oneMealArray[`strIngredient${i}`]);
-  //     }
-  //   }
-  //   console.log('ingredients', ingredients);
-  //   return ingredients;
-  // };
-
-  // const xablauFunc2 = () => {
-  //   const measures = [];
-  //   const VINTE = 20;
-  //   for (let i = 1; i <= VINTE; i += 1) {
-  //     if (oneMealArray[`strMeasure${i}`] !== ''
-  //       && oneMealArray[`strMeasure${i}`] !== null) {
-  //       measures.push(oneMealArray[`strMeasure${i}`]);
-  //     }
-  //   }
-  //   return measures;
-  // };
+  }, [apiResultObject]);
 
   useEffect(() => {
     const checkName = () => {
@@ -75,8 +66,34 @@ function FoodAndDrinkDetails() {
       }
     };
     checkName();
+    // console.log(apiResultObject);
   }, [foodType]);
 
+  const splitLink = () => {
+    const FOUR = 4;
+    const foodLink = apiResultObject.strYoutube;
+    const splited = foodLink.split('/', FOUR);
+    const splitInterrogation = splited[3].split('?v=');
+    const newLink = `${splited[0]}${splited[2]}/embed/${splitInterrogation[1]}`;
+    return (newLink);
+  };
+
+  const renderVideo = (
+    apiResult.map((index) => (
+      <div key={ index }>
+        <section>
+          <h4>Video</h4>
+          <iframe
+            title="video"
+            src={ splitLink() }
+          >
+            <track kind="captions" />
+          </iframe>
+        </section>
+      </div>
+    ))
+  );
+  // console.log(ingredientList);
   return (
     <div>
       {
@@ -109,6 +126,34 @@ function FoodAndDrinkDetails() {
                     <p data-testid="recipe-category">
                       { item.strCategory }
                     </p>
+                    <section>
+                      <h4>Ingredients</h4>
+                      {ingredientList.map((ingredientItem, index2) => (
+                        <p key={ index2 }>
+                          {`${ingredientItem}
+                         - ${measuresList[index2]}`}
+                        </p>
+                      ))}
+                    </section>
+                    <section>
+                      <h4>Instructions</h4>
+                      <p data-testid="instructions">
+                        {item.strInstructions}
+                      </p>
+                    </section>
+                    {foodType === 'meals' && renderVideo}
+                    <section>
+                      <p data-testid={ `${index}-recomendation-card` }>recomendação 1</p>
+                      <p data-testid={ `${index}-recomendation-card` }>recomendação 2</p>
+                    </section>
+                    <section>
+                      <button
+                        type="button"
+                        data-testid="start-recipe-btn"
+                      >
+                        Start Recipe
+                      </button>
+                    </section>
                   </div>
                 ))
               }
