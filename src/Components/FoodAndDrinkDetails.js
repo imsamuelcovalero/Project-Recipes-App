@@ -7,6 +7,8 @@ function FoodAndDrinkDetails() {
   const { apiResult, foodType } = useContext(AppContext);
   const oneMealObject = oneMeal.meals[0];
 
+  console.log(oneMealObject);
+
   useEffect(() => {
     const getIngredients = () => {
       const ingredients = [];
@@ -17,7 +19,7 @@ function FoodAndDrinkDetails() {
           ingredients.push(oneMealObject[`strIngredient${i}`]);
         }
       }
-      // console.log('ingredients', ingredients);
+      console.log('ingredients', ingredients);
       return ingredients;
     };
     getIngredients();
@@ -33,7 +35,7 @@ function FoodAndDrinkDetails() {
           measures.push(oneMealObject[`strMeasure${i}`]);
         }
       }
-      // console.log('measures', measures);
+      console.log('measures', measures);
       return measures;
     };
     getMeasures();
