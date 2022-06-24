@@ -44,7 +44,7 @@ function AppProvider({ children }) {
         try {
           const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/filter.php?i=${searchResult.searchName}`);
           const results = await response.json();
-          // console.log(results[foodType]);
+          console.log(results[foodType]);
           setApiResult(results[foodType]);
         } catch (errorRequest) {
           console.log(errorRequest);
