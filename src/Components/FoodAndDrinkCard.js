@@ -1,16 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import getInitialRecipes from '../helpers/initialFetch';
+import fetchIngredients from '../helpers/fetchIngredients';
 import './FoodAndDrinkCard.css';
-
-const MAX_RECIPES = 12;
 
 function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   const [mealOrDrink, setMealOrDrink] = useState('');
-  const { apiResult, foodType, setApiResult } = useContext(AppContext);
+  const { apiResult, foodType, setApiResult, clickedIngredient,
+    cameFromIngredients, setCameFromIngredients } = useContext(AppContext);
   const history = useHistory();
+  const { pathname } = useLocation();
+
+  const MAX_RECIPES = 12;
 
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
@@ -20,10 +23,10 @@ function FoodAndDrinkCard() {
 
   useEffect(() => {
     const checkName = () => {
-      if (window.location.href.includes('/foods')) {
+      if (pathname.includes('/foods')) {
         setNameToMap('strMeal');
         setMealOrDrink('idMeal');
-      } else if (window.location.href.includes('/drinks')) {
+      } else if (pathname.includes('/drinks')) {
         setNameToMap('strDrink');
         setMealOrDrink('idDrink');
       }
@@ -32,25 +35,38 @@ function FoodAndDrinkCard() {
   }, [foodType]);
 
   useEffect(() => {
-    const fetchInitialRecipes = async () => {
-      const initialRecipes = await getInitialRecipes();
-      setApiResult(initialRecipes);
-    };
+    if (cameFromIngredients) {
+      console.log('aqui');
+      // fazer o fetch usando a api que busca por ingrediente
+      const getIngredients = async () => {
+        console.log(clickedIngredient);
+        const ingredientRecipes = await fetchIngredients(clickedIngredient);
+        console.log(ingredientRecipes);
+        setApiResult(ingredientRecipes);
+        setCameFromIngredients(false);
+      };
+      getIngredients();
+    }
 
-    fetchInitialRecipes();
+    if (!cameFromIngredients) {
+      const fetchInitialRecipes = async () => {
+        const initialRecipes = await getInitialRecipes();
+        setApiResult(initialRecipes);
+        setCameFromIngredients(false);
+      };
+      fetchInitialRecipes();
+    }
   }, []);
 
   const handleNavigate = (item) => {
-    console.log(item);
-    if (window.location.href.includes('/foods')) {
+    if (pathname.includes('/foods')) {
       history.push(`/foods/${item[mealOrDrink]}`);
     }
 
-    if (window.location.href.includes('/drinks')) {
+    if (pathname.includes('/drinks')) {
       history.push(`/drinks/${item[mealOrDrink]}`);
     }
   };
-  console.log(mealOrDrink, history);
 
   return (
     <div>
