@@ -5,7 +5,12 @@ function DrinkDetails() {
   return (
     <div>
       <h3>Drink Details</h3>
-      <FoodAndDrinkDetails />
+      <FoodAndDrinkDetails
+        NameToMap="strDrink"
+        tipoReceita="thecocktaildb"
+        tipoFood="drinks"
+        foodOrDrink="strMeal"
+      />
     </div>
   );
 }
