@@ -2,7 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 // import oneMeal from './oneMeal';
-import getIdDetails from '../helpers/getIdDetails';
+import { getIdDetails, getIdRecomendations } from '../helpers/getApiResults';
+
+const MAX_RECIPES_SUGESTION = 6;
 
 function FoodAndDrinkDetails() {
   const [nameToMap, setNameToMap] = useState('');
@@ -10,10 +12,10 @@ function FoodAndDrinkDetails() {
   const [measuresList, setMeasuresList] = useState('');
   const { apiResult, foodType, recipeType } = useContext(AppContext);
   const apiResultObject = apiResult[0];
+  const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
   // const oneMealObject = oneMeal.meals[0];
 
   const patchId = useLocation().pathname.split('/')[2];
-  console.log(patchId);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -22,6 +24,35 @@ function FoodAndDrinkDetails() {
     };
     getRecipes();
   }, [patchId, recipeType, foodType]);
+
+  useEffect(() => {
+    if (foodType === 'meals') {
+      const getRecipes = async () => {
+        const recipes = await getIdRecomendations('thecocktaildb', 'drinks');
+        if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
+          const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
+          setApiResultRecomendations(newListRecipes);
+          console.log('newListRecipes', newListRecipes);
+          // setApiResult(newArrayResultsToMap);
+        }
+        // console.log(recipes);
+      };
+      getRecipes();
+    }
+    if (foodType === 'drinks') {
+      const getRecipes = async () => {
+        const recipes = await getIdRecomendations('themealdb', 'meals');
+        if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
+          const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
+          setApiResultRecomendations(newListRecipes);
+          // console.log('newListRecipes', newListRecipes);
+          // setApiResult(newArrayResultsToMap);
+        }
+        // console.log(recipes);
+      };
+      getRecipes();
+    }
+  }, [foodType]);
 
   useEffect(() => {
     const getIngredients = () => {
