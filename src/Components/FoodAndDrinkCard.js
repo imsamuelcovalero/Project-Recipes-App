@@ -11,7 +11,10 @@ function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   const [mealOrDrink, setMealOrDrink] = useState('');
   const { apiResult, foodType, setApiResult, clickedIngredient,
-    cameFromIngredients, setCameFromIngredients } = useContext(AppContext);
+    cameFromIngredients,
+    setCameFromIngredients,
+    setRecipeType,
+    setFoodType } = useContext(AppContext);
   const history = useHistory();
   const { pathname } = useLocation();
 
@@ -61,10 +64,14 @@ function FoodAndDrinkCard() {
   const handleNavigate = (item) => {
     if (pathname.includes('/foods')) {
       history.push(`/foods/${item[mealOrDrink]}`);
+      setRecipeType('themealdb');
+      setFoodType('meals');
     }
 
     if (pathname.includes('/drinks')) {
       history.push(`/drinks/${item[mealOrDrink]}`);
+      setRecipeType('thecocktaildb');
+      setFoodType('drinks');
     }
   };
 
