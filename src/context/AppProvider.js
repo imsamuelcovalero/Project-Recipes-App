@@ -8,6 +8,8 @@ function AppProvider({ children }) {
   const [recipeType, setRecipeType] = useState('');
   const [apiResult, setApiResult] = useState('');
   const [foodType, setFoodType] = useState('');
+  const [cameFromIngredients, setCameFromIngredients] = useState(false);
+  const [clickedIngredient, setClickedIngredient] = useState('');
 
   const history = useHistory();
 
@@ -86,6 +88,10 @@ function AppProvider({ children }) {
     foodType,
     setApiResult,
     recipeType,
+    cameFromIngredients,
+    setCameFromIngredients,
+    clickedIngredient,
+    setClickedIngredient,
   };
 
   return (

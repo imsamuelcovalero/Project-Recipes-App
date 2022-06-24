@@ -16,6 +16,7 @@ import Nationalities from '../pages/Nationalities';
 import Profile from '../pages/Profile';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoritesRecipes from '../pages/FavoritesRecipes';
+import NationalitiesNotFound from '../pages/NationalitiesNotFound';
 
 function Content() {
   // const { mealId, drinkId } = useContext(AppContext);
@@ -34,6 +35,11 @@ function Content() {
       <Route exact path="/explore/foods/ingredients" component={ FoodsIngredients } />
       <Route exact path="/explore/drinks/ingredients" component={ DrinksIngredients } />
       <Route exact path="/explore/foods/nationalities" component={ Nationalities } />
+      <Route
+        exact
+        path="/explore/drinks/nationalities"
+        component={ NationalitiesNotFound }
+      />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
