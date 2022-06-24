@@ -5,6 +5,8 @@ import getInitialRecipes from '../helpers/initialFetch';
 import fetchIngredients from '../helpers/fetchIngredients';
 import './FoodAndDrinkCard.css';
 
+const MAX_RECIPES = 12;
+
 function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   const [mealOrDrink, setMealOrDrink] = useState('');
@@ -13,11 +15,9 @@ function FoodAndDrinkCard() {
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const MAX_RECIPES = 12;
-
   if (apiResult && apiResult.length > MAX_RECIPES) {
     const newArrayResultsToMap = apiResult.slice(0, MAX_RECIPES);
-    console.log('newArrayResultsToMap', newArrayResultsToMap);
+    // console.log('newArrayResultsToMap', newArrayResultsToMap);
     setApiResult(newArrayResultsToMap);
   }
 
@@ -102,9 +102,5 @@ function FoodAndDrinkCard() {
     </div>
   );
 }
-
-// Header.propTypes = {
-//   title: PropTypes.string.isRequired,
-// };
 
 export default FoodAndDrinkCard;

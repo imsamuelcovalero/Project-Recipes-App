@@ -18,8 +18,8 @@ function AppProvider({ children }) {
       return;
     }
     if (apiResult && Object.values(apiResult).length === 1) {
-      console.log(recipeType);
-      console.log(apiResult);
+      // console.log(recipeType);
+      // console.log(apiResult);
       if (recipeType === 'themealdb') {
         const currentMealId = apiResult[0].idMeal;
         history.push(`/foods/${currentMealId}`);
@@ -31,7 +31,7 @@ function AppProvider({ children }) {
     }
     if (!apiResult) {
       // console.log(Object.values(apiResult));
-      console.log('xablau');
+      // console.log('xablau');
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   };
@@ -46,7 +46,7 @@ function AppProvider({ children }) {
         try {
           const response = await fetch(`https://www.${recipeType}.com/api/json/v1/1/filter.php?i=${searchResult.searchName}`);
           const results = await response.json();
-          // console.log(results[foodType]);
+          console.log(results[foodType]);
           setApiResult(results[foodType]);
         } catch (errorRequest) {
           console.log(errorRequest);

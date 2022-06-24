@@ -27,12 +27,8 @@ function Content() {
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/foods/:mealId" component={ FoodDetails } />
       <Route exact path="/drinks/:drinkId" component={ DrinkDetails } />
-      <Route exact path="/foods/{id-da-receita}/in-progress" component={ FoodProgress } />
-      <Route
-        exact
-        path="/drinks/{id-da-receita}/in-progress"
-        component={ DrinkProgress }
-      />
+      <Route exact path="/foods/:mealId/in-progress" component={ FoodProgress } />
+      <Route exact path="/drinks/:drinkId/in-progress" component={ DrinkProgress } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
