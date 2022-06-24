@@ -63,12 +63,19 @@ function FoodAndDrinkDetails() {
     const getIngredients = () => {
       const ingredients = [];
       const VINTE = 20;
+      const capitalize = (str) => {
+        if (typeof str !== 'string') {
+          return '';
+        }
+        return str.charAt(0).toUpperCase() + str.substr(1);
+      };
       if (recipe.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
           if (recipe[0][`strIngredient${i}`] !== ''
             && recipe[0][`strIngredient${i}`] !== null
             && recipe[0][`strIngredient${i}`] !== undefined) {
-            ingredients.push(recipe[0][`strIngredient${i}`]);
+            // ingredients.push(recipe[0][`strIngredient${i}`]);
+            ingredients.push(capitalize(recipe[0][`strIngredient${i}`]));
           }
         }
       }
@@ -196,7 +203,7 @@ function FoodAndDrinkDetails() {
                       <h4>Ingredients</h4>
                       {ingredientList.map((ingredientItem, index2) => (
                         <p key={ index2 }>
-                          {`${ingredientItem}
+                          {`- ${ingredientItem}
                          - ${measuresList[index2]}`}
                         </p>
                       ))}
