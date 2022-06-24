@@ -14,7 +14,6 @@ function FoodAndDrinkDetails() {
   const [foodOrDrink, setFoodOrDrink] = useState('');
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
-  // console.log(patchId);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -25,8 +24,6 @@ function FoodAndDrinkDetails() {
     getRecipes();
   }, [patchId, recipeType, foodType]);
 
-  // console.log(recipe);
-
   useEffect(() => {
     if (foodType === 'meals') {
       const getRecipes = async () => {
@@ -35,9 +32,7 @@ function FoodAndDrinkDetails() {
           const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
           setApiResultRecomendations(newListRecipes);
           setFoodOrDrink('strDrink');
-          console.log('newListRecipes', newListRecipes);
         }
-        // console.log(recipes);
       };
       getRecipes();
     }
@@ -47,46 +42,13 @@ function FoodAndDrinkDetails() {
         if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
           const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
           setApiResultRecomendations(newListRecipes);
-          setFoodOrDrink('strMeal');
-          // console.log('newListRecipes', newListRecipes);
-          // setApiResult(newArrayResultsToMap);
         }
-        // console.log(recipes);
       };
       getRecipes();
     }
   }, [foodType]);
 
   console.log(apiResultRecomendations);
-
-  useEffect(() => {
-    if (foodType === 'meals') {
-      const getRecipes = async () => {
-        const recipes = await getIdRecomendations('thecocktaildb', 'drinks');
-        if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
-          const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
-          setApiResultRecomendations(newListRecipes);
-          console.log('newListRecipes', newListRecipes);
-          // setApiResult(newArrayResultsToMap);
-        }
-        // console.log(recipes);
-      };
-      getRecipes();
-    }
-    if (foodType === 'drinks') {
-      const getRecipes = async () => {
-        const recipes = await getIdRecomendations('themealdb', 'meals');
-        if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
-          const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
-          setApiResultRecomendations(newListRecipes);
-          // console.log('newListRecipes', newListRecipes);
-          // setApiResult(newArrayResultsToMap);
-        }
-        // console.log(recipes);
-      };
-      getRecipes();
-    }
-  }, [foodType]);
 
   useEffect(() => {
     const getIngredients = () => {
