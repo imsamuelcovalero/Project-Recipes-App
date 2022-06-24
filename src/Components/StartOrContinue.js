@@ -12,10 +12,10 @@ function StartOrContinue({ isRecipeInProgress, id }) {
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (foodType === 'meals') {
-      history.push(`'/foods/${id}/in-progress'`);
+      history.push(`/foods/${id}/in-progress`);
     }
     if (foodType === 'drinks') {
-      history.push(`'/drinks/${id}/in-progress'`);
+      history.push(`/drinks/${id}/in-progress`);
     }
   };
 

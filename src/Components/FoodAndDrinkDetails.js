@@ -6,6 +6,7 @@ import { getDoneRecipes, getInProgressRecipes } from '../helpers/getLocalStorage
 import StartOrContinue from './StartOrContinue';
 import Compartilhar from './Compartilhar';
 import Favoritar from './Favoritar';
+import './FoodAndDrinkDetails.css';
 
 const MAX_RECIPES_SUGESTION = 6;
 
@@ -220,8 +221,9 @@ function FoodAndDrinkDetails() {
                     </section>
                     {window.location.href.includes('/foods') && renderVideo}
                     <section>
-                      <h4>Recommended</h4>
-                      {renderRecomendations}
+                      <div className="recomendations">
+                        {renderRecomendations}
+                      </div>
                     </section>
                     <section>
                       {
