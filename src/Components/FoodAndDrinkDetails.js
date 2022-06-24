@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import { getIdDetails, getIdRecomendations } from '../helpers/getApiResults';
+import { getDoneRecipes, getInProgressRecipes } from '../helpers/getLocalStorage';
+import StartOrContinue from './StartOrContinue';
+import Compartilhar from './Compartilhar';
 
 const MAX_RECIPES_SUGESTION = 6;
 
@@ -12,13 +15,43 @@ function FoodAndDrinkDetails() {
   const [recipe, setRecipe] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
   const [foodOrDrink, setFoodOrDrink] = useState('');
+  const [inProgressMealType, setInProgressMealType] = useState('');
+  const [isRecipeDone, setIsRecipeDone] = useState(false);
+  const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
+  const link = window.location.href;
+  // console.log(link);
+
+  useEffect(() => {
+    // console.log('foodType', foodType);
+    if (foodType === 'meals') {
+      setInProgressMealType('meals');
+    }
+    if (foodType === 'drinks') {
+      setInProgressMealType('cocktails');
+    }
+  }, [foodType]);
+
+  useEffect(() => {
+    const done = getDoneRecipes();
+    const progress = getInProgressRecipes();
+    // console.log('inProgressMeaType', inProgressMealType);
+    if (done) {
+      const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
+      setIsRecipeDone(checkDone);
+    }
+    if (progress) {
+      const checkProgress = Object.keys(`${progress}.${inProgressMealType}`)
+        .find((recipeId) => recipeId === patchId);
+      setIsRecipeInProgress(checkProgress);
+    }
+  }, [isRecipeDone, patchId, inProgressMealType]);
 
   useEffect(() => {
     const getRecipes = async () => {
       const receita = await getIdDetails(patchId, recipeType, foodType);
-      console.log(receita);
+      // console.log(receita);
       setRecipe(receita);
     };
     getRecipes();
@@ -48,7 +81,7 @@ function FoodAndDrinkDetails() {
     }
   }, [foodType]);
 
-  console.log(apiResultRecomendations);
+  // console.log(apiResultRecomendations);
 
   useEffect(() => {
     const getIngredients = () => {
@@ -175,12 +208,7 @@ function FoodAndDrinkDetails() {
                     <p data-testid="recipe-title">
                       { item[nameToMap] }
                     </p>
-                    <button
-                      type="button"
-                      data-testid="share-btn"
-                    >
-                      compartilhar
-                    </button>
+                    <Compartilhar link={ link } />
                     <button
                       type="button"
                       data-testid="favorite-btn"
@@ -211,12 +239,15 @@ function FoodAndDrinkDetails() {
                       {renderRecomendations}
                     </section>
                     <section>
-                      <button
-                        type="button"
-                        data-testid="start-recipe-btn"
-                      >
-                        Start Recipe
-                      </button>
+                      {
+                        !isRecipeDone
+                          && (
+                            <StartOrContinue
+                              isRecipeInProgress={ isRecipeInProgress }
+                              id={ patchId }
+                            />
+                          )
+                      }
                     </section>
                   </div>
                 ))
