@@ -89,7 +89,7 @@ function FoodAndDrinkDetails() {
         }
         return str.charAt(0).toUpperCase() + str.substr(1);
       };
-      if (recipe.length > 0) {
+      if (recipe && recipe.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
           if (recipe[0][`strIngredient${i}`] !== ''
             && recipe[0][`strIngredient${i}`] !== null
@@ -108,7 +108,7 @@ function FoodAndDrinkDetails() {
     const getMeasures = () => {
       const measures = [];
       const VINTE = 20;
-      if (recipe.length > 0) {
+      if (recipe && recipe.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
           if (recipe[0][`strMeasure${i}`] !== ''
           && recipe[0][`strMeasure${i}`] !== null) {
@@ -146,6 +146,7 @@ function FoodAndDrinkDetails() {
   };
 
   const renderVideo = (
+<<<<<<< HEAD
     recipe && (
       recipe.map((index) => (
         <div key={ index }>
@@ -163,6 +164,24 @@ function FoodAndDrinkDetails() {
         </div>
       ))
     )
+=======
+    (recipe)
+    && recipe.map((index) => (
+      <div key={ index }>
+        <section>
+          <h4>Video</h4>
+          <iframe
+            title="video"
+            src={ splitLink() }
+            width="400" // largura para deletar
+            height="250" // altura para deletar
+          >
+            <track kind="captions" />
+          </iframe>
+        </section>
+      </div>
+    ))
+>>>>>>> 68d73091eab987f534d99dc65e8b973680790c33
   );
 
   const renderRecomendations = (

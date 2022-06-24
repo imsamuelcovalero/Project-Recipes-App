@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
   overflow-x: auto;
 }
+
 .recomendedImg {
   max-width: 180px;
 }
