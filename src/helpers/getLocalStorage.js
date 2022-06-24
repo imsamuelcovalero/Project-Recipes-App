@@ -1,9 +1,11 @@
-export function getDoneRecipes() { JSON.parse(localStorage.getItem('doneRecipes')); }
+export function getDoneRecipes() {
+  return JSON.parse(localStorage.getItem('doneRecipes'));
+}
 
 export function getFavoriteRecipes() {
-  JSON.parse(localStorage.getItem('favoriteRecipes'));
+  return JSON.parse(localStorage.getItem('favoriteRecipes'));
 }
 
 export function getInProgressRecipes() {
-  JSON.parse(localStorage.getItem('inProgressRecipes'));
+  return JSON.parse(localStorage.getItem('inProgressRecipes'));
 }

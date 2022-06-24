@@ -5,6 +5,7 @@ import { getIdDetails, getIdRecomendations } from '../helpers/getApiResults';
 import { getDoneRecipes, getInProgressRecipes } from '../helpers/getLocalStorage';
 import StartOrContinue from './StartOrContinue';
 import Compartilhar from './Compartilhar';
+import Favoritar from './Favoritar';
 
 const MAX_RECIPES_SUGESTION = 6;
 
@@ -21,10 +22,8 @@ function FoodAndDrinkDetails() {
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
-  // console.log(link);
 
   useEffect(() => {
-    // console.log('foodType', foodType);
     if (foodType === 'meals') {
       setInProgressMealType('meals');
     }
@@ -36,7 +35,6 @@ function FoodAndDrinkDetails() {
   useEffect(() => {
     const done = getDoneRecipes();
     const progress = getInProgressRecipes();
-    // console.log('inProgressMeaType', inProgressMealType);
     if (done) {
       const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
       setIsRecipeDone(checkDone);
@@ -51,7 +49,6 @@ function FoodAndDrinkDetails() {
   useEffect(() => {
     const getRecipes = async () => {
       const receita = await getIdDetails(patchId, recipeType, foodType);
-      // console.log(receita);
       setRecipe(receita);
     };
     getRecipes();
@@ -81,8 +78,6 @@ function FoodAndDrinkDetails() {
     }
   }, [foodType]);
 
-  // console.log(apiResultRecomendations);
-
   useEffect(() => {
     const getIngredients = () => {
       const ingredients = [];
@@ -98,12 +93,10 @@ function FoodAndDrinkDetails() {
           if (recipe[0][`strIngredient${i}`] !== ''
             && recipe[0][`strIngredient${i}`] !== null
             && recipe[0][`strIngredient${i}`] !== undefined) {
-            // ingredients.push(recipe[0][`strIngredient${i}`]);
             ingredients.push(capitalize(recipe[0][`strIngredient${i}`]));
           }
         }
       }
-      // console.log('ingredients', ingredients);
       setIngredientList(ingredients);
       return ingredients;
     };
@@ -122,7 +115,6 @@ function FoodAndDrinkDetails() {
           }
         }
       }
-      // console.log('measures', measures);
       setMeasuresList(measures);
       return measures;
     };
@@ -138,7 +130,6 @@ function FoodAndDrinkDetails() {
       }
     };
     checkName();
-    // console.log(recipe);
   }, [foodType]);
 
   const splitLink = () => {
@@ -188,7 +179,6 @@ function FoodAndDrinkDetails() {
     ))
   );
 
-  // console.log(ingredientList);
   return (
     <div>
       {
@@ -209,12 +199,7 @@ function FoodAndDrinkDetails() {
                       { item[nameToMap] }
                     </p>
                     <Compartilhar link={ link } />
-                    <button
-                      type="button"
-                      data-testid="favorite-btn"
-                    >
-                      favoritar
-                    </button>
+                    <Favoritar id={ patchId } recipe={ item } foodType={ foodType } />
                     {nameToMap === 'strMeal'
                       ? <p data-testid="recipe-category">{item.strCategory}</p>
                       : <p data-testid="recipe-category">{item.strAlcoholic}</p>}

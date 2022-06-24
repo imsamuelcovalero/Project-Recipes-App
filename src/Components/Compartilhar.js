@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { useHistory } from 'react-router-dom';
-// import AppContext from '../context/AppContext';
+// import clipboardCopy from 'clipboard-copy';
+import shareIcon from '../images/shareIcon.svg';
 
 function Compartilhar({ link }) {
-  console.log(link);
-  // const [copySuccess, setCopySuccess] = useState('');
-  // const textAreaRef = useRef(null);
+  // console.log(link);
+  const [message, setMessage] = useState('');
+
+  const copy = require('clipboard-copy');
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    global.alert('Link copied!');
-    textAreaRef.current.select();
-    document.execCommand('copy');
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
-    e.target.focus();
-    // setCopySuccess('Copied!');
-    // navigator.clipboard.writeText(link);
+    copy(link);
+    setMessage('Link copied!');
   };
 
   return (
@@ -27,8 +22,9 @@ function Compartilhar({ link }) {
         data-testid="share-btn"
         onClick={ HandleSubmit }
       >
-        compartilhar
+        <img src={ shareIcon } alt="share" />
       </button>
+      <p>{message}</p>
     </div>
   );
 }
