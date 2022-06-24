@@ -19,7 +19,8 @@ function Profile() {
     <div>
       <HeaderNoSearch title="Profile" shouldRenderMagnifier />
       <section>
-        { email && <h3 data-testid="profile-email">{email.email}</h3> }
+
+        { email && <h2 data-testid="profile-email">{email.email}</h2> }
         <Link to="/done-recipes">
           <button type="button" data-testid="profile-done-btn">Done Recipes</button>
         </Link>
