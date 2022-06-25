@@ -33,16 +33,28 @@ export function updateFavoriteRecipes(updatedFavoriteArray) {
   localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavoriteArray));
 }
 
-export function saveInProgressRecipe(inProgressObj) {
+export function saveInProgressRecipe(inProgressObj, type) {
   if (getInProgressRecipes() === null) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify([inProgressObj]));
-  } else {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify([
-        ...getInProgressRecipes(),
-        inProgressObj,
-      ]),
-    );
+    if (type === 'meals') {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        meals: inProgressObj,
+      }));
+    } else if (type === 'drinks') {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        cocktails: inProgressObj,
+      }));
+    }
+  } else if (type === 'meals') {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      meals: [...getInProgressRecipes().meals, inProgressObj],
+    }));
+  } else if (type === 'drinks') {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      cocktails: [...getInProgressRecipes().cocktails, inProgressObj],
+    }));
   }
+}
+
+export function updateInProgressRecipe(updatedFavoriteArray) {
+  localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavoriteArray));
 }

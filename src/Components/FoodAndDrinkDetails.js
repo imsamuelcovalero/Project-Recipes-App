@@ -146,25 +146,6 @@ function FoodAndDrinkDetails() {
   };
 
   const renderVideo = (
-<<<<<<< HEAD
-    recipe && (
-      recipe.map((index) => (
-        <div key={ index }>
-          <section>
-            <h4>Video</h4>
-            <iframe
-              title="video"
-              src={ splitLink() }
-              width="400" // largura para deletar
-              height="250" // altura para deletar
-            >
-              <track kind="captions" />
-            </iframe>
-          </section>
-        </div>
-      ))
-    )
-=======
     (recipe)
     && recipe.map((index) => (
       <div key={ index }>
@@ -181,7 +162,6 @@ function FoodAndDrinkDetails() {
         </section>
       </div>
     ))
->>>>>>> 68d73091eab987f534d99dc65e8b973680790c33
   );
 
   const renderRecomendations = (
