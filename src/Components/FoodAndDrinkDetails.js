@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
@@ -10,28 +11,18 @@ import './FoodAndDrinkDetails.css';
 
 const MAX_RECIPES_SUGESTION = 6;
 
-function FoodAndDrinkDetails() {
-  const [nameToMap, setNameToMap] = useState('');
+function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) {
+  console.log(tipoReceita, tipoFood, NameToMap);
   const [ingredientList, setIngredientList] = useState([]);
   const [measuresList, setMeasuresList] = useState('');
   const [recipe, setRecipe] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
-  const [foodOrDrink, setFoodOrDrink] = useState('');
-  const [inProgressMealType, setInProgressMealType] = useState('');
+  // const [foodOrDrink, setFoodOrDrink] = useState('');
   const [isRecipeDone, setIsRecipeDone] = useState(false);
   const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
-
-  useEffect(() => {
-    if (foodType === 'meals') {
-      setInProgressMealType('meals');
-    }
-    if (foodType === 'drinks') {
-      setInProgressMealType('cocktails');
-    }
-  }, [foodType]);
 
   useEffect(() => {
     const done = getDoneRecipes();
@@ -41,33 +32,33 @@ function FoodAndDrinkDetails() {
       setIsRecipeDone(checkDone);
     }
     if (progress) {
-      const checkProgress = Object.keys(`${progress}.${inProgressMealType}`)
+      const checkProgress = Object.keys(`${progress}.${tipoFood}`)
         .find((recipeId) => recipeId === patchId);
       setIsRecipeInProgress(checkProgress);
     }
-  }, [isRecipeDone, patchId, inProgressMealType]);
+  }, [isRecipeDone, patchId, tipoFood]);
 
   useEffect(() => {
     const getRecipes = async () => {
-      const receita = await getIdDetails(patchId, recipeType, foodType);
+      const receita = await getIdDetails(patchId, tipoReceita, tipoFood);
       setRecipe(receita);
     };
     getRecipes();
   }, [patchId, recipeType, foodType]);
 
   useEffect(() => {
-    if (foodType === 'meals') {
+    if (tipoFood === 'meals') {
       const getRecipes = async () => {
         const recipes = await getIdRecomendations('thecocktaildb', 'drinks');
         if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
           const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
           setApiResultRecomendations(newListRecipes);
-          setFoodOrDrink('strDrink');
+          // setFoodOrDrink('strDrink');
         }
       };
       getRecipes();
     }
-    if (foodType === 'drinks') {
+    if (tipoFood === 'drinks') {
       const getRecipes = async () => {
         const recipes = await getIdRecomendations('themealdb', 'meals');
         if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
@@ -83,18 +74,12 @@ function FoodAndDrinkDetails() {
     const getIngredients = () => {
       const ingredients = [];
       const VINTE = 20;
-      const capitalize = (str) => {
-        if (typeof str !== 'string') {
-          return '';
-        }
-        return str.charAt(0).toUpperCase() + str.substr(1);
-      };
       if (recipe && recipe.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
           if (recipe[0][`strIngredient${i}`] !== ''
             && recipe[0][`strIngredient${i}`] !== null
             && recipe[0][`strIngredient${i}`] !== undefined) {
-            ingredients.push(capitalize(recipe[0][`strIngredient${i}`]));
+            ingredients.push(recipe[0][`strIngredient${i}`]);
           }
         }
       }
@@ -122,17 +107,6 @@ function FoodAndDrinkDetails() {
     getMeasures();
   }, [recipe]);
 
-  useEffect(() => {
-    const checkName = () => {
-      if (foodType === 'meals') {
-        setNameToMap('strMeal');
-      } else if (foodType === 'drinks') {
-        setNameToMap('strDrink');
-      }
-    };
-    checkName();
-  }, [foodType]);
-
   const splitLink = () => {
     if (window.location.href.includes('/foods')) {
       const FOUR = 4;
@@ -148,14 +122,12 @@ function FoodAndDrinkDetails() {
   const renderVideo = (
     (recipe)
     && recipe.map((index) => (
-      <div key={ index }>
+      <div key={ index } data-testid="video">
         <section>
           <h4>Video</h4>
           <iframe
             title="video"
             src={ splitLink() }
-            width="400" // largura para deletar
-            height="250" // altura para deletar
           >
             <track kind="captions" />
           </iframe>
@@ -166,8 +138,12 @@ function FoodAndDrinkDetails() {
 
   const renderRecomendations = (
     apiResultRecomendations.map((recomendation, index) => (
-      <section data-testid={ `${index}-recomendation-card` } key={ index }>
+      <section
+        data-testid={ `${index}-recomendation-card` }
+        key={ index }
+      >
         <img
+          className="recomendedImg"
           src={ recomendation[`${foodOrDrink}Thumb`] }
           alt="foodOrDrinkImage"
           width="300" // largura para deletar
@@ -176,7 +152,12 @@ function FoodAndDrinkDetails() {
         {foodOrDrink === 'strDrink'
           ? <p>{recomendation.strAlcoholic}</p>
           : <p>{recomendation.strCategory}</p>}
-        <p>{recomendation[`${foodOrDrink}`]}</p>
+        <p
+          data-testid={ `${index}-recomendation-title` }
+        >
+          {recomendation[`${foodOrDrink}`]}
+
+        </p>
       </section>
     ))
   );
@@ -184,7 +165,7 @@ function FoodAndDrinkDetails() {
   return (
     <div>
       {
-        recipe
+        recipe && recipe.length > 0
           && (
             <div>
               {
@@ -192,23 +173,26 @@ function FoodAndDrinkDetails() {
                   <div key={ index }>
                     <img
                       data-testid="recipe-photo"
-                      src={ item[`${nameToMap}Thumb`] }
+                      src={ item[`${NameToMap}Thumb`] }
                       alt="foodOrDrinkImage"
                       width="300" // largura para deletar
                       height="300" // altura para deletar
                     />
                     <p data-testid="recipe-title">
-                      { item[nameToMap] }
+                      { item[NameToMap] }
                     </p>
                     <Compartilhar link={ link } />
                     <Favoritar id={ patchId } recipe={ item } foodType={ foodType } />
-                    {nameToMap === 'strMeal'
+                    {NameToMap === 'strMeal'
                       ? <p data-testid="recipe-category">{item.strCategory}</p>
                       : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
                     <section>
                       <h4>Ingredients</h4>
                       {ingredientList.map((ingredientItem, index2) => (
-                        <p key={ index2 }>
+                        <p
+                          key={ index2 }
+                          data-testid={ `${index2}-ingredient-name-and-measure` }
+                        >
                           {`- ${ingredientItem}
                          - ${measuresList[index2]}`}
                         </p>
@@ -246,5 +230,12 @@ function FoodAndDrinkDetails() {
     </div>
   );
 }
+
+FoodAndDrinkDetails.propTypes = {
+  tipoReceita: PropTypes.string.isRequired,
+  tipoFood: PropTypes.string.isRequired,
+  NameToMap: PropTypes.string.isRequired,
+  foodOrDrink: PropTypes.string.isRequired,
+};
 
 export default FoodAndDrinkDetails;

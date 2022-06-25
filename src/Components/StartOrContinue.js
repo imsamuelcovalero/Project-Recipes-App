@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
+import './FoodAndDrinkDetails.css';
 
 function StartOrContinue({ isRecipeInProgress, id }) {
   const { foodType } = useContext(AppContext);
@@ -26,6 +27,7 @@ function StartOrContinue({ isRecipeInProgress, id }) {
           ? (
             <section>
               <button
+                className="startButton"
                 type="button"
                 data-testid=""
                 onClick={ HandleSubmit }
@@ -37,6 +39,7 @@ function StartOrContinue({ isRecipeInProgress, id }) {
           : (
             <section>
               <button
+                className="startButton"
                 type="submit"
                 data-testid="start-recipe-btn"
                 onClick={ HandleSubmit }
