@@ -1,20 +1,35 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import AppContext from '../context/AppContext';
+import { useHistory, useLocation } from 'react-router-dom';
+// import { getInProgressRecipes } from '../helpers/getLocalStorage';
+// import { saveInProgressRecipe } from '../helpers/saveLocalStorage';
+import './FoodAndDrinkDetails.css';
 
-function StartOrContinue({ isRecipeInProgress, id }) {
-  const { foodType } = useContext(AppContext);
+function StartOrContinue({ isRecipeInProgress, id, ingredients }) {
+  const { pathname } = useLocation();
   const history = useHistory();
+  console.log(ingredients);
 
   // console.log(id);
 
+  // const newCocktails = {
+  //   cocktails: {
+  //     [id]: ingredients,
+  //   }
+  // };
+
+  // const newMeals = {
+  //   meals: {
+  //     [id]: ingredients,
+  //   }
+  // };
+
   const HandleSubmit = (e) => {
     e.preventDefault();
-    if (foodType === 'meals') {
+    if (pathname.includes('/foods')) {
       history.push(`/foods/${id}/in-progress`);
     }
-    if (foodType === 'drinks') {
+    if (pathname.includes('/drinks')) {
       history.push(`/drinks/${id}/in-progress`);
     }
   };
@@ -26,8 +41,9 @@ function StartOrContinue({ isRecipeInProgress, id }) {
           ? (
             <section>
               <button
+                className="startButton"
                 type="button"
-                data-testid=""
+                data-testid="start-recipe-btn"
                 onClick={ HandleSubmit }
               >
                 Continue Recipe
@@ -37,6 +53,7 @@ function StartOrContinue({ isRecipeInProgress, id }) {
           : (
             <section>
               <button
+                className="startButton"
                 type="submit"
                 data-testid="start-recipe-btn"
                 onClick={ HandleSubmit }
@@ -53,6 +70,7 @@ function StartOrContinue({ isRecipeInProgress, id }) {
 StartOrContinue.propTypes = {
   isRecipeInProgress: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf.isRequired,
 };
 
 export default StartOrContinue;
