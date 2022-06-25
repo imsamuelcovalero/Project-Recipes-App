@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getFavoriteRecipes } from '../helpers/getLocalStorage';
 import { saveFavoriteRecipe, updateFavoriteRecipes } from '../helpers/saveLocalStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-function Favoritar({ id, recipe, foodType }) {
+function Favoritar({ id, recipe }) {
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
-  // console.log(recipe);
-  // console.log(foodType);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const favorites = getFavoriteRecipes();
@@ -27,7 +27,7 @@ function Favoritar({ id, recipe, foodType }) {
   const newFavoriteFood = {
     id,
     type: 'food',
-    nationationality: recipe.strArea,
+    nationality: recipe.strArea,
     category: recipe.strCategory,
     alcoholicOrNot: '',
     name: recipe.strMeal,
@@ -37,7 +37,7 @@ function Favoritar({ id, recipe, foodType }) {
   const newFavoriteDrink = {
     id,
     type: 'drink',
-    nationationality: recipe.strArea,
+    nationality: '',
     category: recipe.strCategory,
     alcoholicOrNot: recipe.strAlcoholic,
     name: recipe.strDrink,
@@ -56,24 +56,24 @@ function Favoritar({ id, recipe, foodType }) {
         updateFavoriteRecipes(newFavorites);
         setFavoriteIcon(whiteHeartIcon);
         console.log(getFavoriteRecipes());
-      } else if (foodType === 'meals') {
+      } else if (pathname.includes('/foods')) {
         const updateFavorites = [...favorites, newFavoriteFood];
         updateFavoriteRecipes(updateFavorites);
         setFavoriteIcon(blackHeartIcon);
         console.log(getFavoriteRecipes());
-      } else if (foodType === 'drinks') {
+      } else if (pathname.includes('/drinks')) {
         const updateFavorites = [...favorites, newFavoriteDrink];
         updateFavoriteRecipes(updateFavorites);
         setFavoriteIcon(blackHeartIcon);
         console.log(getFavoriteRecipes());
       }
     } else {
-      if (foodType === 'meals') {
+      if (pathname.includes('/foods')) {
         saveFavoriteRecipe(newFavoriteFood);
         setFavoriteIcon(blackHeartIcon);
         console.log(getFavoriteRecipes());
       }
-      if (foodType === 'drinks') {
+      if (pathname.includes('/drinks')) {
         saveFavoriteRecipe(newFavoriteDrink);
         setFavoriteIcon(blackHeartIcon);
         console.log(getFavoriteRecipes());
@@ -87,6 +87,7 @@ function Favoritar({ id, recipe, foodType }) {
         type="button"
         data-testid="favorite-btn"
         onClick={ HandleSubmit }
+        src={ favoriteIcon }
       >
         <img src={ favoriteIcon } alt="favorite" />
       </button>
@@ -97,7 +98,6 @@ function Favoritar({ id, recipe, foodType }) {
 Favoritar.propTypes = {
   id: PropTypes.string.isRequired,
   recipe: PropTypes.shape.isRequired,
-  foodType: PropTypes.string.isRequired,
 };
 
 export default Favoritar;

@@ -182,7 +182,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                       { item[NameToMap] }
                     </p>
                     <Compartilhar link={ link } />
-                    <Favoritar id={ patchId } recipe={ item } foodType={ foodType } />
+                    <Favoritar id={ patchId } recipe={ item } />
                     {NameToMap === 'strMeal'
                       ? <p data-testid="recipe-category">{item.strCategory}</p>
                       : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
@@ -217,6 +217,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                             <StartOrContinue
                               isRecipeInProgress={ isRecipeInProgress }
                               id={ patchId }
+                              ingredients={ ingredientList }
                             />
                           )
                       }

@@ -46,3 +46,7 @@ export function saveInProgressRecipe(inProgressObj) {
     );
   }
 }
+
+export function updateInProgressRecipe(updatedFavoriteArray) {
+  localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavoriteArray));
+}
