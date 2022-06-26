@@ -38,19 +38,33 @@ export function saveInProgressRecipe(inProgressObj, type) {
     if (type === 'meals') {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         meals: inProgressObj,
+        cocktails: {},
       }));
     } else if (type === 'drinks') {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
+        meals: {},
         cocktails: inProgressObj,
       }));
     }
   } else if (type === 'meals') {
+    const inProgressRecipes = getInProgressRecipes();
+    const newInProgressRecipe = Object.entries(inProgressObj);
     localStorage.setItem('inProgressRecipes', JSON.stringify({
-      meals: [...getInProgressRecipes().meals, inProgressObj],
+      meals: {
+        ...inProgressRecipes.meals,
+        [newInProgressRecipe[0][0]]: newInProgressRecipe[0][1],
+      },
+      cocktails: { ...getInProgressRecipes().cocktails || {} },
     }));
   } else if (type === 'drinks') {
+    const inProgressRecipes = getInProgressRecipes();
+    const newInProgressRecipe = Object.entries(inProgressObj);
     localStorage.setItem('inProgressRecipes', JSON.stringify({
-      cocktails: [...getInProgressRecipes().cocktails, inProgressObj],
+      meals: { ...getInProgressRecipes().meals || {} },
+      cocktails: {
+        ...inProgressRecipes.cocktails,
+        [newInProgressRecipe[0][0]]: newInProgressRecipe[0][1],
+      },
     }));
   }
 }

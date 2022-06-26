@@ -46,9 +46,9 @@ function Favoritar({ id, recipe }) {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    console.log('entrou no HandleSubmit');
+    // console.log('entrou no HandleSubmit');
     const favorites = getFavoriteRecipes();
-    console.log('favorites', favorites);
+    // console.log('favorites', favorites);
     if (favorites) {
       const checkFavorite = favorites.find((recipeItem) => recipeItem.id === id);
       if (checkFavorite) {
@@ -71,12 +71,12 @@ function Favoritar({ id, recipe }) {
       if (pathname.includes('/foods')) {
         saveFavoriteRecipe(newFavoriteFood);
         setFavoriteIcon(blackHeartIcon);
-        console.log(getFavoriteRecipes());
+        // console.log(getFavoriteRecipes());
       }
       if (pathname.includes('/drinks')) {
         saveFavoriteRecipe(newFavoriteDrink);
         setFavoriteIcon(blackHeartIcon);
-        console.log(getFavoriteRecipes());
+        // console.log(getFavoriteRecipes());
       }
     }
   };

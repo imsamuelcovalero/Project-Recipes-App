@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import { getIdDetails, getIdRecomendations } from '../helpers/getApiResults';
-import { getDoneRecipes, getInProgressRecipes } from '../helpers/getLocalStorage';
+import { getDoneRecipes } from '../helpers/getLocalStorage';
 import StartOrContinue from './StartOrContinue';
 import Compartilhar from './Compartilhar';
 import Favoritar from './Favoritar';
@@ -12,36 +12,36 @@ import './FoodAndDrinkDetails.css';
 const MAX_RECIPES_SUGESTION = 6;
 
 function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) {
-  console.log(tipoReceita, tipoFood, NameToMap);
+  // console.log(tipoReceita, tipoFood, NameToMap);
   const [ingredientList, setIngredientList] = useState([]);
   const [measuresList, setMeasuresList] = useState('');
-  const [recipe, setRecipe] = useState([]);
+  const [recipeDetails, setRecipeDetails] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
   // const [foodOrDrink, setFoodOrDrink] = useState('');
   const [isRecipeDone, setIsRecipeDone] = useState(false);
-  const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
+  // const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
 
   useEffect(() => {
     const done = getDoneRecipes();
-    const progress = getInProgressRecipes();
+    // const progress = getInProgressRecipes();
     if (done) {
       const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
       setIsRecipeDone(checkDone);
     }
-    if (progress) {
-      const checkProgress = Object.keys(`${progress}.${tipoFood}`)
-        .find((recipeId) => recipeId === patchId);
-      setIsRecipeInProgress(checkProgress);
-    }
+    // if (progress) {
+    //   const checkProgress = Object.keys(`${progress}.${tipoFood}`)
+    //     .find((recipeId) => recipeId === patchId);
+    //   setIsRecipeInProgress(checkProgress);
+    // }
   }, [isRecipeDone, patchId, tipoFood]);
 
   useEffect(() => {
     const getRecipes = async () => {
-      const receita = await getIdDetails(patchId, tipoReceita, tipoFood);
-      setRecipe(receita);
+      const detalhesReceita = await getIdDetails(patchId, tipoReceita, tipoFood);
+      setRecipeDetails(detalhesReceita);
     };
     getRecipes();
   }, [patchId, recipeType, foodType]);
@@ -74,12 +74,12 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
     const getIngredients = () => {
       const ingredients = [];
       const VINTE = 20;
-      if (recipe && recipe.length > 0) {
+      if (recipeDetails && recipeDetails.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
-          if (recipe[0][`strIngredient${i}`] !== ''
-            && recipe[0][`strIngredient${i}`] !== null
-            && recipe[0][`strIngredient${i}`] !== undefined) {
-            ingredients.push(recipe[0][`strIngredient${i}`]);
+          if (recipeDetails[0][`strIngredient${i}`] !== ''
+            && recipeDetails[0][`strIngredient${i}`] !== null
+            && recipeDetails[0][`strIngredient${i}`] !== undefined) {
+            ingredients.push(recipeDetails[0][`strIngredient${i}`]);
           }
         }
       }
@@ -87,17 +87,17 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
       return ingredients;
     };
     getIngredients();
-  }, [recipe]);
+  }, [recipeDetails]);
 
   useEffect(() => {
     const getMeasures = () => {
       const measures = [];
       const VINTE = 20;
-      if (recipe && recipe.length > 0) {
+      if (recipeDetails && recipeDetails.length > 0) {
         for (let i = 1; i <= VINTE; i += 1) {
-          if (recipe[0][`strMeasure${i}`] !== ''
-          && recipe[0][`strMeasure${i}`] !== null) {
-            measures.push(recipe[0][`strMeasure${i}`]);
+          if (recipeDetails[0][`strMeasure${i}`] !== ''
+          && recipeDetails[0][`strMeasure${i}`] !== null) {
+            measures.push(recipeDetails[0][`strMeasure${i}`]);
           }
         }
       }
@@ -105,12 +105,12 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
       return measures;
     };
     getMeasures();
-  }, [recipe]);
+  }, [recipeDetails]);
 
   const splitLink = () => {
     if (window.location.href.includes('/foods')) {
       const FOUR = 4;
-      const foodLink = recipe[0].strYoutube;
+      const foodLink = recipeDetails[0].strYoutube;
       const splited = foodLink.split('/', FOUR);
       const splitInterrogation = splited[3].split('?v=');
       const newLink = `${splited[0]}${splited[2]}/embed/${splitInterrogation[1]}`;
@@ -120,8 +120,8 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
   };
 
   const renderVideo = (
-    (recipe)
-    && recipe.map((index) => (
+    (recipeDetails)
+    && recipeDetails.map((index) => (
       <div key={ index } data-testid="video">
         <section>
           <h4>Video</h4>
@@ -165,11 +165,11 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
   return (
     <div>
       {
-        recipe && recipe.length > 0
+        recipeDetails && recipeDetails.length > 0
           && (
             <div>
               {
-                recipe.map((item, index) => (
+                recipeDetails.map((item, index) => (
                   <div key={ index }>
                     <img
                       data-testid="recipe-photo"
@@ -215,9 +215,10 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                         !isRecipeDone
                           && (
                             <StartOrContinue
-                              isRecipeInProgress={ isRecipeInProgress }
+                              // isRecipeInProgress={ isRecipeInProgress }
                               id={ patchId }
                               ingredients={ ingredientList }
+                              foodType={ tipoFood }
                             />
                           )
                       }

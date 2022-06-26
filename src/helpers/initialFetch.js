@@ -6,7 +6,7 @@ const getInitialRecipes = async () => {
     try {
       const response = await fetch(INITIAL_FOODS_ENDPOINT);
       const results = await response.json();
-      console.log(results.meals);
+      // console.log(results.meals);
       return results.meals;
     } catch (errorRequest) {
       console.log(errorRequest);
@@ -17,7 +17,7 @@ const getInitialRecipes = async () => {
     try {
       const response = await fetch(INITIAL_DRINKS_ENDPOINT);
       const results = await response.json();
-      console.log(results.drinks);
+      // console.log(results.drinks);
       return results.drinks;
     } catch (errorRequest) {
       console.log(errorRequest);
