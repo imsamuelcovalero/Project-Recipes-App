@@ -4,10 +4,8 @@ import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipesB({ index, recipe }) {
-  console.log(recipe, index);
+  // console.log(recipe, index);
   const [message, setMessage] = useState('');
-  // const urlType = `${recipe.type}s`;
-  // const urlId = `${recipe.id}`;
   const link = `${window.location.origin}/${recipe.type}s/${recipe.id}`;
 
   const HandleSubmit = (e) => {
@@ -21,12 +19,21 @@ function DoneRecipesB({ index, recipe }) {
       {
         recipe.type === 'food'
           ? (
-            <div>
-              <img src="" alt="Done Recipe" data-testid={ `${index}-horizontal-image` } />
-              <h3 data-testid={ `${index}-horizontal-top-text` }>categoria</h3>
+            <div className="card">
+              <img
+                src={ recipe.image }
+                alt="Done Recipe"
+                data-testid={ `${index}-horizontal-image` }
+              />
+              <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</h3>
               <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
-              <p data-testid={ `${index}-horizontal-done-date` }>data</p>
-              <p data-testid={ `${index}-xablau-horizontal-tag` }>tag</p>
+              <p>{recipe.nationality}</p>
+              <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
+              <p
+                data-testid={ `${index}-horizontal-tag` }
+              >
+                { [recipe.tags.split(',').slice(0, 2)] }
+              </p>
               <button
                 type="submit"
                 data-testid={ `${index}-horizontal-share-btn` }
@@ -38,12 +45,15 @@ function DoneRecipesB({ index, recipe }) {
             </div>
           )
           : (
-            <div>
-              <img src="" alt="Done Recipe" data-testid={ `${index}-horizontal-image` } />
-              <h3 data-testid={ `${index}-horizontal-top-text` }>categoria</h3>
+            <div className="card">
+              <img
+                src={ recipe.image }
+                alt="Done Recipe"
+                data-testid={ `${index}-horizontal-image` }
+              />
+              <h3>{recipe.alcoholicOrNot}</h3>
               <h2 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h2>
-              <p data-testid={ `${index}-horizontal-done-date` }>data</p>
-              <p data-testid={ `${index}-xablau-horizontal-tag` }>tag</p>
+              <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
               <button
                 type="submit"
                 data-testid={ `${index}-horizontal-share-btn` }
