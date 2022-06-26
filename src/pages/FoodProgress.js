@@ -1,8 +1,12 @@
 import React from 'react';
+import RecipeInProgress from '../Components/RecipeInProgress';
 
 function FoodProgress() {
   return (
-    <h3>Food Progress</h3>
+    <div>
+      <h3>Food Progress</h3>
+      <RecipeInProgress tipoReceita="themealdb" tipoFood="meals" NameToMap="strMeal" />
+    </div>
   );
 }
 
