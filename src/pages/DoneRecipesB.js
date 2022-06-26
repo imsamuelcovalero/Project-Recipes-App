@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
-function DoneRecipesB({ index, recipe }) {
+function DoneRecipesB({ index, recipe, doneOrFavorite }) {
   // console.log(recipe, index);
   const [message, setMessage] = useState('');
   const link = `${window.location.origin}/${recipe.type}s/${recipe.id}`;
   const history = useHistory();
 
-  const HandleSubmit = (e) => {
+  const HandleSubmitShare = (e) => {
     e.preventDefault();
     copy(link);
     setMessage('Link copied!');
@@ -49,21 +49,30 @@ function DoneRecipesB({ index, recipe }) {
 
               </h2>
               <p>{recipe.nationality}</p>
-              <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
               {
-                recipe.tags !== ''
+                doneOrFavorite === 'done'
                   && (
-                    <p
-                      data-testid={ `${index}-horizontal-tag` }
-                    >
-                      { [recipe.tags.split(',').slice(0, 2)] }
-                    </p>
+                    <div>
+                      <p data-testid={ `${index}-horizontal-done-date` }>
+                        {recipe.doneDate}
+                      </p>
+                      {
+                        recipe.tags !== ''
+                        && (
+                          <p
+                            data-testid={ `${index}-horizontal-tag` }
+                          >
+                            { [recipe.tags.split(',').slice(0, 2)] }
+                          </p>
+                        )
+                      }
+                    </div>
                   )
               }
               <button
                 type="submit"
                 data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ HandleSubmit }
+                onClick={ HandleSubmitShare }
               >
                 <img src={ shareIcon } alt="share" />
               </button>
@@ -107,6 +116,7 @@ function DoneRecipesB({ index, recipe }) {
 DoneRecipesB.propTypes = {
   index: PropTypes.number.isRequired,
   recipe: PropTypes.shape.isRequired,
+  doneOrFavorite: PropTypes.string.isRequired,
 };
 
 export default DoneRecipesB;

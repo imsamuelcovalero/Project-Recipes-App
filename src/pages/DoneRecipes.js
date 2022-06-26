@@ -77,7 +77,12 @@ function DoneRecipes() {
         doneRecipes && doneRecipes.length > 0
           && (
             doneRecipes.map((recipe, index) => (
-              <DoneRecipesB key={ index } index={ index } recipe={ recipe } />
+              <DoneRecipesB
+                key={ index }
+                index={ index }
+                recipe={ recipe }
+                doneOrFavorite="done"
+              />
             ))
           )
       }
