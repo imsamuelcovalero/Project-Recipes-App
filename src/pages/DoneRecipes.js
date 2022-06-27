@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
-import DoneRecipesB from './DoneRecipesB';
+import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';
 import { getDoneRecipes } from '../helpers/getLocalStorage';
 
 function DoneRecipes() {
@@ -77,7 +77,7 @@ function DoneRecipes() {
         doneRecipes && doneRecipes.length > 0
           && (
             doneRecipes.map((recipe, index) => (
-              <DoneRecipesB
+              <DoneAndFavoritesCard
                 key={ index }
                 index={ index }
                 recipe={ recipe }

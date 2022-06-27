@@ -15,7 +15,7 @@ import DrinksIngredients from '../pages/DrinksIngredients';
 import Nationalities from '../pages/Nationalities';
 import Profile from '../pages/Profile';
 import DoneRecipes from '../pages/DoneRecipes';
-import FavoritesRecipes from '../pages/FavoritesRecipes';
+import FavoriteRecipes from '../pages/FavoriteRecipes';
 import NationalitiesNotFound from '../pages/NationalitiesNotFound';
 
 function Content() {
@@ -42,7 +42,7 @@ function Content() {
       />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
-      <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
+      <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
     </Switch>
   );
 }

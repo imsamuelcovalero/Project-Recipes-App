@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
 import { getFavoriteRecipes } from '../helpers/getLocalStorage';
 import { updateFavoriteRecipes } from '../helpers/saveLocalStorage';
-import DoneRecipesB from './DoneRecipesB';
+import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoritesRecipes() {
@@ -86,7 +86,7 @@ function FavoritesRecipes() {
           && (
             favoriteRecipes.map((recipe, index) => (
               <div key={ index }>
-                <DoneRecipesB
+                <DoneAndFavoritesCard
                   index={ index }
                   recipe={ recipe }
                   doneOrFavorite="favorite"
