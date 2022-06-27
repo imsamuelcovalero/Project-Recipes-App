@@ -97,11 +97,20 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
                 {recipe.name}
 
               </h2>
-              <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
+              {
+                doneOrFavorite === 'done'
+                  && (
+                    <div>
+                      <p data-testid={ `${index}-horizontal-done-date` }>
+                        {recipe.doneDate}
+                      </p>
+                    </div>
+                  )
+              }
               <button
                 type="submit"
                 data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ HandleSubmit }
+                onClick={ HandleSubmitShare }
               >
                 <img src={ shareIcon } alt="share" />
               </button>

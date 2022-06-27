@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderNoSearch from '../Components/HeaderNoSearch';
-// import { getFavoriteRecipes } from '../helpers/getLocalStorage';
+import { getFavoriteRecipes } from '../helpers/getLocalStorage';
 import { updateFavoriteRecipes } from '../helpers/saveLocalStorage';
 import DoneRecipesB from './DoneRecipesB';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -9,43 +9,53 @@ function FavoritesRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filterType, setFilterType] = useState('all');
 
-  const mockFavorite = [
-    {
-      id: 52977,
-      type: 'food',
-      nationality: 'Turkish',
-      category: 'Side',
-      alcoholicOrNot: '',
-      name: 'Corba',
-      image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
-    },
-    {
-      id: 178319,
-      type: 'drink',
-      nationality: '',
-      category: 'Cocktail',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-    },
-  ];
+  // const mockFavorite = [
+  //   {
+  //     id: 52977,
+  //     type: 'food',
+  //     nationality: 'Turkish',
+  //     category: 'Side',
+  //     alcoholicOrNot: '',
+  //     name: 'Corba',
+  //     image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+  //   },
+  //   {
+  //     id: 178319,
+  //     type: 'drink',
+  //     nationality: '',
+  //     category: 'Cocktail',
+  //     alcoholicOrNot: 'Alcoholic',
+  //     name: 'Aquamarine',
+  //     image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+  //   },
+  // ];
 
   useEffect(() => {
     console.log('filterType', filterType);
-    const recipesFavorite = mockFavorite;
+    const favorites = getFavoriteRecipes();
     if (filterType === 'food') {
-      const recipesFiltered = recipesFavorite.filter((recipe) => recipe.type === 'food');
+      const recipesFiltered = favorites.filter((recipe) => recipe.type === 'food');
       console.log('recipesFiltered', recipesFiltered);
       setFavoriteRecipes(recipesFiltered);
     } if (filterType === 'drink') {
-      const recipesFiltered = recipesFavorite
+      const recipesFiltered = favorites
         .filter((recipe) => recipe.type === 'drink');
       console.log('recipesFiltered', recipesFiltered);
       setFavoriteRecipes(recipesFiltered);
     } if (filterType === 'all') {
-      setFavoriteRecipes(recipesFavorite);
+      setFavoriteRecipes(favorites);
     }
   }, [filterType]);
+
+  const HandleSubmitFavorite = (recipe) => {
+    // console.log('entrou no HandleSubmit');
+    const favorites = getFavoriteRecipes();
+    // console.log('favorites', favorites);
+    const newFavorites = favorites.filter((recipeItem) => recipeItem.id !== recipe.id);
+    updateFavoriteRecipes(newFavorites);
+    console.log(getFavoriteRecipes());
+    setFavoriteRecipes(newFavorites);
+  };
 
   return (
     <div>
@@ -75,24 +85,23 @@ function FavoritesRecipes() {
         favoriteRecipes && favoriteRecipes.length > 0
           && (
             favoriteRecipes.map((recipe, index) => (
-              <DoneRecipesB
-                key={ index }
-                index={ index }
-                recipe={ recipe }
-                doneOrFavorite="favorite"
-              />
+              <div key={ index }>
+                <DoneRecipesB
+                  index={ index }
+                  recipe={ recipe }
+                  doneOrFavorite="favorite"
+                />
+                <button
+                  type="button"
+                  onClick={ () => HandleSubmitFavorite(recipe) }
+                  src={ blackHeartIcon }
+                >
+                  <img src={ blackHeartIcon } alt="favorite" />
+                </button>
+              </div>
             ))
           )
       }
-      <div>
-        <button
-          type="button"
-          onClick={ HandleSubmitFavorite }
-          src={ blackHeartIcon }
-        >
-          <img src={ blackHeartIcon } alt="favorite" />
-        </button>
-      </div>
     </div>
   );
 }

@@ -84,7 +84,7 @@ function Favoritar({ id, recipe }) {
   return (
     <div>
       <button
-        type="button"
+        type="submit"
         data-testid="favorite-btn"
         onClick={ HandleSubmit }
         src={ favoriteIcon }
