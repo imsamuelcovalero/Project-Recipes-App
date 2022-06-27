@@ -3,39 +3,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import { getIdDetails } from '../helpers/getApiResults';
-// import { getDoneRecipes, getInProgressRecipes } from '../helpers/getLocalStorage';
 import Compartilhar from './Compartilhar';
 import Favoritar from './Favoritar';
 
 function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const [ingredientList, setIngredientList] = useState([]);
   const [measuresList, setMeasuresList] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
   const [recipe, setRecipe] = useState([]);
-  // const [foodOrDrink, setFoodOrDrink] = useState('');
-  // const [isRecipeDone, setIsRecipeDone] = useState(false);
-  // const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
+  const [checkedIngredients, setCheckedIngredients] = useState([]);
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const history = useHistory();
   const link = window.location.href;
-
-  // useEffect(() => {
-  //   const done = getDoneRecipes();
-  //   const progress = getInProgressRecipes();
-  //   if (done) {
-  //     const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
-  //     setIsRecipeDone(checkDone);
-  //   }
-  //   if (progress) {
-  //     const checkProgress = Object.keys(`${progress}.${tipoFood}`)
-  //       .find((recipeId) => recipeId === patchId);
-  //     setIsRecipeInProgress(checkProgress);
-  //   }
-  // }, [isRecipeDone, patchId, tipoFood]);
-
-  useEffect(() => {
-    console.log(patchId, tipoReceita, tipoFood);
-  }, []);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -86,60 +66,25 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
     history.push('/done-recipes');
   };
 
-  // const splitLink = () => {
-  //   if (window.location.href.includes('/foods')) {
-  //     const FOUR = 4;
-  //     const foodLink = recipe[0].strYoutube;
-  //     const splited = foodLink.split('/', FOUR);
-  //     const splitInterrogation = splited[3].split('?v=');
-  //     const newLink = `${splited[0]}${splited[2]}/embed/${splitInterrogation[1]}`;
-  //     return (newLink);
-  //   }
-  //   return true;
-  // };
+  const handleCheck = ({ target }) => {
+    if (target.checked === true) {
+      setCheckedIngredients([...checkedIngredients, target.name]);
+      console.log(checkedIngredients);
+    }
+    if (target.checked === false) {
+      const newArr = checkedIngredients
+        .filter((ingredient) => ingredient !== target.name);
+      setCheckedIngredients(newArr);
+    }
+  };
 
-  // const renderVideo = (
-  //   (recipe)
-  //   && recipe.map((index) => (
-  //     <div key={ index } data-testid="video">
-  //       <section>
-  //         <h4>Video</h4>
-  //         <iframe
-  //           title="video"
-  //           src={ splitLink() }
-  //         >
-  //           <track kind="captions" />
-  //         </iframe>
-  //       </section>
-  //     </div>
-  //   ))
-  // );
-
-  // const renderRecomendations = (
-  //   apiResultRecomendations.map((recomendation, index) => (
-  //     <section
-  //       data-testid={ `${index}-recomendation-card` }
-  //       key={ index }
-  //     >
-  //       <img
-  //         className="recomendedImg"
-  //         src={ recomendation[`${foodOrDrink}Thumb`] }
-  //         alt="foodOrDrinkImage"
-  //         width="300" // largura para deletar
-  //         height="300" // altura para deletar
-  //       />
-  //       {foodOrDrink === 'strDrink'
-  //         ? <p>{recomendation.strAlcoholic}</p>
-  //         : <p>{recomendation.strCategory}</p>}
-  //       <p
-  //         data-testid={ `${index}-recomendation-title` }
-  //       >
-  //         {recomendation[`${foodOrDrink}`]}
-
-  //       </p>
-  //     </section>
-  //   ))
-  // );
+  useEffect(() => {
+    if (ingredientList.length > 0
+        && ingredientList.length === checkedIngredients.length) {
+      return setIsDisabled(false);
+    }
+    setIsDisabled(true);
+  }, [checkedIngredients]);
 
   return (
     <div>
@@ -167,21 +112,13 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
                       : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
                     <section>
                       <h4>Ingredients</h4>
-                      {/* {ingredientList.map((ingredientItem, index2) => (
-                        <p
-                          key={ index2 }
-                          data-testid={ `${index2}-ingredient-step` }
-                        >
-                          {`- ${ingredientItem}
-                         - ${measuresList[index2]}`}
-                        </p>
-                      ))} */}
                       {ingredientList.map((ingredientItem, index2) => (
                         <div key={ index2 } data-testid={ `${index2}-ingredient-step` }>
                           <input
                             type="checkbox"
                             id={ ingredientItem }
                             name={ ingredientItem }
+                            onChange={ (event) => handleCheck(event) }
                           />
                           <label
                             htmlFor={ ingredientItem }
@@ -197,27 +134,10 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
                         {item.strInstructions}
                       </p>
                     </section>
-                    {/* {window.location.href.includes('/foods') && renderVideo}
-                    <section>
-                      <div className="recomendations">
-                        {renderRecomendations}
-                      </div>
-                    </section> */}
-                    {/* <section>
-                      {
-                        !isRecipeDone
-                          && (
-                            <StartOrContinue
-                              isRecipeInProgress={ isRecipeInProgress }
-                              id={ patchId }
-                              ingredients={ ingredientList }
-                            />
-                          )
-                      }
-                    </section> */}
                     <button
                       data-testid="finish-recipe-btn"
                       type="button"
+                      disabled={ isDisabled }
                       onClick={ handleClick }
                     >
                       Finish Recipe
