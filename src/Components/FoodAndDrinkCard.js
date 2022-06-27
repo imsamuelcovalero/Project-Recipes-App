@@ -10,11 +10,8 @@ const MAX_RECIPES = 12;
 function FoodAndDrinkCard() {
   const [nameToMap, setNameToMap] = useState('');
   const [mealOrDrink, setMealOrDrink] = useState('');
-  const { apiResult, foodType, setApiResult, clickedIngredient,
-    cameFromIngredients,
-    setCameFromIngredients,
-    setRecipeType,
-    setFoodType } = useContext(AppContext);
+  const { apiResult, foodType, setApiResult, clickedIngredient, cameFromIngredients,
+    setCameFromIngredients, setRecipeType, setFoodType } = useContext(AppContext);
   const history = useHistory();
   const { pathname } = useLocation();
 

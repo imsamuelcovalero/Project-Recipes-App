@@ -33,17 +33,39 @@ export function updateFavoriteRecipes(updatedFavoriteArray) {
   localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavoriteArray));
 }
 
-export function saveInProgressRecipe(inProgressObj) {
+export function saveInProgressRecipe(inProgressObj, type) {
   if (getInProgressRecipes() === null) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify([inProgressObj]));
-  } else {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify([
-        ...getInProgressRecipes(),
-        inProgressObj,
-      ]),
-    );
+    if (type === 'meals') {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        meals: inProgressObj,
+        cocktails: {},
+      }));
+    } else if (type === 'drinks') {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        meals: {},
+        cocktails: inProgressObj,
+      }));
+    }
+  } else if (type === 'meals') {
+    const inProgressRecipes = getInProgressRecipes();
+    const newInProgressRecipe = Object.entries(inProgressObj);
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      meals: {
+        ...inProgressRecipes.meals,
+        [newInProgressRecipe[0][0]]: newInProgressRecipe[0][1],
+      },
+      cocktails: { ...getInProgressRecipes().cocktails || {} },
+    }));
+  } else if (type === 'drinks') {
+    const inProgressRecipes = getInProgressRecipes();
+    const newInProgressRecipe = Object.entries(inProgressObj);
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      meals: { ...getInProgressRecipes().meals || {} },
+      cocktails: {
+        ...inProgressRecipes.cocktails,
+        [newInProgressRecipe[0][0]]: newInProgressRecipe[0][1],
+      },
+    }));
   }
 }
 
