@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-function DoneRecipesB({ index, recipe, doneOrFavorite }) {
+function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavorite }) {
   // console.log(recipe, index);
   const [message, setMessage] = useState('');
   const link = `${window.location.origin}/${recipe.type}s/${recipe.id}`;
@@ -39,7 +40,9 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
                 onClick={ () => handleNavigate(recipe) }
                 aria-hidden="true"
               />
-              <h3 data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</h3>
+              <h4 data-testid={ `${index}-horizontal-top-text` }>
+                {`${recipe.nationality} - ${recipe.category}`}
+              </h4>
               <h2
                 data-testid={ `${index}-horizontal-name` }
                 onClick={ () => handleNavigate(recipe) }
@@ -48,7 +51,6 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
                 {recipe.name}
 
               </h2>
-              <p>{recipe.nationality}</p>
               {
                 doneOrFavorite === 'done'
                   && (
@@ -71,12 +73,28 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
               }
               <button
                 type="submit"
-                data-testid={ `${index}-horizontal-share-btn` }
                 onClick={ HandleSubmitShare }
               >
-                <img src={ shareIcon } alt="share" />
+                <img
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  src={ shareIcon }
+                  alt="share"
+                />
               </button>
               <p>{message}</p>
+              {
+                doneOrFavorite === 'favorite'
+                  && (
+                    <button
+                      type="button"
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      onClick={ () => HandleSubmitFavorite(recipe) }
+                      src={ blackHeartIcon }
+                    >
+                      <img src={ blackHeartIcon } alt="favorite" />
+                    </button>
+                  )
+              }
             </div>
           )
           : (
@@ -88,7 +106,9 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
                 onClick={ () => handleNavigate(recipe) }
                 aria-hidden="true"
               />
-              <h3>{recipe.alcoholicOrNot}</h3>
+              <h3 data-testid={ `${index}-horizontal-top-text` }>
+                {recipe.alcoholicOrNot}
+              </h3>
               <h2
                 data-testid={ `${index}-horizontal-name` }
                 onClick={ () => handleNavigate(recipe) }
@@ -109,12 +129,28 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
               }
               <button
                 type="submit"
-                data-testid={ `${index}-horizontal-share-btn` }
                 onClick={ HandleSubmitShare }
               >
-                <img src={ shareIcon } alt="share" />
+                <img
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  src={ shareIcon }
+                  alt="share"
+                />
               </button>
               <p>{message}</p>
+              {
+                doneOrFavorite === 'favorite'
+                  && (
+                    <button
+                      type="button"
+                      data-testid={ `${index}-horizontal-favorite-btn` }
+                      onClick={ () => HandleSubmitFavorite(recipe) }
+                      src={ blackHeartIcon }
+                    >
+                      <img src={ blackHeartIcon } alt="favorite" />
+                    </button>
+                  )
+              }
             </div>
           )
       }
@@ -122,10 +158,11 @@ function DoneRecipesB({ index, recipe, doneOrFavorite }) {
   );
 }
 
-DoneRecipesB.propTypes = {
+DoneAndFavoritesCard.propTypes = {
   index: PropTypes.number.isRequired,
   recipe: PropTypes.shape.isRequired,
   doneOrFavorite: PropTypes.string.isRequired,
+  HandleSubmitFavorite: PropTypes.func.isRequired,
 };
 
-export default DoneRecipesB;
+export default DoneAndFavoritesCard;

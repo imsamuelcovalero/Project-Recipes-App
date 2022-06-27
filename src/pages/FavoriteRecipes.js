@@ -3,7 +3,6 @@ import HeaderNoSearch from '../Components/HeaderNoSearch';
 import { getFavoriteRecipes } from '../helpers/getLocalStorage';
 import { updateFavoriteRecipes } from '../helpers/saveLocalStorage';
 import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoritesRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -90,14 +89,8 @@ function FavoritesRecipes() {
                   index={ index }
                   recipe={ recipe }
                   doneOrFavorite="favorite"
+                  HandleSubmitFavorite={ HandleSubmitFavorite }
                 />
-                <button
-                  type="button"
-                  onClick={ () => HandleSubmitFavorite(recipe) }
-                  src={ blackHeartIcon }
-                >
-                  <img src={ blackHeartIcon } alt="favorite" />
-                </button>
               </div>
             ))
           )
