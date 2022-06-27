@@ -17,14 +17,18 @@ function StartOrContinue({ id, ingredients, foodType }) {
     console.log('inProgress', inProgress);
     if (inProgress) {
       if (foodType === 'meals') {
-        const checkInProgress = Object.keys(Object.entries(inProgress)[0][1])
+        const foods = Object.entries(inProgress)
+          .find(([key]) => key === 'meals');
+        const checkInProgress = Object.keys(foods[1])
           .some((recipeId) => recipeId === id);
         // console.log('checkInProgressId', checkInProgress);
         if (checkInProgress) {
           setButtonText(CONTINUE);
         }
       } else if (foodType === 'drinks') {
-        const checkInProgress = Object.keys(Object.entries(inProgress)[1][1])
+        const drinks = Object.entries(inProgress)
+          .find(([key]) => key === 'cocktails');
+        const checkInProgress = Object.keys(drinks[1])
           .some((recipeId) => recipeId === id);
         // console.log('checkInProgressId', checkInProgress);
         if (checkInProgress) {
@@ -60,6 +64,7 @@ function StartOrContinue({ id, ingredients, foodType }) {
           history.push(`/foods/${id}/in-progress`);
         }
       } else if (foodType === 'drink') {
+        console.log('inProgress', inProgress);
         const checkInProgress = Object.entries(inProgress)[1].find(
           (recipe) => Object.keys(recipe)[0] === id,
         );

@@ -58,16 +58,6 @@ function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavor
                       <p data-testid={ `${index}-horizontal-done-date` }>
                         {recipe.doneDate}
                       </p>
-                      {
-                        recipe.tags !== ''
-                        && (
-                          <p
-                            data-testid={ `${index}-horizontal-tag` }
-                          >
-                            { [recipe.tags.split(',').slice(0, 2)] }
-                          </p>
-                        )
-                      }
                     </div>
                   )
               }
@@ -82,6 +72,30 @@ function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavor
                 />
               </button>
               <p>{message}</p>
+              {
+                doneOrFavorite === 'done'
+                  && (
+                    <div>
+                      {
+                        recipe.tags !== ''
+                        && (
+                          <span>
+                            <p
+                              data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }
+                            >
+                              { recipe.tags[0]}
+                            </p>
+                            <p
+                              data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }
+                            >
+                              { recipe.tags[1]}
+                            </p>
+                          </span>
+                        )
+                      }
+                    </div>
+                  )
+              }
               {
                 doneOrFavorite === 'favorite'
                   && (
