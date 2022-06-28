@@ -109,10 +109,6 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
     getMeasures();
   }, [recipe]);
 
-  const handleClick = () => {
-    history.push('/done-recipes');
-  };
-
   const handleCheck = ({ target }) => {
     const inProgressRecipes = getInProgressRecipes();
     // console.log('inProgressRecipes', inProgressRecipes);
@@ -221,7 +217,7 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
                       data-testid="finish-recipe-btn"
                       type="button"
                       disabled={ isDisabled }
-                      onClick={ handleClick }
+                      onClick={ () => history.push('/done-recipes') }
                     >
                       Finish Recipe
                     </button>
