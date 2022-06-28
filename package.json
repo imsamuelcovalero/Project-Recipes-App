@@ -16,7 +16,6 @@
     "eslint-plugin-sonarjs": "^0.11.0",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
-    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",
@@ -24,6 +23,7 @@
     "react-logger": "^1.1.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
+    "styled-components": "^5.3.5",
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {

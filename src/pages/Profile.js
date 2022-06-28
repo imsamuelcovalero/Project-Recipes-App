@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeaderNoSearch from '../Components/HeaderNoSearch';
-import Footer from '../Components/Footer';
+import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
+import Footer from '../Components/Footer/Footer';
 
 function Profile() {
   const [email, setEmail] = useState('');

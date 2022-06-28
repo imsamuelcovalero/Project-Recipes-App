@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 import FoodAndDrinkCard from '../Components/FoodAndDrinkCard';
 import AppContext from '../context/AppContext';
 

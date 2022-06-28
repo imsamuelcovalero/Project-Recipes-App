@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import AppContext from '../context/AppContext';
+import profileIcon from '../../images/profileIcon.svg';
+import searchIcon from '../../images/searchIcon.svg';
+import AppContext from '../../context/AppContext';
+import { HeaderS } from './Style';
 
 function Header({ title }) {
   const history = useHistory();
@@ -28,8 +29,9 @@ function Header({ title }) {
   };
 
   return (
-    <div>
+    <HeaderS>
       <button
+        id="profile"
         type="button"
         src={ profileIcon }
         data-testid="profile-top-btn"
@@ -37,8 +39,9 @@ function Header({ title }) {
       >
         <img src={ profileIcon } alt="profile" />
       </button>
-      <h3 data-testid="page-title">{title}</h3>
+      <h3 id="titulo" data-testid="page-title">{title}</h3>
       <button
+        id="search"
         type="button"
         src={ searchIcon }
         data-testid="search-top-btn"
@@ -62,7 +65,6 @@ function Header({ title }) {
               id="ingredient"
               name="option"
               value="ingredient"
-              // checked={ xablau }
               onChange={ ({ target }) => setRadioResult(target.value) }
             />
             Ingredient
@@ -74,7 +76,6 @@ function Header({ title }) {
               id="name"
               name="option"
               value="name"
-              // checked={ xablau }
               onChange={ ({ target }) => setRadioResult(target.value) }
             />
             Name
@@ -86,7 +87,6 @@ function Header({ title }) {
               id="first-letter"
               name="option"
               value="first-letter"
-              // checked={ xablau }
               onChange={ ({ target }) => setRadioResult(target.value) }
             />
             First Letter
@@ -97,11 +97,10 @@ function Header({ title }) {
             onClick={ () => HandleClick() }
           >
             Search
-
           </button>
         </div>
       )}
-    </div>
+    </HeaderS>
   );
 }
 

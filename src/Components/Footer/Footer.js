@@ -1,15 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import drinkIcon from '../images/drinkIcon.svg';
-import exploreIcon from '../images/exploreIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
-import './Footer.css';
+import drinkIcon from '../../images/drinkIcon.svg';
+import exploreIcon from '../../images/exploreIcon.svg';
+import mealIcon from '../../images/mealIcon.svg';
+import FooterS from './Style';
+// import './Footer.css';
 
 function Footer() {
   const history = useHistory();
   return (
-    <div data-testid="footer" className="footer-container">
+    <FooterS data-testid="footer" className="footer-container">
       <button
+        id="drink"
         type="button"
         src={ drinkIcon }
         data-testid="drinks-bottom-btn"
@@ -17,8 +19,8 @@ function Footer() {
       >
         <img src={ drinkIcon } alt="profile" />
       </button>
-
       <button
+        id="explore"
         type="button"
         src={ exploreIcon }
         data-testid="explore-bottom-btn"
@@ -26,8 +28,8 @@ function Footer() {
       >
         <img src={ exploreIcon } alt="profile" />
       </button>
-
       <button
+        id="meal"
         type="button"
         src={ mealIcon }
         data-testid="food-bottom-btn"
@@ -35,7 +37,7 @@ function Footer() {
       >
         <img src={ mealIcon } alt="profile" />
       </button>
-    </div>
+    </FooterS>
   );
 }
 

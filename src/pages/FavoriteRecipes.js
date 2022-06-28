@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HeaderNoSearch from '../Components/HeaderNoSearch';
+import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
 import { getFavoriteRecipes } from '../helpers/getLocalStorage';
 import { updateFavoriteRecipes } from '../helpers/saveLocalStorage';
 import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';

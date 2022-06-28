@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../Components/Footer';
-import HeaderNoSearch from '../Components/HeaderNoSearch';
+import Footer from '../Components/Footer/Footer';
+import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
 
 function Explore() {
   return (
