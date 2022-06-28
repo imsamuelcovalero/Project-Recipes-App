@@ -11,7 +11,7 @@ function Favoritar({ id, recipe }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const favorites = getFavoriteRecipes();
+    const favorites = getFavoriteRecipes() || [];
     if (favorites) {
       const checkFavorite = favorites.find((recipeItem) => recipeItem.id === id);
       if (checkFavorite) {

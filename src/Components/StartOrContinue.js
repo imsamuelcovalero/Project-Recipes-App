@@ -6,7 +6,7 @@ import { saveInProgressRecipe } from '../helpers/saveLocalStorage';
 
 const CONTINUE = 'Continue Recipe';
 
-function StartOrContinue({ id, ingredients, foodType }) {
+function StartOrContinue({ id, foodType }) {
   const [buttonText, setButtonText] = useState('Start Recipe');
   // const { pathname } = useLocation();
   const history = useHistory();
@@ -14,7 +14,7 @@ function StartOrContinue({ id, ingredients, foodType }) {
 
   useEffect(() => {
     const inProgress = getInProgressRecipes();
-    console.log('inProgress', inProgress);
+    // console.log('inProgress', inProgress);
     if (inProgress) {
       if (foodType === 'meals') {
         const foods = Object.entries(inProgress)
@@ -38,25 +38,24 @@ function StartOrContinue({ id, ingredients, foodType }) {
     }
   }, [foodType, id]);
 
-  const newCocktail = {
-    [id]: ingredients,
+  const newMeal = {
+    [id]: [],
   };
 
-  const newMeal = {
-    [id]: ingredients,
+  const newCocktail = {
+    [id]: [],
   };
 
   const HandleSubmit = (e) => {
     e.preventDefault();
     const inProgress = getInProgressRecipes();
-    console.log('inProgress', inProgress);
+    // console.log('inProgress', inProgress);
     if (inProgress && inProgress.length > 0) {
-      console.log('entrou em inProgress');
       if (foodType === 'food') {
         const checkInProgress = Object.entries(inProgress)[0].find(
           (recipe) => Object.keys(recipe)[0] === id,
         );
-        console.log('checkInProgress', checkInProgress);
+        // console.log('checkInProgress', checkInProgress);
         if (!checkInProgress) {
           saveInProgressRecipe(newMeal, foodType);
           history.push(`/foods/${id}/in-progress`);
@@ -64,7 +63,7 @@ function StartOrContinue({ id, ingredients, foodType }) {
           history.push(`/foods/${id}/in-progress`);
         }
       } else if (foodType === 'drink') {
-        console.log('inProgress', inProgress);
+        // console.log('inProgress', inProgress);
         const checkInProgress = Object.entries(inProgress)[1].find(
           (recipe) => Object.keys(recipe)[0] === id,
         );
@@ -76,14 +75,13 @@ function StartOrContinue({ id, ingredients, foodType }) {
         }
       }
     } else if (foodType === 'meals') {
-      console.log('entrou no else if');
       saveInProgressRecipe(newMeal, foodType);
-      console.log(getInProgressRecipes());
+      // console.log(getInProgressRecipes());
       setButtonText(CONTINUE);
       history.push(`/foods/${id}/in-progress`);
     } else if (foodType === 'drinks') {
       saveInProgressRecipe(newCocktail, foodType);
-      console.log(getInProgressRecipes());
+      // console.log(getInProgressRecipes());
       setButtonText(CONTINUE);
       history.push(`/drinks/${id}/in-progress`);
     }
@@ -107,7 +105,6 @@ function StartOrContinue({ id, ingredients, foodType }) {
 
 StartOrContinue.propTypes = {
   id: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf.isRequired,
   foodType: PropTypes.string.isRequired,
 };
 
