@@ -70,5 +70,5 @@ export function saveInProgressRecipe(inProgressObj, type) {
 }
 
 export function updateInProgressRecipe(updatedFavoriteArray) {
-  localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavoriteArray));
+  localStorage.setItem('inProgressRecipes', JSON.stringify(updatedFavoriteArray));
 }

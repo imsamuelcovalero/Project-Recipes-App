@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import AppContext from '../context/AppContext';
 import { getIdDetails } from '../helpers/getApiResults';
+import { saveInProgressRecipe } from
+'../helpers/saveLocalStorage';
+import { getInProgressRecipes } from '../helpers/getLocalStorage';
 import Compartilhar from './Compartilhar';
 import Favoritar from './Favoritar';
 
@@ -12,10 +14,55 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [recipe, setRecipe] = useState([]);
   const [checkedIngredients, setCheckedIngredients] = useState([]);
-  const { foodType, recipeType } = useContext(AppContext);
+  const [mealsOrCocktails, setMealsOrCocktails] = useState('');
   const patchId = useLocation().pathname.split('/')[2];
   const history = useHistory();
   const link = window.location.href;
+
+  const newMeal = {
+    [patchId]: [],
+  };
+
+  const newCocktail = {
+    [patchId]: [],
+  };
+
+  useEffect(() => {
+    const inProgress = getInProgressRecipes();
+    // console.log('inProgress', inProgress);
+    if (inProgress) {
+      // console.log('tipoFood', tipoFood);
+      if (tipoFood === 'meals') {
+        setMealsOrCocktails('meals');
+        const checkInProgress = Object.entries(inProgress)[0].find(
+          (inProgressRecipe) => Object.keys(inProgressRecipe)[0] === patchId,
+        );
+        // console.log('checkInProgress', checkInProgress);
+        if (!checkInProgress) {
+          saveInProgressRecipe(newMeal, tipoFood);
+          setMealsOrCocktails('meals');
+        }
+      } else if (tipoFood === 'drinks') {
+        // console.log('inProgress', inProgress);
+        setMealsOrCocktails('cocktails');
+        const checkInProgress = Object.entries(inProgress)[1].find(
+          (inProgressRecipe) => Object.keys(inProgressRecipe)[0] === patchId,
+        );
+        if (!checkInProgress) {
+          saveInProgressRecipe(newCocktail, tipoFood);
+          setMealsOrCocktails('cocktails');
+        }
+      }
+    } else if (tipoFood === 'meals') {
+      saveInProgressRecipe(newMeal, tipoFood);
+      // console.log(getInProgressRecipes());
+      setMealsOrCocktails('meals');
+    } else if (tipoFood === 'drinks') {
+      saveInProgressRecipe(newCocktail, tipoFood);
+      // console.log(getInProgressRecipes());
+      setMealsOrCocktails('cocktails');
+    }
+  });
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -23,7 +70,7 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
       setRecipe(receita);
     };
     getRecipes();
-  }, [patchId, recipeType, foodType]);
+  }, [patchId, tipoReceita, tipoFood]);
 
   useEffect(() => {
     const getIngredients = () => {
@@ -67,14 +114,46 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   };
 
   const handleCheck = ({ target }) => {
+    const inProgressRecipes = getInProgressRecipes();
+    // console.log('inProgressRecipes', inProgressRecipes);
     if (target.checked === true) {
-      setCheckedIngredients([...checkedIngredients, target.name]);
-      console.log(checkedIngredients);
+      const newData = [...inProgressRecipes[`${mealsOrCocktails}`][patchId], target.name];
+      // console.log('newData', newData);
+      setCheckedIngredients(newData);
+      if (tipoFood === 'meals') {
+        const newFood = {
+          [patchId]: newData,
+        };
+        saveInProgressRecipe(newFood, tipoFood);
+        // console.log(getInProgressRecipes());
+      } else if (tipoFood === 'drinks') {
+        const newDrink = {
+          [patchId]: newData,
+        };
+        // console.log('newDrink', newDrink);
+        saveInProgressRecipe(newDrink, tipoFood);
+        // console.log(getInProgressRecipes());
+      }
     }
     if (target.checked === false) {
-      const newArr = checkedIngredients
+      // console.log('inProgressRecipes', inProgressRecipes);
+      const newArr = inProgressRecipes[`${mealsOrCocktails}`][patchId]
         .filter((ingredient) => ingredient !== target.name);
+      // console.log('newArr', newArr);
       setCheckedIngredients(newArr);
+      if (tipoFood === 'meals') {
+        const newFood = {
+          [patchId]: newArr,
+        };
+        saveInProgressRecipe(newFood, tipoFood);
+        // console.log(getInProgressRecipes());
+      } else if (tipoFood === 'drinks') {
+        const newDrink = {
+          [patchId]: newArr,
+        };
+        saveInProgressRecipe(newDrink, tipoFood);
+        // console.log(getInProgressRecipes());
+      }
     }
   };
 
@@ -116,6 +195,10 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
                         <div key={ index2 } data-testid={ `${index2}-ingredient-step` }>
                           <input
                             type="checkbox"
+                            checked={
+                              getInProgressRecipes()[`${mealsOrCocktails}`][patchId]
+                                .includes(ingredientItem)
+                            }
                             id={ ingredientItem }
                             name={ ingredientItem }
                             onChange={ (event) => handleCheck(event) }

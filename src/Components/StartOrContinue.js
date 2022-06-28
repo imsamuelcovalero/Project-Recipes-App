@@ -6,7 +6,7 @@ import { saveInProgressRecipe } from '../helpers/saveLocalStorage';
 
 const CONTINUE = 'Continue Recipe';
 
-function StartOrContinue({ id, ingredients, foodType }) {
+function StartOrContinue({ id, foodType }) {
   const [buttonText, setButtonText] = useState('Start Recipe');
   // const { pathname } = useLocation();
   const history = useHistory();
@@ -38,12 +38,12 @@ function StartOrContinue({ id, ingredients, foodType }) {
     }
   }, [foodType, id]);
 
-  const newCocktail = {
-    [id]: ingredients,
+  const newMeal = {
+    [id]: [],
   };
 
-  const newMeal = {
-    [id]: ingredients,
+  const newCocktail = {
+    [id]: [],
   };
 
   const HandleSubmit = (e) => {
@@ -107,7 +107,7 @@ function StartOrContinue({ id, ingredients, foodType }) {
 
 StartOrContinue.propTypes = {
   id: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf.isRequired,
+  // ingredients: PropTypes.arrayOf.isRequired,
   foodType: PropTypes.string.isRequired,
 };
 
