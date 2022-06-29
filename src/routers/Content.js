@@ -4,7 +4,7 @@ import Login from '../pages/Login/Login';
 import Foods from '../pages/Foods/Foods';
 import Drinks from '../pages/Drinks/Drinks';
 import FoodDetails from '../pages/FoodDetails/FoodDetails';
-import DrinkDetails from '../pages/DrinkDetails';
+import DrinkDetails from '../pages/DrinkDetails/DrinkDetails';
 import FoodProgress from '../pages/FoodProgress';
 import DrinkProgress from '../pages/DrinkProgress';
 import Explore from '../pages/Explore';

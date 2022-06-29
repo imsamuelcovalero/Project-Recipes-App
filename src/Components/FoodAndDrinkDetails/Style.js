@@ -18,6 +18,7 @@ justify-content: center;
   width: 300px;
   border-radius: 20px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 10px;
   /* border: 1px solid red; */
 }
 #recomendations {
