@@ -5,8 +5,8 @@ import { getIdDetails } from '../helpers/getApiResults';
 import { saveInProgressRecipe } from
 '../helpers/saveLocalStorage';
 import { getInProgressRecipes } from '../helpers/getLocalStorage';
-import Compartilhar from './Compartilhar';
-import Favoritar from './Favoritar';
+import Compartilhar from './FoodAndDrinkDetails/Compartilhar';
+import Favoritar from './FoodAndDrinkDetails/Favoritar';
 
 function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const [ingredientList, setIngredientList] = useState([]);

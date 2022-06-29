@@ -24,6 +24,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.5",
+    "the-new-css-reset": "^1.7.2",
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {

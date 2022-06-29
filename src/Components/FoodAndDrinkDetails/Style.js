@@ -3,42 +3,95 @@ import styled from 'styled-components';
 export const DivS = styled.div`
 align-items: center;
 justify-content: center;
+#video {
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
+#imagem {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 #recipeImg {
+  margin-top: 10px;
   width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  /* border: 1px solid red; */
 }
 #recomendations {
+  margin-top: 15px;
   display: flex;
   flex-flow: row nowrap;
   overflow-x: auto;
+  /* justify-content: center; */
+  #recomendationsPosition {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center
+  }
 }
-
 #recomendedImg {
   height: 230px;
   max-width: 180px;
 }
-
-#startButton {
+#startButtonDiv {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   position: fixed;
 }
-
-#xablau {
-  border: 1px solid red;
+#tituloEicones {
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 8px;
+  #receitaNome {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
   #icones {
-    margin-top: 5px;
+    /* margin-top: 13px; */
     display: flex;
     flex-direction: row;
-    margin-right: 8px;
+    /* margin-right: 16px; */
+    gap: 16px;
   }
+}
+#categoria {
+  font-size: 19px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+#instructions {
+  text-align: justify;
+}
+#boldTitle {
+  font-weight: bold;
+}
+#subDiv {
+  padding: 0 16px;
 }
 `;
 
-export const SpanS = styled.span`
-  border: 1px solid red;
-  background-color: red;
+export const DivStart = styled.div`
+  #startButton {
+    border: 1px solid red;
+    padding: 1px;
+    border-radius: 20px;
+    padding: 3px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;

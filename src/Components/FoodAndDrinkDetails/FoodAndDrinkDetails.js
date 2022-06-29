@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import { getIdDetails, getIdRecomendations } from '../../helpers/getApiResults';
 import { getDoneRecipes } from '../../helpers/getLocalStorage';
-import StartOrContinue from '../StartOrContinue';
-import Compartilhar from '../Compartilhar';
-import Favoritar from '../Favoritar';
-import './FoodAndDrinkDetails.css';
+import StartOrContinue from './StartOrContinue';
+import Compartilhar from './Compartilhar';
+import Favoritar from './Favoritar';
+// import './FoodAndDrinkDetails.css';
 import { DivS } from './Style';
 
 const MAX_RECIPES_SUGESTION = 6;
@@ -18,7 +18,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
   const [recipeDetails, setRecipeDetails] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
   const [isRecipeDone, setIsRecipeDone] = useState(false);
-  const { foodType, recipeType } = useContext(AppContext);
+  const { foodType, recipeType, shareMessage } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
 
@@ -116,7 +116,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
     && recipeDetails.map((index) => (
       <div key={ index } data-testid="video">
         <section>
-          <h4>Video</h4>
+          <h4 id="boldTitle">Video</h4>
           <iframe
             title="video"
             src={ splitLink() }
@@ -141,15 +141,16 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
           width="300" // largura para deletar
           height="300" // altura para deletar
         />
-        {foodOrDrink === 'strDrink'
-          ? <p>{recomendation.strAlcoholic}</p>
-          : <p>{recomendation.strCategory}</p>}
-        <p
-          data-testid={ `${index}-recomendation-title` }
-        >
-          {recomendation[`${foodOrDrink}`]}
-
-        </p>
+        <div id="recomendationsPosition">
+          {foodOrDrink === 'strDrink'
+            ? <p>{recomendation.strAlcoholic}</p>
+            : <p>{recomendation.strCategory}</p>}
+          <p
+            data-testid={ `${index}-recomendation-title` }
+          >
+            {recomendation[`${foodOrDrink}`]}
+          </p>
+        </div>
       </section>
     ))
   );
@@ -163,51 +164,60 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
               {
                 recipeDetails.map((item, index) => (
                   <div key={ index }>
-                    <img
-                      id="recipeImg"
-                      data-testid="recipe-photo"
-                      src={ item[`${NameToMap}Thumb`] }
-                      alt="foodOrDrinkImage"
+                    <div id="imagem">
+                      <img
+                        id="recipeImg"
+                        data-testid="recipe-photo"
+                        src={ item[`${NameToMap}Thumb`] }
+                        alt="foodOrDrinkImage"
                       // width="300" // largura para deletar
                       // height="300" // altura para deletar
-                    />
-                    <div id="xablau">
-                      <h3 data-testid="recipe-title">
-                        { item[NameToMap] }
-                      </h3>
-                      <div id="icones">
-                        <Compartilhar id="compartilhar" link={ link } />
-                        <Favoritar id={ patchId } recipe={ item } />
-                      </div>
+                      />
                     </div>
-                    {NameToMap === 'strMeal'
-                      ? <p data-testid="recipe-category">{item.strCategory}</p>
-                      : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
-                    <section>
-                      <h4>Ingredients</h4>
-                      {ingredientList.map((ingredientItem, index2) => (
-                        <p
-                          key={ index2 }
-                          data-testid={ `${index2}-ingredient-name-and-measure` }
-                        >
-                          {`- ${ingredientItem}
+                    <div id="subDiv">
+                      <div id="tituloEicones">
+                        <h3 id="receitaNome" data-testid="recipe-title">
+                          { item[NameToMap] }
+                        </h3>
+                        <div id="icones">
+                          <Compartilhar id="compartilhar" link={ link } />
+                          <Favoritar id={ patchId } recipe={ item } />
+                        </div>
+                      </div>
+                      <div id="categoria">
+                        <p>{shareMessage}</p>
+                        {NameToMap === 'strMeal'
+                          ? <p data-testid="recipe-category">{item.strCategory}</p>
+                          : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
+                      </div>
+                      <section id="ingredients">
+                        <h4 id="boldTitle">Ingredients</h4>
+                        {ingredientList.map((ingredientItem, index2) => (
+                          <p
+                            key={ index2 }
+                            data-testid={ `${index2}-ingredient-name-and-measure` }
+                          >
+                            {`- ${ingredientItem}
                          - ${measuresList[index2]}`}
+                          </p>
+                        ))}
+                      </section>
+                      <section id="instructions">
+                        <h4 id="boldTitle">Instructions</h4>
+                        <p data-testid="instructions">
+                          {item.strInstructions}
                         </p>
-                      ))}
-                    </section>
-                    <section>
-                      <h4>Instructions</h4>
-                      <p data-testid="instructions">
-                        {item.strInstructions}
-                      </p>
-                    </section>
-                    {window.location.href.includes('/foods') && renderVideo}
+                      </section>
+                    </div>
+                    <div id="video">
+                      {window.location.href.includes('/foods') && renderVideo}
+                    </div>
                     <section>
                       <div id="recomendations">
                         {renderRecomendations}
                       </div>
                     </section>
-                    <section>
+                    <div id="startButtonDiv">
                       {
                         !isRecipeDone
                           && (
@@ -219,7 +229,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                             />
                           )
                       }
-                    </section>
+                    </div>
                   </div>
                 ))
               }

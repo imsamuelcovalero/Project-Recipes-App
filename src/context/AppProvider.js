@@ -10,6 +10,7 @@ function AppProvider({ children }) {
   const [foodType, setFoodType] = useState('');
   const [cameFromIngredients, setCameFromIngredients] = useState(false);
   const [clickedIngredient, setClickedIngredient] = useState('');
+  const [shareMessage, setShareMessage] = useState('');
 
   const history = useHistory();
 
@@ -92,6 +93,8 @@ function AppProvider({ children }) {
     setCameFromIngredients,
     clickedIngredient,
     setClickedIngredient,
+    shareMessage,
+    setShareMessage,
   };
 
   return (

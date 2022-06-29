@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { getInProgressRecipes } from '../helpers/getLocalStorage';
-import { saveInProgressRecipe } from '../helpers/saveLocalStorage';
+import { getInProgressRecipes } from '../../helpers/getLocalStorage';
+import { saveInProgressRecipe } from '../../helpers/saveLocalStorage';
+import { DivStart } from './Style';
 
 const CONTINUE = 'Continue Recipe';
 
@@ -88,18 +89,16 @@ function StartOrContinue({ id, foodType }) {
   };
 
   return (
-    <div>
-      <section>
-        <button
-          className="startButton"
-          type="button"
-          data-testid="start-recipe-btn"
-          onClick={ HandleSubmit }
-        >
-          {buttonText}
-        </button>
-      </section>
-    </div>
+    <DivStart>
+      <button
+        id="startButton"
+        type="button"
+        data-testid="start-recipe-btn"
+        onClick={ HandleSubmit }
+      >
+        {buttonText}
+      </button>
+    </DivStart>
   );
 }
 

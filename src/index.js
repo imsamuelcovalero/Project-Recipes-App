@@ -4,6 +4,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'the-new-css-reset/css/reset.css';
 
 ReactDOM.render(
   <BrowserRouter>

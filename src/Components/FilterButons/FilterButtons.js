@@ -93,9 +93,9 @@ function FilterButtons() {
       </button>
       {
         filterOptions && filterOptions.map((category) => (
-          <div id="filterButton" key={ category.strCategory }>
+          <div key={ category.strCategory }>
             <button
-              id="button"
+              id="filterButton"
               type="button"
               data-testid={ `${category.strCategory}-category-filter` }
               onClick={ () => handleClick(category) }

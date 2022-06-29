@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getFavoriteRecipes } from '../helpers/getLocalStorage';
-import { saveFavoriteRecipe, updateFavoriteRecipes } from '../helpers/saveLocalStorage';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { getFavoriteRecipes } from '../../helpers/getLocalStorage';
+import { saveFavoriteRecipe, updateFavoriteRecipes }
+from '../../helpers/saveLocalStorage';
+import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function Favoritar({ id, recipe }) {
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
