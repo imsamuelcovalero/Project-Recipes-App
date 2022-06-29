@@ -1,5 +1,5 @@
 import React from 'react';
-import FoodAndDrinkDetails from '../Components/FoodAndDrinkDetails';
+import FoodAndDrinkDetails from '../Components/FoodAndDrinkDetails/FoodAndDrinkDetails';
 
 function DrinkDetails() {
   return (

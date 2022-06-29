@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import AppContext from '../context/AppContext';
-import getInitialRecipes from '../helpers/initialFetch';
+import AppContext from '../../context/AppContext';
+import getInitialRecipes from '../../helpers/initialFetch';
+import { DivS } from './Style';
 
 function FilterButtons() {
   const [filterOptions, setFilterOptions] = useState([]);
@@ -81,28 +82,30 @@ function FilterButtons() {
   };
 
   return (
-    <div>
+    <DivS>
       <button
+        id="filterButton"
         type="button"
         data-testid="All-category-filter"
         onClick={ handleResetFilters }
       >
         All
       </button>
-
       {
         filterOptions && filterOptions.map((category) => (
-          <button
-            key={ category.strCategory }
-            type="button"
-            data-testid={ `${category.strCategory}-category-filter` }
-            onClick={ () => handleClick(category) }
-          >
-            {category.strCategory}
-          </button>
+          <div id="filterButton" key={ category.strCategory }>
+            <button
+              id="button"
+              type="button"
+              data-testid={ `${category.strCategory}-category-filter` }
+              onClick={ () => handleClick(category) }
+            >
+              {category.strCategory}
+            </button>
+          </div>
         ))
       }
-    </div>
+    </DivS>
   );
 }
 

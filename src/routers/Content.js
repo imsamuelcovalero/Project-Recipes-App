@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../pages/Login/Login';
-import Foods from '../pages/Foods';
-import Drinks from '../pages/Drinks';
-import FoodDetails from '../pages/FoodDetails';
+import Foods from '../pages/Foods/Foods';
+import Drinks from '../pages/Drinks/Drinks';
+import FoodDetails from '../pages/FoodDetails/FoodDetails';
 import DrinkDetails from '../pages/DrinkDetails';
 import FoodProgress from '../pages/FoodProgress';
 import DrinkProgress from '../pages/DrinkProgress';

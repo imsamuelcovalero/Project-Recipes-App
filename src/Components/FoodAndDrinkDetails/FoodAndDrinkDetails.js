@@ -1,41 +1,33 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import { getIdDetails, getIdRecomendations } from '../helpers/getApiResults';
-import { getDoneRecipes } from '../helpers/getLocalStorage';
-import StartOrContinue from './StartOrContinue';
-import Compartilhar from './Compartilhar';
-import Favoritar from './Favoritar';
+import AppContext from '../../context/AppContext';
+import { getIdDetails, getIdRecomendations } from '../../helpers/getApiResults';
+import { getDoneRecipes } from '../../helpers/getLocalStorage';
+import StartOrContinue from '../StartOrContinue';
+import Compartilhar from '../Compartilhar';
+import Favoritar from '../Favoritar';
 import './FoodAndDrinkDetails.css';
+import { DivS } from './Style';
 
 const MAX_RECIPES_SUGESTION = 6;
 
 function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) {
-  // console.log(tipoReceita, tipoFood, NameToMap);
   const [ingredientList, setIngredientList] = useState([]);
   const [measuresList, setMeasuresList] = useState('');
   const [recipeDetails, setRecipeDetails] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
-  // const [foodOrDrink, setFoodOrDrink] = useState('');
   const [isRecipeDone, setIsRecipeDone] = useState(false);
-  // const [isRecipeInProgress, setIsRecipeInProgress] = useState(false);
   const { foodType, recipeType } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
 
   useEffect(() => {
     const done = getDoneRecipes();
-    // const progress = getInProgressRecipes();
     if (done) {
       const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
       setIsRecipeDone(checkDone);
     }
-    // if (progress) {
-    //   const checkProgress = Object.keys(`${progress}.${tipoFood}`)
-    //     .find((recipeId) => recipeId === patchId);
-    //   setIsRecipeInProgress(checkProgress);
-    // }
   }, [isRecipeDone, patchId, tipoFood]);
 
   useEffect(() => {
@@ -143,7 +135,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
         key={ index }
       >
         <img
-          className="recomendedImg"
+          id="recomendedImg"
           src={ recomendation[`${foodOrDrink}Thumb`] }
           alt="foodOrDrinkImage"
           width="300" // largura para deletar
@@ -163,7 +155,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
   );
 
   return (
-    <div>
+    <DivS>
       {
         recipeDetails && recipeDetails.length > 0
           && (
@@ -172,17 +164,22 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                 recipeDetails.map((item, index) => (
                   <div key={ index }>
                     <img
+                      id="recipeImg"
                       data-testid="recipe-photo"
                       src={ item[`${NameToMap}Thumb`] }
                       alt="foodOrDrinkImage"
-                      width="300" // largura para deletar
-                      height="300" // altura para deletar
+                      // width="300" // largura para deletar
+                      // height="300" // altura para deletar
                     />
-                    <p data-testid="recipe-title">
-                      { item[NameToMap] }
-                    </p>
-                    <Compartilhar link={ link } />
-                    <Favoritar id={ patchId } recipe={ item } />
+                    <div id="xablau">
+                      <h3 data-testid="recipe-title">
+                        { item[NameToMap] }
+                      </h3>
+                      <div id="icones">
+                        <Compartilhar id="compartilhar" link={ link } />
+                        <Favoritar id={ patchId } recipe={ item } />
+                      </div>
+                    </div>
                     {NameToMap === 'strMeal'
                       ? <p data-testid="recipe-category">{item.strCategory}</p>
                       : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
@@ -206,7 +203,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                     </section>
                     {window.location.href.includes('/foods') && renderVideo}
                     <section>
-                      <div className="recomendations">
+                      <div id="recomendations">
                         {renderRecomendations}
                       </div>
                     </section>
@@ -229,7 +226,7 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
             </div>
           )
       }
-    </div>
+    </DivS>
   );
 }
 

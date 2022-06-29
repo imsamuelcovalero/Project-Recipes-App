@@ -1,16 +1,15 @@
 import React from 'react';
-// import AppContext from '../context/AppContext';
 import Header from '../../Components/Header/Header';
 import FoodAndDrinkCard from '../../Components/FoodAndDrinkCard/FoodAndDrinkCard';
 import Footer from '../../Components/Footer/Footer';
 import FilterButtons from '../../Components/FilterButons/FilterButtons';
 import { DivGlobal, Div } from './Style';
 
-function Foods() {
+function Drinks() {
   return (
     <DivGlobal>
       <Div>
-        <Header title="Foods" />
+        <Header title="Drinks" />
         <div id="buttons">
           <FilterButtons />
         </div>
@@ -21,4 +20,4 @@ function Foods() {
   );
 }
 
-export default Foods;
+export default Drinks;

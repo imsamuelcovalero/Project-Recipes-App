@@ -19,7 +19,7 @@ export const Div = styled.div`
     margin: 0px 4px;
     /* border: 1px solid red; */
     /* padding: 1px; */
-    padding: 12px 12px;
+    padding: 12px 5px;
     border-radius: 20px;
     border: 0;
     background-color: white;

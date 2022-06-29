@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import getInitialRecipes from '../helpers/initialFetch';
-import fetchIngredients from '../helpers/fetchIngredients';
-import './FoodAndDrinkCard.css';
+import AppContext from '../../context/AppContext';
+import getInitialRecipes from '../../helpers/initialFetch';
+import fetchIngredients from '../../helpers/fetchIngredients';
+import DivS from './Style';
+// import './FoodAndDrinkCard.css';
 
 const MAX_RECIPES = 12;
 
@@ -73,19 +74,19 @@ function FoodAndDrinkCard() {
   };
 
   return (
-    <div>
+    <DivS>
       {
         apiResult
           && (
-            <div className="card-container">
+            <div id="cardTotal" className="card-container">
               {
                 apiResult.map((item, index) => (
                   <div
                     data-testid={ `${index}-recipe-card` }
                     key={ index }
                     onClick={ () => handleNavigate(item) }
-                    className="card"
                     aria-hidden="true"
+                    id="card"
                   >
                     <div>
                       <img
@@ -93,7 +94,7 @@ function FoodAndDrinkCard() {
                         src={ item[`${nameToMap}Thumb`] }
                         alt="foodOrDrinkImage"
                       />
-                      <p data-testid={ `${index}-card-name` }>
+                      <p id="name" data-testid={ `${index}-card-name` }>
                         { item[nameToMap]}
                       </p>
                     </div>
@@ -103,7 +104,7 @@ function FoodAndDrinkCard() {
             </div>
           )
       }
-    </div>
+    </DivS>
   );
 }
 
