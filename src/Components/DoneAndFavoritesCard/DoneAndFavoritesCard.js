@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -9,10 +9,13 @@ import { DivS } from './Style';
 
 function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavorite }) {
   console.log(recipe, index);
-  // const [message, setMessage] = useState('');
   const link = `${window.location.origin}/${recipe.type}s/${recipe.id}`;
   const history = useHistory();
   const { shareMessage, setShareMessage } = useContext(AppContext);
+
+  useEffect(() => {
+    setShareMessage('');
+  }, []);
 
   const HandleSubmitShare = (e) => {
     e.preventDefault();
@@ -79,7 +82,6 @@ function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavor
                     alt="share"
                   />
                 </button>
-                {/* <p>{message}</p> */}
                 {
                   doneOrFavorite === 'done'
                   && (
@@ -166,7 +168,6 @@ function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavor
                     alt="share"
                   />
                 </button>
-                {/* <p>{message}</p> */}
                 {
                   doneOrFavorite === 'favorite'
                   && (

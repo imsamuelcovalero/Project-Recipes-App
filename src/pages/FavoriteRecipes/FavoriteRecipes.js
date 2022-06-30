@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
 import { getFavoriteRecipes } from '../../helpers/getLocalStorage';
 import { updateFavoriteRecipes } from '../../helpers/saveLocalStorage';
 import DoneAndFavoritesCard from
 '../../Components/DoneAndFavoritesCard/DoneAndFavoritesCard';
 import { DivGlobal, Div } from './Style';
+import AppContext from '../../context/AppContext';
 
 function FavoritesRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [filterType, setFilterType] = useState('all');
+  const { setShareMessage } = useContext(AppContext);
 
-  // const mockFavorite = [
-  //   {
-  //     id: 52977,
-  //     type: 'food',
-  //     nationality: 'Turkish',
-  //     category: 'Side',
-  //     alcoholicOrNot: '',
-  //     name: 'Corba',
-  //     image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
-  //   },
-  //   {
-  //     id: 178319,
-  //     type: 'drink',
-  //     nationality: '',
-  //     category: 'Cocktail',
-  //     alcoholicOrNot: 'Alcoholic',
-  //     name: 'Aquamarine',
-  //     image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-  //   },
-  // ];
+  useEffect(() => {
+    setShareMessage('');
+  }, []);
 
   useEffect(() => {
     console.log('filterType', filterType);
