@@ -36,6 +36,7 @@ justify-content: center;
   }
 }
 #recomendedImg {
+  border-radius: 8px;
   height: 230px;
   max-width: 180px;
 }
@@ -85,13 +86,22 @@ justify-content: center;
 #subDiv {
   padding: 0 16px;
 }
+#carrousselDiv {
+  background-color: #f5f5f5;
+  border: 1px solid #888;
+  border-radius: 10px;
+  margin-bottom: 35px;
+}
 `;
 
 export const DivStart = styled.div`
   #startButton {
-    border: 1px solid red;
+    background-color: #888;
+    color: #E7BD42;
+    font-weight: bold;
     padding: 1px;
     border-radius: 14px;
+    border: 2px solid #E7BD42;
     padding: 3px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }

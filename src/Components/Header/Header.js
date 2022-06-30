@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import profileIcon from '../../images/profileIcon.svg';
-import searchIcon from '../../images/searchIcon.svg';
+import profileIconPng from '../../images/profileIconPng.png';
+import searchIcon from '../../images/searchIcon.png';
 import AppContext from '../../context/AppContext';
 import { HeaderS } from './Style';
 
@@ -33,11 +33,11 @@ function Header({ title }) {
       <button
         id="profile"
         type="button"
-        src={ profileIcon }
+        src={ profileIconPng }
         data-testid="profile-top-btn"
         onClick={ () => history.push('/profile') }
       >
-        <img src={ profileIcon } alt="profile" />
+        <img src={ profileIconPng } alt="profile" />
       </button>
       <h3 id="titulo" data-testid="page-title">{title}</h3>
       <button
@@ -50,14 +50,7 @@ function Header({ title }) {
         <img src={ searchIcon } alt="search" />
       </button>
       {search && (
-        <div>
-          <input
-            data-testid="search-input"
-            type="text"
-            placeholder="Search"
-            value={ searchName }
-            onChange={ ({ target }) => setSearchName(target.value) }
-          />
+        <div id="searchInput">
           <label htmlFor="ingredient">
             <input
               data-testid="ingredient-search-radio"
@@ -91,7 +84,15 @@ function Header({ title }) {
             />
             First Letter
           </label>
+          <input
+            data-testid="search-input"
+            type="text"
+            placeholder="Search"
+            value={ searchName }
+            onChange={ ({ target }) => setSearchName(target.value) }
+          />
           <button
+            className="btn btn-dark px-4 mb-2"
             data-testid="exec-search-btn"
             type="button"
             onClick={ () => HandleClick() }

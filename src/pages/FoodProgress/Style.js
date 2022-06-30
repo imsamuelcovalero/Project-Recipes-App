@@ -6,7 +6,7 @@ export const DivGlobal = styled.div`
   height: 100%;
   width: 100vw;
   align-items: center;
-  background-color: #FFF3F0;
+  background-color: #dbdad6;
 `;
 
 export const Div = styled.div`

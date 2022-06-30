@@ -4,7 +4,7 @@ export const DivS = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: #FFF3F0;
+background-color: #dbdad6;
 image {
   width: 300px;
 }

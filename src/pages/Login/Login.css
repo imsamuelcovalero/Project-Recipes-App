@@ -1,39 +1,53 @@
 .backGroundLogin {
   background-color: black;
   background-image: url('/public/planoFundoLogin.jpg');
-  background-position-x: 33%;
+  background-position-x: 34%;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
   text-align: center;
 }
+
 .formStyle {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  justify-content: center;
+  margin-top: 150px;
 }
+
 .input {
   background-color: #2D2D2D;
   border: 2px solid #E8E8E8;
   border-radius: 10px;
+  color: #E7BD42;
   font-size: medium;
   font-weight: 700;
   padding: 7px;
   text-align: center;
 }
+
 .input::placeholder {
-  color: #888;
+  color: #E7BD42;
 }
+
 .input:focus {
   background-color: #212121;
   box-shadow: 4px 4px #888;
-  color: #E8E8E8;
+  color: #E7BD42;
   outline-color: #2D2D2D;
 }
+
 .inputContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  margin-top: 40px;
+  margin-top: 0;
+}
+
+#logoProfile {
+  padding-top: 30px;
+}
+
+#buttonSubmit {
+  color: #E7BD42;
 }

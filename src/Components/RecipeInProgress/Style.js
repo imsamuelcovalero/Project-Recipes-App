@@ -18,7 +18,7 @@ export const DivS = styled.div`
     margin-bottom: 10px;
   }
   #subDiv {
-    margin: 1px solid red;
+/*     margin: 1px solid red; */
     padding: 0 16px;
     #tituloEicones {
       display: flex;
@@ -61,7 +61,10 @@ export const DivStart = styled.div`
   justify-content: center;
   align-items: center;
   #startButton {
-    border: 1px solid red;
+    background-color: #888;
+    color: #E7BD42;
+    font-weight: bold;
+    border: 2px solid #E7BD42;
     padding: 1px;
     border-radius: 14px;
     padding: 4px;

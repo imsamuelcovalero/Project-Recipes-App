@@ -6,7 +6,7 @@ export const DivGlobal = styled.div`
   min-height: 640px;
   width: 100vw;
   align-items: center;
-  background-color: #FFF3F0;
+  background-color: #dbdad6;
 `;
 
 export const Div = styled.div`
@@ -18,6 +18,7 @@ export const Div = styled.div`
     button {
       width: 150px;
       margin: 0px 4px;
+      margin-top: 50px;
       /* border: 1px solid red; */
       /* padding: 1px; */
       padding: 12px 5px;

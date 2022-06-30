@@ -12,6 +12,7 @@ const DivS = styled.div`
     justify-content: center;
   }
   #card {
+    background-color: #f5f5f5;
     border: rgb(250, 250, 250) 0.2em solid; 
     border-radius: 0.4em;
     box-shadow: 0.3em 0.3em 0.7em #00000015;

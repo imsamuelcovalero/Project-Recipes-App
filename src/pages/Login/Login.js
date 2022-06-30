@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import saveMealsToken from '../../helpers/saveMealsToken';
 import saveCocktailsToken from '../../helpers/saveCocktailsToken';
+import FoodLogo from '../../images/FoodLogo.png';
 import './Login.css';
 
 function Login() {
@@ -27,6 +28,9 @@ function Login() {
   };
   return (
     <div className="backGroundLogin">
+      <div id="logoProfile">
+        <img src={ FoodLogo } alt="profile" />
+      </div>
       <form className="formStyle">
         <div className="inputContainer">
           <label htmlFor="email">
@@ -56,6 +60,7 @@ function Login() {
         </div>
         <button
           className="btn btn-dark px-4 mb-2"
+          id="buttonSubmit"
           data-testid="login-submit-btn"
           type="submit"
           disabled={ isPlayButtonDisabled() }
