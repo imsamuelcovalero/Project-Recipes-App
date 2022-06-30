@@ -7,7 +7,6 @@ import { getDoneRecipes } from '../../helpers/getLocalStorage';
 import StartOrContinue from './StartOrContinue';
 import Compartilhar from './Compartilhar';
 import Favoritar from './Favoritar';
-// import './FoodAndDrinkDetails.css';
 import { DivS } from './Style';
 
 const MAX_RECIPES_SUGESTION = 6;
@@ -18,9 +17,13 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
   const [recipeDetails, setRecipeDetails] = useState([]);
   const [apiResultRecomendations, setApiResultRecomendations] = useState([]);
   const [isRecipeDone, setIsRecipeDone] = useState(false);
-  const { foodType, recipeType, shareMessage } = useContext(AppContext);
+  const { foodType, recipeType, shareMessage, setShareMessage } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
   const link = window.location.href;
+
+  useEffect(() => {
+    setShareMessage('');
+  }, []);
 
   useEffect(() => {
     const done = getDoneRecipes();
@@ -45,7 +48,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
         if (recipes && recipes.length > MAX_RECIPES_SUGESTION) {
           const newListRecipes = recipes.slice(0, MAX_RECIPES_SUGESTION);
           setApiResultRecomendations(newListRecipes);
-          // setFoodOrDrink('strDrink');
         }
       };
       getRecipes();
@@ -170,8 +172,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                         data-testid="recipe-photo"
                         src={ item[`${NameToMap}Thumb`] }
                         alt="foodOrDrinkImage"
-                      // width="300" // largura para deletar
-                      // height="300" // altura para deletar
                       />
                     </div>
                     <div id="subDiv">
@@ -222,7 +222,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                         !isRecipeDone
                           && (
                             <StartOrContinue
-                              // isRecipeInProgress={ isRecipeInProgress }
                               id={ patchId }
                               ingredients={ ingredientList }
                               foodType={ tipoFood }
