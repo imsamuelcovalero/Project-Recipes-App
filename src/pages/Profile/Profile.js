@@ -4,7 +4,7 @@ import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
 import FoodLogo from '../../images/FoodLogo.png';
 import Footer from '../../Components/Footer/Footer';
 import { DivGlobal, Div } from './Style';
-
+// comentário para subir a branch
 function Profile() {
   const [email, setEmail] = useState('');
 

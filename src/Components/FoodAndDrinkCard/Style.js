@@ -10,6 +10,7 @@ const DivS = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 50px;
   }
   #card {
     background-color: #f5f5f5;
