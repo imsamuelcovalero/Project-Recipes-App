@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
-import FoodAndDrinkCard from '../Components/FoodAndDrinkCard';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
+import FoodAndDrinkCard from '../Components/FoodAndDrinkCard/FoodAndDrinkCard';
 import AppContext from '../context/AppContext';
 
 const INITIAL_FOODS_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';

@@ -5,14 +5,24 @@ export function saveDoneRecipe(doneObj) {
   if (getDoneRecipes() === null) {
     localStorage.setItem('doneRecipes', JSON.stringify([doneObj]));
   } else {
-    localStorage.setItem(
-      'doneRecipes',
-      JSON.stringify([
-        ...getDoneRecipes(),
-        doneObj,
-      ]),
-    );
+    const checkDoneRecipesDuplicity = getDoneRecipes()
+      .some((recipe) => recipe.id === doneObj.id);
+    if (!checkDoneRecipesDuplicity) {
+      localStorage.setItem(
+        'doneRecipes',
+        JSON.stringify([
+          ...getDoneRecipes(),
+          doneObj,
+        ]),
+      );
+    } else {
+      console.log('Recipe already exists');
+    }
   }
+}
+
+export function updateDoneRecipes(updatedFavoriteArray) {
+  localStorage.setItem('doneRecipes', JSON.stringify(updatedFavoriteArray));
 }
 
 export function saveFavoriteRecipe(favoriteObj) {

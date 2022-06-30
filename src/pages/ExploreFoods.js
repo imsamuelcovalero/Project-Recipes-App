@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderNoSearch from '../Components/HeaderNoSearch';
-import Footer from '../Components/Footer';
+import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
+import Footer from '../Components/Footer/Footer';
 import ExploreButtons from '../Components/ExploreButtons';
 
 function ExploreFoods() {

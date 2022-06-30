@@ -1,21 +1,21 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Login from '../pages/Login';
-import Foods from '../pages/Foods';
-import Drinks from '../pages/Drinks';
-import FoodDetails from '../pages/FoodDetails';
-import DrinkDetails from '../pages/DrinkDetails';
-import FoodProgress from '../pages/FoodProgress';
-import DrinkProgress from '../pages/DrinkProgress';
+import Login from '../pages/Login/Login';
+import Foods from '../pages/Foods/Foods';
+import Drinks from '../pages/Drinks/Drinks';
+import FoodDetails from '../pages/FoodDetails/FoodDetails';
+import DrinkDetails from '../pages/DrinkDetails/DrinkDetails';
+import FoodProgress from '../pages/FoodProgress/FoodProgress';
+import DrinkProgress from '../pages/DrinkProgress/DrinkProgress';
 import Explore from '../pages/Explore';
 import ExploreFoods from '../pages/ExploreFoods';
 import ExploreDrinks from '../pages/ExploreDrinks';
 import FoodsIngredients from '../pages/FoodsIngredients';
 import DrinksIngredients from '../pages/DrinksIngredients';
 import Nationalities from '../pages/Nationalities';
-import Profile from '../pages/Profile';
-import DoneRecipes from '../pages/DoneRecipes';
-import FavoriteRecipes from '../pages/FavoriteRecipes';
+import Profile from '../pages/Profile/Profile';
+import DoneRecipes from '../pages/DoneRecipes/DoneRecipes';
+import FavoriteRecipes from '../pages/FavoriteRecipes/FavoriteRecipes';
 import NationalitiesNotFound from '../pages/NationalitiesNotFound';
 
 function Content() {
