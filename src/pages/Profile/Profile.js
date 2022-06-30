@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
+import FoodLogo from '../../images/FoodLogo.png';
 import Footer from '../../Components/Footer/Footer';
 import { DivGlobal, Div } from './Style';
 
@@ -20,6 +21,9 @@ function Profile() {
     <DivGlobal>
       <Div>
         <HeaderNoSearch id="header" title="Profile" shouldRenderMagnifier />
+        <div id="logoProfile">
+          <img src={ FoodLogo } alt="profile" />
+        </div>
         { email && <h2 id="email" data-testid="profile-email">{email.email}</h2> }
         <div id="buttons">
           <Link to="/done-recipes">

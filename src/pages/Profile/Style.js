@@ -6,7 +6,7 @@ export const DivGlobal = styled.div`
   min-height: 640px;
   width: 100vw;
   align-items: center;
-  background-color: #FFF3F0;
+  background-color: #dbdad6;
   justify-content: center;
 `;
 
@@ -22,6 +22,7 @@ export const Div = styled.div`
   }
   #buttons {
     button {
+      color: #E7BD42;
       width: 160px;
       margin: 0px 4px;
       /* border: 1px solid red; */
@@ -49,5 +50,8 @@ export const Div = styled.div`
       position: relative;
       top: 0;
     }
+  }
+  #logoProfile {
+    padding-bottom: 40px;
   }
 `;

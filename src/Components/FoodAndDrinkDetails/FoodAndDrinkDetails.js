@@ -134,22 +134,24 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
         data-testid={ `${index}-recomendation-card` }
         key={ index }
       >
-        <img
-          id="recomendedImg"
-          src={ recomendation[`${foodOrDrink}Thumb`] }
-          alt="foodOrDrinkImage"
-          width="300" // largura para deletar
-          height="300" // altura para deletar
-        />
-        <div id="recomendationsPosition">
-          {foodOrDrink === 'strDrink'
-            ? <p>{recomendation.strAlcoholic}</p>
-            : <p>{recomendation.strCategory}</p>}
-          <p
-            data-testid={ `${index}-recomendation-title` }
-          >
-            {recomendation[`${foodOrDrink}`]}
-          </p>
+        <div id="carrousselDiv">
+          <img
+            id="recomendedImg"
+            src={ recomendation[`${foodOrDrink}Thumb`] }
+            alt="foodOrDrinkImage"
+            width="300" // largura para deletar
+            height="300" // altura para deletar
+          />
+          <div id="recomendationsPosition">
+            {foodOrDrink === 'strDrink'
+              ? <p>{recomendation.strAlcoholic}</p>
+              : <p>{recomendation.strCategory}</p>}
+            <p
+              data-testid={ `${index}-recomendation-title` }
+            >
+              {recomendation[`${foodOrDrink}`]}
+            </p>
+          </div>
         </div>
       </section>
     ))
@@ -170,8 +172,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                         data-testid="recipe-photo"
                         src={ item[`${NameToMap}Thumb`] }
                         alt="foodOrDrinkImage"
-                      // width="300" // largura para deletar
-                      // height="300" // altura para deletar
                       />
                     </div>
                     <div id="subDiv">
@@ -222,7 +222,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
                         !isRecipeDone
                           && (
                             <StartOrContinue
-                              // isRecipeInProgress={ isRecipeInProgress }
                               id={ patchId }
                               ingredients={ ingredientList }
                               foodType={ tipoFood }
