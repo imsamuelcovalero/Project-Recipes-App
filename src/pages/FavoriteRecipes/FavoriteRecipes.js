@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
-import { getFavoriteRecipes } from '../helpers/getLocalStorage';
-import { updateFavoriteRecipes } from '../helpers/saveLocalStorage';
-import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';
+import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
+import { getFavoriteRecipes } from '../../helpers/getLocalStorage';
+import { updateFavoriteRecipes } from '../../helpers/saveLocalStorage';
+import DoneAndFavoritesCard from
+'../../Components/DoneAndFavoritesCard/DoneAndFavoritesCard';
+import { DivGlobal, Div } from './Style';
 
 function FavoritesRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -57,31 +59,34 @@ function FavoritesRecipes() {
   };
 
   return (
-    <div>
-      <HeaderNoSearch title="Favorite Recipes" shouldRenderMagnifier />
-      <button
-        data-testid="filter-by-all-btn"
-        type="submit"
-        onClick={ () => setFilterType('all') }
-      >
-        All
-      </button>
-      <button
-        data-testid="filter-by-food-btn"
-        type="submit"
-        onClick={ () => setFilterType('food') }
-      >
-        Food
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        type="submit"
-        onClick={ () => setFilterType('drink') }
-      >
-        Drinks
-      </button>
-      {
-        favoriteRecipes && favoriteRecipes.length > 0
+    <DivGlobal>
+      <Div>
+        <HeaderNoSearch title="Favorite Recipes" shouldRenderMagnifier />
+        <div id="buttons">
+          <button
+            data-testid="filter-by-all-btn"
+            type="submit"
+            onClick={ () => setFilterType('all') }
+          >
+            All
+          </button>
+          <button
+            data-testid="filter-by-food-btn"
+            type="submit"
+            onClick={ () => setFilterType('food') }
+          >
+            Food
+          </button>
+          <button
+            data-testid="filter-by-drink-btn"
+            type="submit"
+            onClick={ () => setFilterType('drink') }
+          >
+            Drinks
+          </button>
+        </div>
+        {
+          favoriteRecipes && favoriteRecipes.length > 0
           && (
             favoriteRecipes.map((recipe, index) => (
               <div key={ index }>
@@ -94,8 +99,9 @@ function FavoritesRecipes() {
               </div>
             ))
           )
-      }
-    </div>
+        }
+      </Div>
+    </DivGlobal>
   );
 }
 

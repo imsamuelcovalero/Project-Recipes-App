@@ -47,8 +47,8 @@ function StartOrContinue({ id, foodType }) {
     [id]: [],
   };
 
-  const HandleSubmit = (e) => {
-    e.preventDefault();
+  const HandleSubmit = (event) => {
+    event.preventDefault();
     const inProgress = getInProgressRecipes();
     // console.log('inProgress', inProgress);
     if (inProgress && inProgress.length > 0) {
@@ -94,7 +94,7 @@ function StartOrContinue({ id, foodType }) {
         id="startButton"
         type="button"
         data-testid="start-recipe-btn"
-        onClick={ HandleSubmit }
+        onClick={ (event) => HandleSubmit(event) }
       >
         {buttonText}
       </button>

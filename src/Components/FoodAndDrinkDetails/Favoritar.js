@@ -39,7 +39,7 @@ function Favoritar({ id, recipe }) {
     id,
     type: 'drink',
     nationality: '',
-    category: recipe.strCategory,
+    category: '',
     alcoholicOrNot: recipe.strAlcoholic,
     name: recipe.strDrink,
     image: recipe.strDrinkThumb,

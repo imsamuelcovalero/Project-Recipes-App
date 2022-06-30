@@ -91,7 +91,7 @@ export const DivStart = styled.div`
   #startButton {
     border: 1px solid red;
     padding: 1px;
-    border-radius: 20px;
+    border-radius: 14px;
     padding: 3px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }

@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
-import { getIdDetails } from '../helpers/getApiResults';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getIdDetails } from '../../helpers/getApiResults';
 import { saveInProgressRecipe } from
-'../helpers/saveLocalStorage';
-import { getInProgressRecipes } from '../helpers/getLocalStorage';
-import Compartilhar from './FoodAndDrinkDetails/Compartilhar';
-import Favoritar from './FoodAndDrinkDetails/Favoritar';
+'../../helpers/saveLocalStorage';
+import { getInProgressRecipes } from '../../helpers/getLocalStorage';
+import Compartilhar from '../FoodAndDrinkDetails/Compartilhar';
+import Favoritar from '../FoodAndDrinkDetails/Favoritar';
+import { DivS } from './Style';
+import FinishRecipeButton from './FinishRecipeButton';
+import AppContext from '../../context/AppContext';
 
 function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const [ingredientList, setIngredientList] = useState([]);
@@ -15,8 +18,12 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const [recipe, setRecipe] = useState([]);
   const [checkedIngredients, setCheckedIngredients] = useState([]);
   const [mealsOrCocktails, setMealsOrCocktails] = useState('');
+  // const [doneMealRecipe, setDoneMealRecipe] = useState([]);
+  // const [doneCocktailRecipe, setDoneCocktailRecipe] = useState([]);
+  const { shareMessage } = useContext(AppContext);
   const patchId = useLocation().pathname.split('/')[2];
-  const history = useHistory();
+  // const { pathname } = useLocation();
+  // const history = useHistory();
   const link = window.location.href;
 
   const newMeal = {
@@ -29,21 +36,17 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
 
   useEffect(() => {
     const inProgress = getInProgressRecipes();
-    // console.log('inProgress', inProgress);
     if (inProgress) {
-      // console.log('tipoFood', tipoFood);
       if (tipoFood === 'meals') {
         setMealsOrCocktails('meals');
         const checkInProgress = Object.entries(inProgress)[0].find(
           (inProgressRecipe) => Object.keys(inProgressRecipe)[0] === patchId,
         );
-        // console.log('checkInProgress', checkInProgress);
         if (!checkInProgress) {
           saveInProgressRecipe(newMeal, tipoFood);
           setMealsOrCocktails('meals');
         }
       } else if (tipoFood === 'drinks') {
-        // console.log('inProgress', inProgress);
         setMealsOrCocktails('cocktails');
         const checkInProgress = Object.entries(inProgress)[1].find(
           (inProgressRecipe) => Object.keys(inProgressRecipe)[0] === patchId,
@@ -55,11 +58,9 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
       }
     } else if (tipoFood === 'meals') {
       saveInProgressRecipe(newMeal, tipoFood);
-      // console.log(getInProgressRecipes());
       setMealsOrCocktails('meals');
     } else if (tipoFood === 'drinks') {
       saveInProgressRecipe(newCocktail, tipoFood);
-      // console.log(getInProgressRecipes());
       setMealsOrCocktails('cocktails');
     }
   });
@@ -162,7 +163,7 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   }, [checkedIngredients]);
 
   return (
-    <div>
+    <DivS>
       {
         recipe && recipe.length > 0
           && (
@@ -170,64 +171,73 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
               {
                 recipe.map((item, index) => (
                   <div key={ index }>
-                    <img
-                      data-testid="recipe-photo"
-                      src={ item[`${NameToMap}Thumb`] }
-                      alt="foodOrDrinkImage"
-                      width="300" // largura para deletar
-                      height="300" // altura para deletar
-                    />
-                    <p data-testid="recipe-title">
-                      { item[NameToMap] }
-                    </p>
-                    <Compartilhar link={ link } />
-                    <Favoritar id={ patchId } recipe={ item } />
-                    {NameToMap === 'strMeal'
-                      ? <p data-testid="recipe-category">{item.strCategory}</p>
-                      : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
-                    <section>
-                      <h4>Ingredients</h4>
-                      {ingredientList.map((ingredientItem, index2) => (
-                        <div key={ index2 } data-testid={ `${index2}-ingredient-step` }>
-                          <input
-                            type="checkbox"
-                            checked={
-                              getInProgressRecipes()[`${mealsOrCocktails}`][patchId]
-                                .includes(ingredientItem)
-                            }
-                            id={ ingredientItem }
-                            name={ ingredientItem }
-                            onChange={ (event) => handleCheck(event) }
-                          />
-                          <label
-                            htmlFor={ ingredientItem }
-                          >
-                            {`${ingredientItem} - ${measuresList[index2]}`}
-                          </label>
+                    <div id="imgDiv">
+                      <img
+                        id="imagem"
+                        data-testid="recipe-photo"
+                        src={ item[`${NameToMap}Thumb`] }
+                        alt="foodOrDrinkImage"
+                      />
+                    </div>
+                    <div id="subDiv">
+                      <div id="tituloEicones">
+                        <h3 id="titulo" data-testid="recipe-title">
+                          { item[NameToMap] }
+                        </h3>
+                        <div id="icones">
+                          <Compartilhar link={ link } />
+                          <Favoritar id={ patchId } recipe={ item } />
                         </div>
-                      ))}
-                    </section>
-                    <section>
-                      <h4>Instructions</h4>
-                      <p data-testid="instructions">
-                        {item.strInstructions}
-                      </p>
-                    </section>
-                    <button
-                      data-testid="finish-recipe-btn"
-                      type="button"
-                      disabled={ isDisabled }
-                      onClick={ () => history.push('/done-recipes') }
-                    >
-                      Finish Recipe
-                    </button>
+                      </div>
+                      <div id="categoria">
+                        <p>{shareMessage}</p>
+                        {NameToMap === 'strMeal'
+                          ? <p data-testid="recipe-category">{item.strCategory}</p>
+                          : <p data-testid="recipe-category">{item.strAlcoholic}</p>}
+                      </div>
+                      <section>
+                        <h4 id="boldTitle">Ingredients</h4>
+                        {ingredientList.map((ingredientItem, index2) => (
+                          <div key={ index2 } data-testid={ `${index2}-ingredient-step` }>
+                            <input
+                              type="checkbox"
+                              checked={
+                                getInProgressRecipes()[`${mealsOrCocktails}`][patchId]
+                                  .includes(ingredientItem)
+                              }
+                              id={ ingredientItem }
+                              name={ ingredientItem }
+                              onChange={ (event) => handleCheck(event) }
+                            />
+                            <label
+                              htmlFor={ ingredientItem }
+                            >
+                              {`${ingredientItem} - ${measuresList[index2]}`}
+                            </label>
+                          </div>
+                        ))}
+                      </section>
+                      <section>
+                        <h4 id="boldTitle">Instructions</h4>
+                        <p data-testid="instructions">
+                          {item.strInstructions}
+                        </p>
+                      </section>
+                      <div id="finishButtonDiv">
+                        <FinishRecipeButton
+                          isDisabled={ isDisabled }
+                          recipe={ item }
+                          id={ patchId }
+                        />
+                      </div>
+                    </div>
                   </div>
                 ))
               }
             </div>
           )
       }
-    </div>
+    </DivS>
   );
 }
 

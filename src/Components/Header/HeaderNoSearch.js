@@ -9,6 +9,7 @@ function Header({ title }) {
   return (
     <HeaderS>
       <button
+        id="profile"
         type="button"
         src={ profileIcon }
         data-testid="profile-top-btn"
@@ -16,7 +17,7 @@ function Header({ title }) {
       >
         <img src={ profileIcon } alt="profile" />
       </button>
-      <h3 data-testid="page-title">{title}</h3>
+      <h3 id="titleNoSearch" data-testid="page-title">{title}</h3>
     </HeaderS>
   );
 }

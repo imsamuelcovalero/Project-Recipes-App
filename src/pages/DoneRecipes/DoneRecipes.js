@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
-import DoneAndFavoritesCard from '../Components/DoneAndFavoritesCard';
-import { getDoneRecipes } from '../helpers/getLocalStorage';
+import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
+import DoneAndFavoritesCard from
+'../../Components/DoneAndFavoritesCard/DoneAndFavoritesCard';
+import { getDoneRecipes } from '../../helpers/getLocalStorage';
+import { DivGlobal, Div } from './Style';
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -35,6 +37,7 @@ function DoneRecipes() {
   useEffect(() => {
     console.log('filterType', filterType);
     const recipesCompleted = getDoneRecipes() || [];
+    console.log('recipesCompleted', recipesCompleted);
     if (filterType === 'food') {
       const recipesFiltered = recipesCompleted.filter((recipe) => recipe.type === 'food');
       console.log('recipesFiltered', recipesFiltered);
@@ -45,36 +48,40 @@ function DoneRecipes() {
       console.log('recipesFiltered', recipesFiltered);
       setDoneRecipes(recipesFiltered);
     } if (filterType === 'all') {
+      console.log('recipesFiltered', recipesCompleted[0]);
       setDoneRecipes(recipesCompleted);
     }
   }, [filterType]);
 
   return (
-    <div>
-      <HeaderNoSearch title="Done Recipes" shouldRenderMagnifier />
-      <button
-        data-testid="filter-by-all-btn"
-        type="submit"
-        onClick={ () => setFilterType('all') }
-      >
-        All
-      </button>
-      <button
-        data-testid="filter-by-food-btn"
-        type="submit"
-        onClick={ () => setFilterType('food') }
-      >
-        Food
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        type="submit"
-        onClick={ () => setFilterType('drink') }
-      >
-        Drinks
-      </button>
-      {
-        doneRecipes && doneRecipes.length > 0
+    <DivGlobal>
+      <Div>
+        <HeaderNoSearch title="Done Recipes" shouldRenderMagnifier />
+        <div id="buttons">
+          <button
+            data-testid="filter-by-all-btn"
+            type="submit"
+            onClick={ () => setFilterType('all') }
+          >
+            All
+          </button>
+          <button
+            data-testid="filter-by-food-btn"
+            type="submit"
+            onClick={ () => setFilterType('food') }
+          >
+            Food
+          </button>
+          <button
+            data-testid="filter-by-drink-btn"
+            type="submit"
+            onClick={ () => setFilterType('drink') }
+          >
+            Drinks
+          </button>
+        </div>
+        {
+          doneRecipes && doneRecipes.length > 0
           && (
             doneRecipes.map((recipe, index) => (
               <DoneAndFavoritesCard
@@ -85,8 +92,9 @@ function DoneRecipes() {
               />
             ))
           )
-      }
-    </div>
+        }
+      </Div>
+    </DivGlobal>
   );
 }
 

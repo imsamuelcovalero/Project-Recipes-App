@@ -14,12 +14,13 @@ export const Div = styled.div`
   align-items: center;
   justify-content: center;
   justify-items: center;
+  #buttons {
   button {
     width: 150px;
     margin: 0px 4px;
     /* border: 1px solid red; */
     /* padding: 1px; */
-    padding: 12px 12px;
+    padding: 12px 5px;
     border-radius: 20px;
     border: 0;
     background-color: white;
@@ -28,8 +29,8 @@ export const Div = styled.div`
     text-transform: uppercase;
     font-size: 11px;
     transition: all .5s ease;
+    text-align: center;
   }
-  #buttons {
     margin-top: 8px;
     display: flex;
     justify-content: space-evenly;

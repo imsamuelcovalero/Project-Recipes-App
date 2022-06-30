@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const HeaderS = styled.header`
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 45px;
   background: ${(props) => (props.corFundo ? props.corFundo : '#4D7C8A')};
@@ -27,8 +29,17 @@ export const HeaderS = styled.header`
   #search {
     margin-right: 8px;
     border: none;
+    margin-bottom: 0;
     // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     background: transparent;
+  }
+  #titleNoSearch {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-right: 33.52px;
   }
 `;
 
