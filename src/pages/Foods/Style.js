@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import background from './fundo2.jpg';
 
 export const DivGlobal = styled.div`
+  background-image: url(${background});
   display: flex;
   flex-direction: column;
   height: 100%;

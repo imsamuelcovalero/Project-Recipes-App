@@ -9,6 +9,7 @@ import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function Favoritar({ id, recipe }) {
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
+  // const [isBlackHeart, setIsBlackHeart] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {

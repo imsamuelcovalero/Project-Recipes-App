@@ -27,11 +27,12 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
 
   useEffect(() => {
     const done = getDoneRecipes();
+    // console.log('done', done[0]);
     if (done) {
       const checkDone = done.find((recipeItem) => recipeItem.id === patchId);
       setIsRecipeDone(checkDone);
     }
-  }, [isRecipeDone, patchId, tipoFood]);
+  }, [patchId, tipoFood]);
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -141,8 +142,6 @@ function FoodAndDrinkDetails({ tipoReceita, tipoFood, NameToMap, foodOrDrink }) 
             id="recomendedImg"
             src={ recomendation[`${foodOrDrink}Thumb`] }
             alt="foodOrDrinkImage"
-            width="300" // largura para deletar
-            height="300" // altura para deletar
           />
           <div id="recomendationsPosition">
             {foodOrDrink === 'strDrink'

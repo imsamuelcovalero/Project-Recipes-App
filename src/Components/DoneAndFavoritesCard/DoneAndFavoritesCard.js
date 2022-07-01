@@ -87,18 +87,19 @@ function DoneAndFavoritesCard({ index, recipe, doneOrFavorite, HandleSubmitFavor
                   && (
                     <div>
                       {
-                        recipe.tags !== ''
+                        recipe.tags !== '' && recipe.tags !== undefined
+                          && recipe.tags !== null
                         && (
                           <span>
                             <p
                               data-testid={ `${index}-${recipe.tags[0]}-horizontal-tag` }
                             >
-                              { recipe.tags[0]}
+                              { recipe.tags.split(',', 1)}
                             </p>
                             <p
                               data-testid={ `${index}-${recipe.tags[1]}-horizontal-tag` }
                             >
-                              { recipe.tags[1]}
+                              { recipe.tags.split(',', 2)[1]}
                             </p>
                           </span>
                         )

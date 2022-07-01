@@ -21,8 +21,8 @@ export function saveDoneRecipe(doneObj) {
   }
 }
 
-export function updateDoneRecipes(updatedFavoriteArray) {
-  localStorage.setItem('doneRecipes', JSON.stringify(updatedFavoriteArray));
+export function updateDoneRecipes(updatedDone) {
+  localStorage.setItem('doneRecipes', JSON.stringify(updatedDone));
 }
 
 export function saveFavoriteRecipe(favoriteObj) {
@@ -79,6 +79,6 @@ export function saveInProgressRecipe(inProgressObj, type) {
   }
 }
 
-export function updateInProgressRecipe(updatedFavoriteArray) {
-  localStorage.setItem('inProgressRecipes', JSON.stringify(updatedFavoriteArray));
+export function updateInProgressRecipe(updatedInProgress) {
+  localStorage.setItem('inProgressRecipes', JSON.stringify(updatedInProgress));
 }
