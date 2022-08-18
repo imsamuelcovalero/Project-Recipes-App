@@ -109,7 +109,6 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
   const handleCheck = ({ target }) => {
     const inProgressRecipes = getInProgressRecipes();
     if (target.checked === true) {
-      console.log('true');
       const newData = [...inProgressRecipes[`${mealsOrCocktails}`][patchId], target.name];
       setCheckedIngredients(newData);
       if (tipoFood === 'meals') {
@@ -125,7 +124,6 @@ function RecipeInProgress({ tipoReceita, tipoFood, NameToMap }) {
       }
     }
     if (target.checked === false) {
-      console.log('false');
       const newArr = inProgressRecipes[`${mealsOrCocktails}`][patchId]
         .filter((ingredient) => ingredient !== target.name);
       setCheckedIngredients(newArr);

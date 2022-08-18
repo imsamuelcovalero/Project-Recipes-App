@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { getInProgressRecipes } from '../../helpers/getLocalStorage';
 import { saveInProgressRecipe } from '../../helpers/saveLocalStorage';
-import { DivStart } from './Style';
+import { StartOrContinueS } from './Style';
 
 const CONTINUE = 'Continue Recipe';
 
@@ -89,7 +89,7 @@ function StartOrContinue({ id, foodType }) {
   };
 
   return (
-    <DivStart>
+    <StartOrContinueS>
       <button
         id="startButton"
         type="button"
@@ -98,7 +98,7 @@ function StartOrContinue({ id, foodType }) {
       >
         {buttonText}
       </button>
-    </DivStart>
+    </StartOrContinueS>
   );
 }
 

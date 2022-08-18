@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
-import { getDoneRecipes } from '../../helpers/getLocalStorage';
+// import { getDoneRecipes } from '../../helpers/getLocalStorage';
 import { saveDoneRecipe } from '../../helpers/saveLocalStorage';
-import { DivStart } from './Style';
+import { FinishS } from './Style';
 
 function FinishRecipeButton({ id, recipe, isDisabled }) {
   const { pathname } = useLocation();
@@ -37,19 +37,17 @@ function FinishRecipeButton({ id, recipe, isDisabled }) {
   const HandleSubmit = (event) => {
     // console.log('entrou no HandleSubmit');
     event.preventDefault();
-    console.log('newDoneRecipeDrink', newDoneRecipeDrink);
     if (pathname.includes('/foods')) {
       saveDoneRecipe(newDoneRecipeFood);
-      console.log(getDoneRecipes());
     } else if (pathname.includes('/drinks')) {
       saveDoneRecipe(newDoneRecipeDrink);
-      console.log(getDoneRecipes());
     }
     history.push('/done-recipes');
   };
 
   return (
-    <DivStart>
+    <FinishS disabled={ isDisabled }>
+      {console.log(isDisabled)}
       <button
         id="startButton"
         data-testid="finish-recipe-btn"
@@ -59,7 +57,7 @@ function FinishRecipeButton({ id, recipe, isDisabled }) {
       >
         Finish Recipe
       </button>
-    </DivStart>
+    </FinishS>
   );
 }
 

@@ -3,6 +3,8 @@ import background from './fundo2.jpg';
 
 export const DivGlobal = styled.div`
   background-image: url(${background});
+  background-attachment: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -20,8 +22,6 @@ export const Div = styled.div`
   button {
     width: 150px;
     margin: 0px 4px;
-    /* border: 1px solid red; */
-    /* padding: 1px; */
     padding: 12px 5px;
     border-radius: 20px;
     border: 0;
@@ -29,7 +29,8 @@ export const Div = styled.div`
     box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    font-size: 11px;
+    font-weight: bold;
+    font-size: 12px;
     transition: all .5s ease;
     text-align: center;
   }

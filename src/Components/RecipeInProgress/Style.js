@@ -1,7 +1,17 @@
 import styled from 'styled-components';
+import background from './fundo2.jpg';
 
 export const DivS = styled.div`
+  background-image: url(${background});
+  background-attachment: fixed;
+  position: relative;
+  /* height: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
   width: 100%;
+  color: #B30E16;
+  font-size: 18px;
   input[type="checkbox"] {
     all: revert;
   }
@@ -19,6 +29,8 @@ export const DivS = styled.div`
   }
   #subDiv {
 /*     margin: 1px solid red; */
+    background-color: rgb(219, 218, 214, 0.9);
+    border-radius: 20px;
     padding: 0 16px;
     #tituloEicones {
       display: flex;
@@ -55,13 +67,13 @@ export const DivS = styled.div`
   }
 `;
 
-export const DivStart = styled.div`
+export const FinishS = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   #startButton {
-    background-color: #888;
+    background: ${({ disabled }) => (disabled ? '#aeb4a9' : '#B30E16')};
     color: #E7BD42;
     font-weight: bold;
     border: 2px solid #E7BD42;

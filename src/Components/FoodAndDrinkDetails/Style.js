@@ -95,6 +95,7 @@ export const DivS = styled.div`
   }
   #subDiv {
     background-color: rgb(219, 218, 214, 0.9);
+    /* border: 2px solid red; */
     padding: 0 16px;
     border-radius: 20px;
   }
@@ -106,9 +107,9 @@ export const DivS = styled.div`
   }
 `;
 
-export const DivStart = styled.div`
+export const StartOrContinueS = styled.div`
   #startButton {
-    background-color: #888;
+    background-color: #B30E16;
     color: #E7BD42;
     font-weight: bold;
     padding: 1px;
