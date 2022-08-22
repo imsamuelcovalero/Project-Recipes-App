@@ -7,6 +7,8 @@ function ExploreFoods() {
   return (
     <div>
       <HeaderNoSearch title="Explore Foods" shouldRenderMagnifier />
+      <p>xablau</p>
+      <p>xablau</p>
       <ExploreButtons />
       <Footer />
     </div>

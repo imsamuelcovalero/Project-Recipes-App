@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DivS = styled.header`
-  color: #E7BD42;
+  color: #B30E16;
   width: 100%;
   justify-content: center;
   align-items: center;

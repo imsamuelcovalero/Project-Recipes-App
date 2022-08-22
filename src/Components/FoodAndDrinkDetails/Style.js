@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from './fundo2.jpg';
+import background from './fundo007Food.png';
 
 export const DivS = styled.div`
   background-image: url(${background});
@@ -94,7 +94,7 @@ export const DivS = styled.div`
     font-weight: bold;
   }
   #subDiv {
-    background-color: rgb(219, 218, 214, 0.9);
+    background-color: rgb(219, 218, 214, 0.97);
     /* border: 2px solid red; */
     padding: 0 16px;
     border-radius: 20px;

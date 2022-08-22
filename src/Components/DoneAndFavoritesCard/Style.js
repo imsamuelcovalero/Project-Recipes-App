@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
 export const DivS = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #dbdad6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #dbdad6; */
+  background-color: #ffffff;
+  color: #B30E16;
+  padding: 0 16px;
+  border-radius: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
 image {
   width: 300px;
 }
@@ -32,6 +40,9 @@ image {
 }
 #boldTitle {
   font-weight: bold;
+}
+#shareMsg {
+  margin-bottom: 0 !important;
 }
 `;
 

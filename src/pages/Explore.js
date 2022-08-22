@@ -7,13 +7,14 @@ function Explore() {
   return (
     <div>
       <HeaderNoSearch title="Explore" shouldRenderMagnifier />
+      <p>xablau</p>
+      <p>xablau</p>
       <Link to="/explore/foods">
         <button
           type="button"
           data-testid="explore-foods"
         >
           Explore Foods
-
         </button>
       </Link>
       <Link to="/explore/drinks">
@@ -22,7 +23,6 @@ function Explore() {
           data-testid="explore-drinks"
         >
           Explore Drinks
-
         </button>
       </Link>
       <Footer />

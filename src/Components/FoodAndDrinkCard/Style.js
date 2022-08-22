@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 const DivS = styled.div`
   display: flex;
-  /* flex-direction: row;
-  flex-wrap: wrap; */
-  /* justify-content: center; */
   #cardTotal {
     display: flex;
     flex-direction: row;
@@ -13,8 +10,10 @@ const DivS = styled.div`
     margin-bottom: 50px;
   }
   #card {
-    background-color: #f5f5f5;
-    border: rgb(250, 250, 250) 0.2em solid; 
+    color: #B30E16;
+    background-color: #ffffff;
+    border: 0.2em solid #E7BD42;
+    border: #E7BD42 0.1em solid; 
     border-radius: 0.4em;
     box-shadow: 0.3em 0.3em 0.7em #00000015;
     margin: 5px;
