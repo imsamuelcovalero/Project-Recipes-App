@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import background from './fundo007Food.png';
 
 export const DivGlobal = styled.div`
-  /* background-image: url(${background}); */
+  background-image: url(${background});
   background-attachment: fixed;
   position: relative;
   display: flex;
@@ -20,11 +20,6 @@ export const Div = styled.div`
   display: flex;
   flex-direction: column;
   color: #B30E16;
-  h2 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
   #buttons {
     button {
       color: #B30E16;
@@ -48,8 +43,5 @@ export const Div = styled.div`
     justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
-  }
-  #logoProfile {
-    padding-bottom: 40px;
   }
 `;

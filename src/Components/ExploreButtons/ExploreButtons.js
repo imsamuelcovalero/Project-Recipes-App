@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { DivGlobal, Div } from './Style';
 
 function ExploreButtons() {
   const history = useHistory();
@@ -7,9 +8,9 @@ function ExploreButtons() {
 
   const RANDOM_FOOD_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
   const RANDOM_DRINK_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
-  const SURPRISE_ME = 'Surprise me!';
-  const BY_INGREDIENT = 'By Ingredient';
-  const BY_NATIONALITY = 'By Nationality';
+  const SURPRISE_ME = 'SURPRISE ME!';
+  const BY_INGREDIENT = 'BY INGREDIENT';
+  const BY_NATIONALITY = 'BY NATIONALITY';
 
   const fetchSurpriseDrink = async () => {
     if (window.location.href.includes('/foods')) {
@@ -42,6 +43,7 @@ function ExploreButtons() {
         fetchSurpriseDrink();
       }
       if (target.innerText === BY_INGREDIENT) {
+        console.log('xablau');
         history.push('/explore/foods/ingredients');
       }
       if (target.innerText === BY_NATIONALITY) {
@@ -69,35 +71,35 @@ function ExploreButtons() {
   }, [randomFoodOrDrink]);
 
   return (
-    <div>
-      <button
-        data-testid="explore-by-ingredient"
-        type="button"
-        onClick={ handleClick }
-      >
-        By Ingredient
-      </button>
-
-      {
-        window.location.href.includes('/foods') && (
-          <button
-            data-testid="explore-by-nationality"
-            type="button"
-            onClick={ handleClick }
-          >
-            By Nationality
-          </button>
-        )
-      }
-
-      <button
-        data-testid="explore-surprise"
-        type="button"
-        onClick={ handleClick }
-      >
-        Surprise me!
-      </button>
-    </div>
+    <DivGlobal>
+      <Div>
+        <button
+          data-testid="explore-by-ingredient"
+          type="button"
+          onClick={ handleClick }
+        >
+          By Ingredient
+        </button>
+        {
+          window.location.href.includes('/foods') && (
+            <button
+              data-testid="explore-by-nationality"
+              type="button"
+              onClick={ handleClick }
+            >
+              By Nationality
+            </button>
+          )
+        }
+        <button
+          data-testid="explore-surprise"
+          type="button"
+          onClick={ handleClick }
+        >
+          Surprise me!
+        </button>
+      </Div>
+    </DivGlobal>
   );
 }
 

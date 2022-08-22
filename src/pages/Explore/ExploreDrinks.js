@@ -1,7 +1,7 @@
 import React from 'react';
-import HeaderNoSearch from '../Components/Header/HeaderNoSearch';
-import Footer from '../Components/Footer/Footer';
-import ExploreButtons from '../Components/ExploreButtons';
+import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
+import Footer from '../../Components/Footer/Footer';
+import ExploreButtons from '../../Components/ExploreButtons/ExploreButtons';
 
 function ExploreDrinks() {
   return (
