@@ -6,7 +6,7 @@ import { DivS } from './Style';
 function FilterButtons() {
   const [filterOptions, setFilterOptions] = useState([]);
   const [lastClicked, setLastClicked] = useState('');
-  const { setApiResult } = useContext(AppContext);
+  const { setApiResult, search } = useContext(AppContext);
 
   const FOODS_CATEGORIES_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
   const DRINKS_CATEGORIES_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
@@ -82,7 +82,7 @@ function FilterButtons() {
   };
 
   return (
-    <DivS>
+    <DivS search={ search }>
       <button
         id="filterButton"
         type="button"

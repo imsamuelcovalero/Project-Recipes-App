@@ -5,6 +5,7 @@ export const HeaderS = styled.header`
   top: 0;
   width: 100%;
   height: 45px;
+  margin-bottom: 100px;
   background: ${(props) => (props.corFundo ? props.corFundo : '#696969')};
   border: 1px solid black;
   color: #e7bd42;
@@ -14,9 +15,6 @@ export const HeaderS = styled.header`
   align-self: flex-start;
   align-content: space-between;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  input[type="radio"] {
-    all: revert;
-  }
   #titulo {
     display: flex;
     font-weight: bold;
@@ -49,15 +47,53 @@ export const HeaderS = styled.header`
     margin-bottom: 0;
     margin-right: 33.52px;
   }
-  #searchInput {
-    border-radius: 10px;
-    background-color: #dadada;
-    border: solid #888 2px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    color: black;
+`;
+
+export const SearchS = styled.div`
+  margin-top: ${({ fromNationalities }) => (fromNationalities ? '40px' : '45px')};
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-content: space-between;
+  color: #B30E16;
+  background-color: #dbdad6;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  input[type="radio"] {
+    all: revert;
+  }
+  label {
+    margin-bottom: 0;
+  }
+  #searchText {
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 2px solid #E7BD42 !important;
+    background-color: #ffffff;
+    ::placeholder {
+      color: #dbdad6;
+    }
+    width: 100%;
+  }
+  #radios {
+    width: 100%;
+    padding: 0 10px;
+    font-weight: bold;
+    color: #696969 !important;
     display: flex;
-    margin-top:125px;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0 !important;
+  }
+  button {
+    text-align: center;
+    font-weight: bold;
+    color: #E7BD42;
+    border: 2px solid #E7BD42 !important;
+    background-color: #696969;
+    width: 160px;
+    margin-bottom: 5px;
   }
 `;
 

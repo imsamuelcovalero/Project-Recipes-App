@@ -4,11 +4,12 @@ import Footer from '../../Components/Footer/Footer';
 import FoodAndDrinkCard from '../../Components/FoodAndDrinkCard/FoodAndDrinkCard';
 import AppContext from '../../context/AppContext';
 import { DivGlobal, Div } from './Style';
+import HeaderSearchOnClick from '../../Components/Header/HeaderSearchOnClick';
 
 const INITIAL_FOODS_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
 function Nationalities() {
-  const { setApiResult } = useContext(AppContext);
+  const { setApiResult, search, setSearch } = useContext(AppContext);
   const [nationalities, setNationalities] = useState([]);
   const [options, setOptions] = useState('All');
   // const [state, setState] = useState([]);
@@ -27,6 +28,7 @@ function Nationalities() {
         console.log(arrayOfNationalities);
         console.log(uniqueArr);
         setNationalities(uniqueArr);
+        setSearch(false);
       } catch (error) {
         console.log(error);
       }
@@ -69,12 +71,13 @@ function Nationalities() {
 
   return (
     <DivGlobal>
-      <Div>
+      <Div search={ search }>
         <Header
           title="Explore Nationalities"
           fromNationalities="true"
           shouldRenderMagnifier
         />
+        {search && <HeaderSearchOnClick fromNationalities="true" />}
         <select
           onChange={ handleNationalityChange }
           data-testid="explore-by-nationality-dropdown"

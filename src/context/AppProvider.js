@@ -11,6 +11,7 @@ function AppProvider({ children }) {
   const [cameFromIngredients, setCameFromIngredients] = useState(false);
   const [clickedIngredient, setClickedIngredient] = useState('');
   const [shareMessage, setShareMessage] = useState('');
+  const [search, setSearch] = useState(false);
 
   const history = useHistory();
 
@@ -95,6 +96,8 @@ function AppProvider({ children }) {
     setClickedIngredient,
     shareMessage,
     setShareMessage,
+    search,
+    setSearch,
   };
 
   return (

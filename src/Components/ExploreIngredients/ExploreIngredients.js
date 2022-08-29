@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import AppContext from '../context/AppContext';
+import AppContext from '../../context/AppContext';
+import { DivGlobal, Div } from './Style';
 
 function ExploreIngredients() {
   const [ingredients, setIngredients] = useState([]);
@@ -55,41 +56,48 @@ function ExploreIngredients() {
   };
 
   return (
-    <div>
-      {
-        ingredients.map((ingredient, index) => (
-          <div
-            key={ index }
-            data-testid={ `${index}-ingredient-card` }
-            onClick={ () => handleClick(ingredient) }
-            aria-hidden="true"
-          >
-            {
-              pathname.includes('/foods')
-                ? <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
-                : <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
-            }
-            {
-              pathname.includes('/foods')
-                ? (
-                  <img
-                    src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-                    alt={ `${ingredient.strIngredient}` }
-                    data-testid={ `${index}-card-img` }
-                  />
-                )
-                : (
-                  <img
-                    src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-                    alt={ `${ingredient.strIngredient1}` }
-                    data-testid={ `${index}-card-img` }
-                  />
-                )
-            }
-          </div>
-        ))
-      }
-    </div>
+    <DivGlobal>
+      <Div>
+        {
+          ingredients.map((ingredient, index) => (
+            <div
+              id="ingredient"
+              key={ index }
+              data-testid={ `${index}-ingredient-card` }
+              onClick={ () => handleClick(ingredient) }
+              aria-hidden="true"
+            >
+              {
+                pathname.includes('/foods')
+                  ? <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
+                  : (
+                    <p data-testid={ `${index}-card-name` }>
+                      {ingredient.strIngredient1}
+                    </p>
+                  )
+              }
+              {
+                pathname.includes('/foods')
+                  ? (
+                    <img
+                      src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+                      alt={ `${ingredient.strIngredient}` }
+                      data-testid={ `${index}-card-img` }
+                    />
+                  )
+                  : (
+                    <img
+                      src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
+                      alt={ `${ingredient.strIngredient1}` }
+                      data-testid={ `${index}-card-img` }
+                    />
+                  )
+              }
+            </div>
+          ))
+        }
+      </Div>
+    </DivGlobal>
   );
 }
 

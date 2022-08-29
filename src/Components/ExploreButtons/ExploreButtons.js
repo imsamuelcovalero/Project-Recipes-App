@@ -12,7 +12,7 @@ function ExploreButtons() {
   const BY_INGREDIENT = 'BY INGREDIENT';
   const BY_NATIONALITY = 'BY NATIONALITY';
 
-  const fetchSurpriseDrink = async () => {
+  const fetchSurprise = async () => {
     if (window.location.href.includes('/foods')) {
       try {
         const response = await fetch(RANDOM_FOOD_ENDPOINT);
@@ -40,7 +40,7 @@ function ExploreButtons() {
   const handleClick = ({ target }) => {
     if (window.location.href.includes('/foods')) {
       if (target.innerText === SURPRISE_ME) {
-        fetchSurpriseDrink();
+        fetchSurprise();
       }
       if (target.innerText === BY_INGREDIENT) {
         history.push('/explore/foods/ingredients');
@@ -52,7 +52,7 @@ function ExploreButtons() {
 
     if (window.location.href.includes('/drinks')) {
       if (target.innerText === SURPRISE_ME) {
-        fetchSurpriseDrink();
+        fetchSurprise();
       }
       if (target.innerText === BY_INGREDIENT) {
         history.push('/explore/drinks/ingredients');
