@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer/Footer';
-import FoodAndDrinkCard from '../Components/FoodAndDrinkCard/FoodAndDrinkCard';
-import AppContext from '../context/AppContext';
+import Header from '../../Components/Header/Header';
+import Footer from '../../Components/Footer/Footer';
+import FoodAndDrinkCard from '../../Components/FoodAndDrinkCard/FoodAndDrinkCard';
+import AppContext from '../../context/AppContext';
+import { DivGlobal, Div } from './Style';
 
 const INITIAL_FOODS_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
@@ -67,29 +68,35 @@ function Nationalities() {
   };
 
   return (
-    <div>
-      <Header title="Explore Nationalities" shouldRenderMagnifier />
-      <select
-        onChange={ handleNationalityChange }
-        data-testid="explore-by-nationality-dropdown"
-      >
-        <option data-testid="All-option" value="All">All</option>
-        { nationalities && (
-          nationalities.map((nationality, index) => (
-            <option
-              data-testid={ `${nationality}-option` }
-              key={ index }
-              name="nationality"
-              value={ nationality }
-            >
-              { nationality }
-            </option>
-          ))
-        )}
-      </select>
-      <FoodAndDrinkCard />
-      <Footer />
-    </div>
+    <DivGlobal>
+      <Div>
+        <Header
+          title="Explore Nationalities"
+          fromNationalities="true"
+          shouldRenderMagnifier
+        />
+        <select
+          onChange={ handleNationalityChange }
+          data-testid="explore-by-nationality-dropdown"
+        >
+          <option data-testid="All-option" value="All">All</option>
+          { nationalities && (
+            nationalities.map((nationality, index) => (
+              <option
+                data-testid={ `${nationality}-option` }
+                key={ index }
+                name="nationality"
+                value={ nationality }
+              >
+                { nationality }
+              </option>
+            ))
+          )}
+        </select>
+        <FoodAndDrinkCard />
+        <Footer />
+      </Div>
+    </DivGlobal>
   );
 }
 

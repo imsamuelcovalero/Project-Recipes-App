@@ -22,6 +22,7 @@ export const HeaderS = styled.header`
     font-weight: bold;
     text-align: center;
     margin-bottom: 0;
+    font-size: ${({ fromNationalities }) => (fromNationalities && '20px')};
   }
   #profile {
     height: 40px;

@@ -12,11 +12,11 @@ import ExploreFoods from '../pages/Explore/ExploreFoods';
 import ExploreDrinks from '../pages/Explore/ExploreDrinks';
 import FoodsIngredients from '../pages/FoodsIngredients';
 import DrinksIngredients from '../pages/DrinksIngredients';
-import Nationalities from '../pages/Nationalities';
+import Nationalities from '../pages/Nationalities/Nationalities';
 import Profile from '../pages/Profile/Profile';
 import DoneRecipes from '../pages/DoneRecipes/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes/FavoriteRecipes';
-import NationalitiesNotFound from '../pages/NationalitiesNotFound';
+import NationalitiesNotFound from '../pages/Nationalities/NationalitiesNotFound';
 
 function Content() {
   // const { mealId, drinkId } = useContext(AppContext);

@@ -43,7 +43,6 @@ function ExploreButtons() {
         fetchSurpriseDrink();
       }
       if (target.innerText === BY_INGREDIENT) {
-        console.log('xablau');
         history.push('/explore/foods/ingredients');
       }
       if (target.innerText === BY_NATIONALITY) {

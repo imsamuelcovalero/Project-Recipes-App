@@ -6,7 +6,7 @@ import searchIcon from '../../images/searchIcon.png';
 import AppContext from '../../context/AppContext';
 import { HeaderS } from './Style';
 
-function Header({ title }) {
+function Header({ title, fromNationalities }) {
   const history = useHistory();
   const [search, setSearch] = useState(false);
   const [searchName, setSearchName] = useState('');
@@ -29,7 +29,7 @@ function Header({ title }) {
   };
 
   return (
-    <HeaderS>
+    <HeaderS fromNationalities={ fromNationalities }>
       <button
         id="profile"
         type="button"
@@ -107,6 +107,7 @@ function Header({ title }) {
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
+  fromNationalities: PropTypes.bool.isRequired,
 };
 
 export default Header;

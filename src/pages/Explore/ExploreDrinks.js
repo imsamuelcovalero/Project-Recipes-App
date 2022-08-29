@@ -2,14 +2,19 @@ import React from 'react';
 import HeaderNoSearch from '../../Components/Header/HeaderNoSearch';
 import Footer from '../../Components/Footer/Footer';
 import ExploreButtons from '../../Components/ExploreButtons/ExploreButtons';
+import { DivGlobal, Div } from './Style';
 
 function ExploreDrinks() {
   return (
-    <div>
-      <HeaderNoSearch title="Explore Drinks" shouldRenderMagnifier />
-      <ExploreButtons />
-      <Footer />
-    </div>
+    <DivGlobal>
+      <Div>
+        <HeaderNoSearch title="Explore Drinks" shouldRenderMagnifier />
+        <div id="buttons">
+          <ExploreButtons />
+        </div>
+        <Footer />
+      </Div>
+    </DivGlobal>
   );
 }
 
