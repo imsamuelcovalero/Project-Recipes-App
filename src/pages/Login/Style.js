@@ -1,68 +1,74 @@
 import styled from 'styled-components';
+import background from './planoFundoLogin.jpg';
 
 export const DivGlobal = styled.div`
+  background-image: url(${background});
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-size: cover;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: column;
+  min-height: 640px;
+  min-width: 360px;
   align-items: center;
+  background-color: #dbdad6;
   justify-content: center;
-  background-color: #FFF3F0;
+  #logoProfile {
+    top: 50px;
+    position: absolute;
+    max-width: 360px;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+    -webkit-transition-delay: 9999s;
+    -webkit-transition-property: background-color, color;
+  }
 `;
 
 export const Div = styled.div`
-  width: 400px;
-  height: 240px;
-  border: 1px solid #e1e5eb;
-  background: ${(props) => (props.corFundo ? props.corFundo : '#4D7C8A')};
+  padding-right: 25px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: #EFA00B;
-  border-radius: 10px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  form {
-    input {
-      border: 1px solid #e1e5eb;
-      outline: none;
-      width: 100%;
-      height: 35%;
-      margin-bottom: 10px;
+  justify-content: space-between;
+  align-content: space-between;
+  input { 
+    background-color: #2D2D2D;
+    border: 2px solid #E8E8E8;
+    border-radius: 10px;
+    color: #E7BD42;
+    font-size: medium;
+    font-weight: 700;
+    padding: 7px;
+    text-align: center;
+    :focus{
+      background-color: #212121;
+      box-shadow: 4px 4px #888;
+      color: #E7BD42;
+      outline-color: #2D2D2D;
     }
-    width: 80%;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   button {
-    :disabled {
-      background-color: #7F9C96;
-    }
-    :enabled {
-      background-color: #4D7C8A;
-    }
-    border: 1px solid #EFA00B;
-    border-radius: 5px;
-    margin-top: 15px;
-    width: 50%;
-    height: 35px; 
-    align-self: center;
-    color: #EFA00B;
+    text-align: center;
     font-weight: bold;
-    cursor: pointer;
-  }
-  @media (max-width: 360px) {
-    display: flex;
-    // background-color: red;
-    // width: 200px;
-    // height: 100px;
-    border: 1px solid red;
-    max-width: 90%;
-    padding-left: 24px;
-    padding-right: 24px;
-    form {
-    }
+    color: #E7BD42;
+    border: 2px solid #E7BD42 !important;
+    background: ${({ disabled }) => (disabled ? '#696969' : '#B30E16')};
+    width: 160px;
+    height: 30px;
+    margin-bottom: 5px;
   }
 `;

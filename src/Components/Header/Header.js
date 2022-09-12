@@ -4,14 +4,10 @@ import { useHistory } from 'react-router-dom';
 import profileIconPng from '../../images/profileIconPng.png';
 import searchIcon from '../../images/searchIcon.png';
 import AppContext from '../../context/AppContext';
-// import HeaderSearchOnClick from './HeaderSearchOnClick';
 import { HeaderS } from './Style';
 
 function Header({ title, fromNationalities }) {
   const history = useHistory();
-  // const [search, setSearch] = useState(false);
-  // const [searchName, setSearchName] = useState('');
-  // const [radioResult, setRadioResult] = useState('');
 
   const { search, setSearch } = useContext(AppContext);
   console.log('search', search);
