@@ -27,13 +27,13 @@ https://user-images.githubusercontent.com/98184355/221054764-209c3982-b9d1-4906-
 
 ## Contexto
 A __aplicação 007 Foods__ é uma ferramenta que acessa as bases de dados de receitas de comidas e bebidas, permitindo ao usuário:
- -Fazer login;
- -Buscar por receitas por nome, ingrediente, primeira letra, tipo de drink ou refeição;
- -Visualizar detalhes das receitas, com vídeo de execução, sugestões de acompanhamento e informações nutricionais;
- -Favoritar ou compartilhar receitas;
- -Acessar a seção de receitas prontas e favoritas após o login;
- -Explorar as receitas por nacionalidade ou ingrediente, ou encontrar sugestões aleatórias de pratos e bebidas;
- -Utilizar o Local Storage para manter informações das receitas favoritas e do histórico de busca do usuário.
+- Fazer login;
+- Buscar por receitas por nome, ingrediente, primeira letra, tipo de drink ou refeição;
+- Visualizar detalhes das receitas, com vídeo de execução, sugestões de acompanhamento e informações nutricionais;
+- Favoritar ou compartilhar receitas;
+- Acessar a seção de receitas prontas e favoritas após o login;
+- Explorar as receitas por nacionalidade ou ingrediente, ou encontrar sugestões aleatórias de pratos e bebidas;
+- Utilizar o Local Storage para manter informações das receitas favoritas e do histórico de busca do usuário.
 
 ## Tecnologias e Ferramentas Utilizadas
 
@@ -65,7 +65,7 @@ npm start
 ```
 
 ## Notas
-A aplicação foi desenvolvida utilizando o conceito de mobile first, ou seja, a interface foi projetada primeiramente para dispositivos móveis.
+A aplicação foi desenvolvida utilizando o conceito de __mobile first__, ou seja, a interface foi projetada primeiramente para dispositivos móveis.
 
 ### Git, GitHub e Histórico de Commits
 Este projeto utilizou a [Especificação de Commits Convencionais](https://www.conventionalcommits.org/en/v1.0.0/), com alguns tipos da [convenção Angular](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines). Além disso, foi utilizado o pacote [conventional-commit-cli](https://www.npmjs.com/package/conventional-commit-cli) para ajudar a seguir a convenção de commits. É importante utilizar a convenção de commits em projetos para manter o histórico de commits organizado e facilitar a leitura e o entendimento do que foi desenvolvido.
@@ -77,5 +77,3 @@ Durante o desenvolvimento deste projeto, foram utilizadas metodologias ágeis, q
 
 ### Lint
 - O projeto foi desenvolvido seguindo os padrões de Clean Code especificados pelo [Lint da Trybe](https://github.com/betrybe/eslint-config-trybe).
-
-# Design gráfico desenvolvido para celulares, melhor visualizado em 360 x 640 pixels.
