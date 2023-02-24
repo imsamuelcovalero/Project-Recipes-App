@@ -1,8 +1,12 @@
 # Bem-vindo ao projeto 007 Foods
 
  007 Foods é uma aplicação web em React.js produzida em grupo, que acessa a base de dados de duas APIs de receitas, uma de comidas e outra de bebidas, criando uma interface de busca por receitas culinárias intuitiva e amigável, permitindo a visualização dos detalhes das receitas, a favoritação e o compartilhamento com outras pessoas. Além disso, oferece um sistema de exploração, aonde é possível visualizar receitas por nacionalidade, por ingrediente e encontrar sugestões aleatórias de pratos e bebidas.
-> - Acesse o [deeploy da aplicação aqui.](https://project-recipes-app-jet.vercel.app/)
 > - Veja o post sobre a aplicação [no LinkedIn aqui.](https://www.linkedin.com/posts/samuelcovalero_frontend-agile-trello-activity-6970746088400019456-ykXl?utm_source=share&utm_medium=member_desktop)
+> - Acesse o [deploy da aplicação aqui.](https://project-recipes-app-jet.vercel.app/)
+<details>
+<summary>Mais informações</summary><br>
+Para logar, o email deve estar no padrão `usuário@email.com`, e a senha ter mais do que `6 caracteres`.
+</details>
 
 ## Sumário
 - [Bem-vindo ao projeto  007 Foods](#bem-vindo-ao-projeto-007-foods)
