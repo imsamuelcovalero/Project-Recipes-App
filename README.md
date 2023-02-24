@@ -4,8 +4,10 @@
 > - Veja o post sobre a aplicação [no LinkedIn aqui.](https://www.linkedin.com/posts/samuelcovalero_frontend-agile-trello-activity-6970746088400019456-ykXl?utm_source=share&utm_medium=member_desktop)
 > - Acesse o [deploy da aplicação aqui.](https://project-recipes-app-jet.vercel.app/)
 <details>
-<summary>Mais informações</summary><br>
-Para logar, o email deve estar no padrão `usuário@email.com`, e a senha ter mais do que `6 caracteres`.
+<summary>Informações para utilizar a aplicação no deploy</summary><br>
+ 
+ - Para logar, o email deve estar no padrão `usuário@email.com`, e a senha ter mais do que `6 caracteres`.
+ 
 </details>
 
 ## Sumário
