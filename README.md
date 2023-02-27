@@ -6,7 +6,7 @@
 <details>
 <summary>Informações para utilizar a aplicação no deploy</summary><br>
  
- - Para logar, o email deve estar no padrão `usuer@email.com`, e a senha ter mais do que `6 caracteres`.
+ - Para logar, o email deve estar no padrão `user@email.com`, e a senha ter mais do que `6 caracteres`.
  
 </details>
 
