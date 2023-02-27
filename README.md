@@ -37,7 +37,7 @@ A __aplicação 007 Foods__ é uma ferramenta que acessa as bases de dados de re
 - Favoritar ou compartilhar receitas;
 - Acessar a seção de receitas prontas e favoritas após o login;
 - Explorar as receitas por nacionalidade ou ingrediente, ou encontrar sugestões aleatórias de pratos e bebidas;
-- Utilizar o Local Storage para manter informações das receitas favoritas e do histórico de busca do usuário.
+- Utilizar o Local Storage para manter informações das receitas favoritas, iniciadas e finalizadas.
 
 ## Tecnologias e Ferramentas Utilizadas
 
