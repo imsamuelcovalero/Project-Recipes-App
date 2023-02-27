@@ -26,6 +26,8 @@ A aplicação foi desenvolvida com design responsivo e pensada para ser utilizad
 
 **Visualização para mobile e mac:**
 
+![appReceitas](https://user-images.githubusercontent.com/98184355/221451995-4efe8014-ce9e-4e2f-92f8-87365750df13.gif)
+
 [![Preview for mobile and mac](https://img.youtube.com/vi/Pokt--9hO_Q/0.jpg)](https://www.youtube.com/watch?v=Pokt--9hO_Q)
 
 **Visualização para linux:**
