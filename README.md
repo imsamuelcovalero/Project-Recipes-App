@@ -24,15 +24,10 @@
 ### Visualização para dispositivos móveis
 A aplicação foi desenvolvida com design responsivo e pensada para ser utilizada em dispositivos móveis. Sugerimos a vizualiação em resolução `360x640` pixels para a melhor experiência possível.
 
-**Visualização para mobile e mac:**
+**Visualização:**
 
 ![appReceitas](https://user-images.githubusercontent.com/98184355/221451995-4efe8014-ce9e-4e2f-92f8-87365750df13.gif)
 
-[![Preview for mobile and mac](https://img.youtube.com/vi/Pokt--9hO_Q/0.jpg)](https://www.youtube.com/watch?v=Pokt--9hO_Q)
-
-**Visualização para linux:**
-
-https://user-images.githubusercontent.com/98184355/221054764-209c3982-b9d1-4906-a3c8-5562fcabc1e6.mp4
 
 ## Contexto
 A __aplicação 007 Foods__ é uma ferramenta que acessa as bases de dados de receitas de comidas e bebidas, permitindo ao usuário:
