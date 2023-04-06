@@ -20,11 +20,11 @@
  - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
  - [Lint](#lint)
  
-## Preview
+## Visualização
 ### Visualização para dispositivos móveis
 A aplicação foi desenvolvida com design responsivo e pensada para ser utilizada em dispositivos móveis. Sugerimos a vizualiação em resolução `360x640` pixels para a melhor experiência possível.
 
-**Visualização:**
+<!-- **Visualização:** -->
 
 <div align="center">
 
