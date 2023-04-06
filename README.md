@@ -12,7 +12,7 @@
 
 ## Sumário
 - [Bem-vindo ao projeto  007 Foods](#bem-vindo-ao-projeto-007-foods)
-- [Preview](#preview)
+- [Visualização](#visualização)
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
