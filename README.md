@@ -26,7 +26,11 @@ A aplicação foi desenvolvida com design responsivo e pensada para ser utilizad
 
 **Visualização:**
 
+<div align="center">
+
 ![appReceitas](https://user-images.githubusercontent.com/98184355/221451995-4efe8014-ce9e-4e2f-92f8-87365750df13.gif)
+
+</div>
 
 
 ## Contexto
