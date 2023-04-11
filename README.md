@@ -17,8 +17,8 @@
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
 - [Notas](#notas)
- - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
- - [Lint](#lint)
+  - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
+  - [Lint](#lint)
  
 ## Visualização
 ### Visualização para dispositivos móveis
